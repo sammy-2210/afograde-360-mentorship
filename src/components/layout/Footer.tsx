@@ -29,8 +29,8 @@ const FOOTER_NAV_ITEMS = [
   { label: "Home", hash: "#hero" },
   { label: "About the Programme", hash: "#about" },
   { label: "Programme Benefits", hash: "#benefits" },
-  { label: "Past Results & Reviews", hash: "#track-record" },
-  { label: "Payment Plans", hash: "#plans" },
+  { label: "Hall of Fame", hash: "#track-record" },
+  { label: "Awards & Prizes", hash: "#rewards" },
   { label: "Registration", hash: "#register" },
   { label: "Frequently Asked Questions", hash: "#faq" },
 ] as const;

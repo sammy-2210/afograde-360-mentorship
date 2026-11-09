@@ -16,9 +16,10 @@ import styles from "./Header.module.css";
 const NAV_ITEMS = [
   { label: "About", href: "#about" },
   { label: "Benefits", href: "#benefits" },
-  { label: "Results", href: "#track-record" },
+  { label: "Hall of Fame", href: "#track-record" },
   { label: "Structure", href: "#dates-structure" },
-  { label: "Plans", href: "#plans" },
+  { label: "Awards", href: "#rewards" },
+  { label: "Registration", href: "#register" },
   { label: "FAQs", href: "#faq" },
   { label: "Contact", href: "#contact" },
 ] as const;

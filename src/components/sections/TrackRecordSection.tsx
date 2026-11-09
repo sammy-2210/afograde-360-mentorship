@@ -21,17 +21,10 @@ interface TrackRecordSectionProps {
 export function TrackRecordSection({
   serverTrackRecord,
 }: TrackRecordSectionProps) {
-  const { scores, testimonials, gallery } =
+  const { testimonials, gallery } =
     resolveTrackRecordData(serverTrackRecord);
-  const [activeSlide, setActiveSlide] = useState(0);
   const [lightboxItem, setLightboxItem] =
     useState<TrackRecordGalleryItem | null>(null);
-
-  useEffect(() => {
-    if (activeSlide >= testimonials.length && testimonials.length > 0) {
-      setActiveSlide(0);
-    }
-  }, [activeSlide, testimonials.length]);
 
   useEffect(() => {
     if (!lightboxItem) return;
@@ -44,82 +37,22 @@ export function TrackRecordSection({
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [lightboxItem]);
 
-  if (scores.length === 0 && testimonials.length === 0 && gallery.length === 0) {
+  if (testimonials.length === 0 && gallery.length === 0) {
     return null;
   }
-
-  const currentReview = testimonials[activeSlide];
 
   return (
     <section id="track-record" className={`section ${styles.section}`}>
       <div className="container">
         <SectionHeading
-          eyebrow={TRACK_RECORD_COPY.eyebrow}
-          title={TRACK_RECORD_COPY.sectionTitle}
-          lead={TRACK_RECORD_COPY.supportingStatement}
+          eyebrow="Academic Track Record"
+          title="PACESETTERS HALL OF FAME"
+          lead="Behind every impressive score is preparation, consistency, and the right academic mentorship. Explore verified scores, courses, and tertiary admissions from our pacesetters community."
         />
 
-        {/* PART A: PAST UTME RESULTS */}
-        {scores.length > 0 ? (
-          <div className={styles.partBlock}>
-            <div className={styles.subHeader}>
-              <h3 className={`type-headline-small ${styles.subTitle}`}>
-                {TRACK_RECORD_COPY.partAHeading}
-              </h3>
-              <Badge variant="brand">Out of 400 UTME Aggregate</Badge>
-            </div>
-
-            <div className={styles.scoresGrid} role="list" aria-label="Past UTME scores">
-              {scores.map((item) => {
-                const max = item.maxScore ?? 400;
-                const pct = Math.min(100, Math.round((item.score / max) * 100));
-                return (
-                  <article
-                    key={item.id}
-                    role="listitem"
-                    className={styles.scoreCard}
-                  >
-                    <span className={styles.scoreYearTag}>
-                      {item.examYear} UTME
-                    </span>
-                    <span className={styles.scoreValue}>{item.score}</span>
-                    <span className={styles.scoreDenom}>/ {max}</span>
-                    <div className={styles.scoreMeterTrack} aria-hidden="true">
-                      <div
-                        className={styles.scoreMeterFill}
-                        style={{ width: `${pct}%` }}
-                      />
-                    </div>
-                  </article>
-                );
-              })}
-            </div>
-
-            <div className={styles.supportingBanner}>
-              <span>{TRACK_RECORD_COPY.partASupportingText}</span>
-              <Badge variant="neutral">AFOGRADE Scholars</Badge>
-            </div>
-          </div>
-        ) : null}
-
-        {/* PART B: STUDENT SCHOLARS & HALL OF FAME */}
+        {/* PACESETTERS HALL OF FAME GRID */}
         {testimonials.length > 0 ? (
           <div className={styles.partBlock}>
-            <div className={styles.subHeader}>
-              <div>
-                <h3 className={`type-headline-small ${styles.subTitle}`}>
-                  PACESETTERS HALL OF FAME
-                </h3>
-                <p
-                  className="type-body-medium"
-                  style={{ color: "var(--afograde-ink-muted)", marginTop: "4px" }}
-                >
-                  Authentic success stories: Student scores, verified courses, and tertiary institutions across Nigeria.
-                </p>
-              </div>
-              <Badge variant="brand">Verified Academic Records</Badge>
-            </div>
-
             <div className={styles.scholarsGrid} role="list" aria-label="Verified student scholars">
               {testimonials.map((student) => (
                 <article key={student.id} role="listitem" className={styles.scholarCard}>
@@ -128,8 +61,8 @@ export function TrackRecordSection({
                       <img
                         src={student.photoUrl}
                         alt={student.displayName}
-                        width={60}
-                        height={60}
+                        width={40}
+                        height={40}
                         loading="lazy"
                         decoding="async"
                         className={styles.scholarAvatar}

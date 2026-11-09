@@ -9,7 +9,6 @@ import { RegistrationSection } from "@/components/registration/RegistrationSecti
 import { AboutSection } from "@/components/sections/AboutSection";
 import { BenefitsSection } from "@/components/sections/BenefitsSection";
 import { ContactSection } from "@/components/sections/ContactSection";
-import { CredibilitySection } from "@/components/sections/CredibilitySection";
 import { DatesStructureSection } from "@/components/sections/DatesStructureSection";
 import { FaqSection } from "@/components/sections/FaqSection";
 import { FinalCtaSection } from "@/components/sections/FinalCtaSection";
@@ -17,7 +16,6 @@ import { HeroSection } from "@/components/sections/HeroSection";
 import { HowItWorksSection } from "@/components/sections/HowItWorksSection";
 import { ObjectivesSection } from "@/components/sections/ObjectivesSection";
 import { PaymentExplainerSection } from "@/components/sections/PaymentExplainerSection";
-import { PlansSection } from "@/components/sections/PlansSection";
 import { RewardsSection } from "@/components/sections/RewardsSection";
 import { TrackRecordSection } from "@/components/sections/TrackRecordSection";
 import { FloatingWhatsAppButton } from "@/components/ui/FloatingWhatsAppButton";
@@ -39,12 +37,7 @@ export function LandingPageClient() {
         <TrackRecordSection
           serverTrackRecord={controller.machine.serverConfig?.trackRecord}
         />
-        <CredibilitySection />
         <RewardsSection />
-        <PlansSection
-          serverConfig={controller.machine.serverConfig}
-          onSelectPlan={controller.selectPlanAndFocusForm}
-        />
         <RegistrationSection controller={controller} />
         <PaymentExplainerSection />
         <ContactSection />

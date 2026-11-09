@@ -87,7 +87,7 @@ if (fs.existsSync(path.join(OUT_DIR, "index.html"))) {
     );
   }
 
-  // 5. Required PRD Section IDs
+  // 5. Required Section IDs (after user requested removal of standalone #transparency and #plans)
   const requiredSectionIds = [
     "hero",
     "about",
@@ -96,9 +96,7 @@ if (fs.existsSync(path.join(OUT_DIR, "index.html"))) {
     "how-it-works",
     "dates-structure",
     "track-record",
-    "transparency",
     "rewards",
-    "plans",
     "register",
     "payment-info",
     "contact",
