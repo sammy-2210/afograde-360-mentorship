@@ -6,12 +6,12 @@ import styles from "./Sections.module.css";
 
 const PRIZE_MEDIA: Record<string, { src: string; alt: string }> = {
   "HP Elite Laptop": {
-    src: "/images/prize-laptop.jpg",
-    alt: "HP Elite Laptop academic prize on clean modern study desk",
+    src: "/images/prize-laptop-unboxing.jpg",
+    alt: "Brand new laptop unboxing with retail box and presentation packaging",
   },
   Smartphone: {
-    src: "/images/prize-smartphone.svg",
-    alt: "Sleek modern smartphone with UTME speed test application",
+    src: "/images/prize-smartphone-unboxing.jpg",
+    alt: "Brand new smartphone unboxing with opened retail box and accessories",
   },
   "₦50,000 Cash Grant": {
     src: "/images/prize-cash-grant.svg",
@@ -33,7 +33,7 @@ export function RewardsSection() {
           {REWARDS_CONFIG.awards.map((item, idx) => {
             const isTopAward = idx === 0;
             const media = PRIZE_MEDIA[item.prize] ?? {
-              src: "/images/prize-laptop.jpg",
+              src: "/images/prize-laptop-unboxing.jpg",
               alt: item.prize,
             };
 
