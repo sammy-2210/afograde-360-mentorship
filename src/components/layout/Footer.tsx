@@ -27,11 +27,12 @@ interface FooterProps {
 
 const FOOTER_NAV_ITEMS = [
   { label: "Home", hash: "#hero" },
-  { label: "About the Programme", hash: "#about" },
   { label: "Programme Benefits", hash: "#benefits" },
   { label: "Hall of Fame", hash: "#track-record" },
-  { label: "Awards & Prizes", hash: "#rewards" },
+  { label: "How It Works", hash: "#how-it-works" },
+  { label: "Structure", hash: "#dates-structure" },
   { label: "Registration", hash: "#register" },
+  { label: "Awards & Prizes", hash: "#rewards" },
   { label: "Frequently Asked Questions", hash: "#faq" },
 ] as const;
 

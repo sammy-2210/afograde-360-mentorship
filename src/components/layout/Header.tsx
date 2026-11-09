@@ -14,12 +14,12 @@ import { WhatsAppCta } from "@/components/ui/WhatsAppCta";
 import styles from "./Header.module.css";
 
 const NAV_ITEMS = [
-  { label: "About", href: "#about" },
   { label: "Benefits", href: "#benefits" },
   { label: "Hall of Fame", href: "#track-record" },
+  { label: "How It Works", href: "#how-it-works" },
   { label: "Structure", href: "#dates-structure" },
-  { label: "Awards", href: "#rewards" },
   { label: "Registration", href: "#register" },
+  { label: "Awards", href: "#rewards" },
   { label: "FAQs", href: "#faq" },
   { label: "Contact", href: "#contact" },
 ] as const;

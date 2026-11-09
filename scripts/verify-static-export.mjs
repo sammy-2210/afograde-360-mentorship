@@ -90,14 +90,13 @@ if (fs.existsSync(path.join(OUT_DIR, "index.html"))) {
   // 5. Required Section IDs (after user requested removals)
   const requiredSectionIds = [
     "hero",
-    "about",
     "objectives",
     "benefits",
+    "track-record",
     "how-it-works",
     "dates-structure",
-    "track-record",
-    "rewards",
     "register",
+    "rewards",
     "contact",
     "faq",
     "footer",

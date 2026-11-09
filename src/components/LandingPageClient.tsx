@@ -6,7 +6,6 @@ import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { StickyMobileBar } from "@/components/layout/StickyMobileBar";
 import { RegistrationSection } from "@/components/registration/RegistrationSection";
-import { AboutSection } from "@/components/sections/AboutSection";
 import { BenefitsSection } from "@/components/sections/BenefitsSection";
 import { ContactSection } from "@/components/sections/ContactSection";
 import { DatesStructureSection } from "@/components/sections/DatesStructureSection";
@@ -28,16 +27,15 @@ export function LandingPageClient() {
       <Header />
       <main id="main-content" tabIndex={-1}>
         <HeroSection uiState={controller.machine.uiState} />
-        <AboutSection />
         <ObjectivesSection />
         <BenefitsSection />
-        <HowItWorksSection />
-        <DatesStructureSection serverConfig={controller.machine.serverConfig} />
         <TrackRecordSection
           serverTrackRecord={controller.machine.serverConfig?.trackRecord}
         />
-        <RewardsSection />
+        <HowItWorksSection />
+        <DatesStructureSection serverConfig={controller.machine.serverConfig} />
         <RegistrationSection controller={controller} />
+        <RewardsSection />
         <ContactSection />
         <FaqSection />
         <FinalCtaSection />
