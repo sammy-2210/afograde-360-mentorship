@@ -176,19 +176,29 @@
 
 .label {
   font-weight: var(--afograde-typography-weights-bold);
-  color: var(--afograde-ink-black);
+  color: var(--afograde-color-primary); /* Brand green #0A4A0A */
   font-size: 1rem;
+  letter-spacing: -0.01em;
+  display: flex;
+  align-items: baseline;
+  gap: var(--afograde-spacing-1);
+  transition: color 220ms ease;
+}
+
+.fieldGroup:focus-within .label {
+  color: var(--afograde-color-brand-deepest);
 }
 
 .requiredMark {
   color: var(--afograde-color-error);
-  margin-left: var(--afograde-spacing-1);
+  margin-left: 2px;
+  font-weight: var(--afograde-typography-weights-bold);
 }
 
 .optionalTag {
   color: var(--afograde-ink-muted);
   font-weight: var(--afograde-typography-weights-regular);
-  font-size: 0.875rem;
+  font-size: 0.8125rem;
   margin-left: var(--afograde-spacing-2);
 }
 
@@ -197,6 +207,7 @@
   font-size: 0.875rem;
 }
 
+/* Base Interactive Form Input / Select (Empty & Filled) */
 .input,
 .select {
   width: 100%;
@@ -207,19 +218,46 @@
   background-color: var(--afograde-components-input-background);
   color: var(--afograde-ink-black);
   font-size: 1rem;
-  transition: border-color var(--afograde-motion-duration-short) var(--afograde-motion-easing-standard);
+  box-shadow: none;
+  transition:
+    border-color 220ms cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 220ms cubic-bezier(0.4, 0, 0.2, 1),
+    transform 200ms cubic-bezier(0.2, 0, 0, 1),
+    border-left 200ms ease;
 }
 
+/* Interactive Hover state (Empty & Filled) */
+.input:hover:not(:disabled),
+.select:hover:not(:disabled) {
+  border-color: var(--afograde-color-primary);
+  background-color: #f8fbf8;
+  transform: translateY(-1.5px);
+}
+
+/* Interactive Focus state */
 .input:focus,
 .select:focus {
-  border-color: var(--afograde-components-input-focus-border);
+  border-color: var(--afograde-color-primary);
+  background-color: #ffffff;
   outline: 3px solid var(--afograde-color-primary-container);
   outline-offset: 0;
+  transform: translateY(-2px);
+  border-left: 4px solid var(--afograde-color-primary);
+}
+
+/* Interactive Filled state (When candidate has entered/selected data) */
+.inputFilled,
+.input:not(:placeholder-shown):not(:focus):not(.inputInvalid) {
+  border-color: rgba(10, 74, 10, 0.45);
+  background-color: #f7faf7;
+  border-left: 4px solid var(--afograde-color-primary);
+  font-weight: var(--afograde-typography-weights-medium);
 }
 
 .inputInvalid {
-  border-color: var(--afograde-color-error);
-  background-color: #fffbfa;
+  border-color: var(--afograde-color-error) !important;
+  border-left: 4px solid var(--afograde-color-error) !important;
+  background-color: #fffbfa !important;
 }
 
 .fieldError {
@@ -238,12 +276,19 @@
   display: flex;
   flex-direction: column;
   gap: var(--afograde-spacing-4);
+  transition: border-color 220ms ease;
+}
+
+.fieldset:focus-within {
+  border-color: var(--afograde-color-primary);
 }
 
 .legend {
   padding-inline: var(--afograde-spacing-2);
   font-weight: var(--afograde-typography-weights-bold);
-  color: var(--afograde-ink-black);
+  color: var(--afograde-color-primary); /* Brand green #0A4A0A */
+  font-size: 1.0625rem;
+  letter-spacing: -0.01em;
 }
 
 .compulsoryPill {
@@ -283,19 +328,24 @@
   cursor: pointer;
   font-weight: var(--afograde-typography-weights-medium);
   transition:
-    background-color var(--afograde-motion-duration-short) var(--afograde-motion-easing-standard),
-    border-color var(--afograde-motion-duration-short) var(--afograde-motion-easing-standard);
+    background-color 220ms ease,
+    border-color 220ms ease,
+    transform 200ms ease;
 }
 
-.choiceTile:hover {
-  background-color: var(--afograde-color-surface-container-low);
+.choiceTile:hover:not(.choiceTileDisabled) {
+  background-color: var(--afograde-color-brand-tint);
+  border-color: var(--afograde-color-primary);
+  transform: translateY(-2px);
 }
 
 .choiceTileSelected {
   border-color: var(--afograde-color-primary);
+  border-left: 4px solid var(--afograde-color-primary);
   background-color: var(--afograde-color-brand-tint);
   color: var(--afograde-color-brand-deepest);
-  font-weight: var(--afograde-typography-weights-semibold);
+  font-weight: var(--afograde-typography-weights-bold);
+  transform: translateY(-1px);
 }
 
 .choiceTileDisabled {
@@ -332,10 +382,21 @@
   border: 1.5px solid var(--afograde-color-outline-variant);
   background-color: var(--afograde-color-surface-container-lowest);
   cursor: pointer;
+  transition:
+    background-color 220ms ease,
+    border-color 220ms ease,
+    transform 200ms ease;
+}
+
+.planOptionCard:hover {
+  background-color: #f7faf7;
+  border-color: var(--afograde-color-primary);
+  transform: translateY(-2px);
 }
 
 .planOptionSelected {
   border-color: var(--afograde-color-primary);
+  border-left: 4px solid var(--afograde-color-primary);
   background-color: var(--afograde-color-brand-tint);
 }
 
@@ -540,6 +601,123 @@
 .linkButton:hover {
   background-color: var(--afograde-color-brand-tint);
 }
+
+/* Requirement Checklist & Submission Gating */
+.requirementNotice {
+  padding: var(--afograde-spacing-4) var(--afograde-spacing-5);
+  border-radius: var(--afograde-shape-medium);
+  background-color: var(--afograde-color-brand-tint);
+  border: 1.5px solid var(--afograde-border-brand-subtle);
+  border-left: 4.5px solid var(--afograde-color-primary);
+  display: flex;
+  flex-direction: column;
+  gap: var(--afograde-spacing-3);
+  animation: requirementFadeIn 220ms ease;
+}
+
+@keyframes requirementFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.requirementHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--afograde-spacing-2);
+}
+
+.requirementBadge {
+  font-size: 0.8125rem;
+  font-weight: var(--afograde-typography-weights-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--afograde-color-primary);
+}
+
+.requirementCounter {
+  font-size: 0.8125rem;
+  font-weight: var(--afograde-typography-weights-bold);
+  padding: 3px 10px;
+  border-radius: var(--afograde-shape-full);
+  background-color: var(--afograde-color-surface-container-lowest);
+  color: var(--afograde-color-brand-deepest);
+  border: 1.5px solid var(--afograde-color-primary);
+}
+
+.requirementText {
+  font-size: 0.9375rem;
+  color: var(--afograde-ink-body);
+}
+
+.requirementList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--afograde-spacing-2);
+}
+
+.requirementChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 12px;
+  border-radius: var(--afograde-shape-small);
+  background-color: var(--afograde-color-surface-container-lowest);
+  border: 1.5px dashed var(--afograde-color-primary);
+  font-size: 0.8125rem;
+  font-weight: var(--afograde-typography-weights-semibold);
+  color: var(--afograde-color-brand-deepest);
+}
+
+.requirementChipDot {
+  width: 6px;
+  height: 6px;
+  border-radius: var(--afograde-shape-full);
+  background-color: var(--afograde-color-error);
+}
+
+.requirementSuccess {
+  padding: var(--afograde-spacing-3) var(--afograde-spacing-4);
+  border-radius: var(--afograde-shape-medium);
+  background-color: var(--afograde-color-primary-container);
+  border: 1.5px solid var(--afograde-color-primary);
+  border-left: 5px solid var(--afograde-color-primary);
+  color: var(--afograde-color-brand-deepest);
+  font-weight: var(--afograde-typography-weights-semibold);
+  display: flex;
+  align-items: center;
+  gap: var(--afograde-spacing-2);
+  font-size: 0.9375rem;
+}
+
+.requirementCheck {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: var(--afograde-shape-full);
+  background-color: var(--afograde-color-primary);
+  color: var(--afograde-color-on-primary);
+  font-weight: var(--afograde-typography-weights-bold);
+  font-size: 0.8125rem;
+  flex-shrink: 0;
+}
+
+.submitBtnLocked {
+  opacity: 0.65;
+  cursor: not-allowed !important;
+}
+
 
 @media (max-width: 640px) {
   .shell {

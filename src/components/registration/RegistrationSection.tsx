@@ -92,13 +92,41 @@ export function RegistrationSection({ controller }: RegistrationSectionProps) {
     }
   }, [machine.uiState]);
 
+  const isFullNameFilled = formValues.fullName.trim().length >= 2;
+  const isWhatsAppFilled = formValues.whatsappNumber.trim().length >= 8;
+  const isStateFilled = formValues.stateOfResidence.trim().length > 0;
+  const isElectivesFilled = formValues.electiveSubjects.length === 3;
+  const isPlanFilled = Boolean(formValues.planId);
+  const isPrivacyFilled = formValues.privacyAcknowledged === true;
+
+  const requiredCompletedCount =
+    (isFullNameFilled ? 1 : 0) +
+    (isWhatsAppFilled ? 1 : 0) +
+    (isStateFilled ? 1 : 0) +
+    (isElectivesFilled ? 1 : 0) +
+    (isPlanFilled ? 1 : 0) +
+    (isPrivacyFilled ? 1 : 0);
+
+  const canProceed = requiredCompletedCount === 6;
+
   const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (!canProceed) {
+      const { firstErrorField } = await executeSubmission(false);
+      if (firstErrorField) {
+        const targetId = FIELD_DOM_IDS[firstErrorField];
+        const el = document.getElementById(targetId);
+        el?.focus();
+        el?.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+      return;
+    }
     const { firstErrorField } = await executeSubmission(false);
     if (firstErrorField) {
       const targetId = FIELD_DOM_IDS[firstErrorField];
       const el = document.getElementById(targetId);
       el?.focus();
+      el?.scrollIntoView({ behavior: "smooth", block: "center" });
     }
   };
 
@@ -317,6 +345,7 @@ export function RegistrationSection({ controller }: RegistrationSectionProps) {
                       name="fullName"
                       type="text"
                       autoComplete="name"
+                      placeholder="e.g. Ibrahim Musa Adebayo"
                       required
                       maxLength={80}
                       disabled={machine.uiState === "submitting"}
@@ -328,6 +357,8 @@ export function RegistrationSection({ controller }: RegistrationSectionProps) {
                           : "hint-fullName"
                       }
                       className={`${styles.input} ${
+                        formValues.fullName ? styles.inputFilled : ""
+                      } ${
                         machine.fieldErrors.fullName ? styles.inputInvalid : ""
                       }`.trim()}
                       onChange={(e) => updateField("fullName", e.target.value)}
@@ -356,6 +387,7 @@ export function RegistrationSection({ controller }: RegistrationSectionProps) {
                       type="tel"
                       inputMode="tel"
                       autoComplete="tel"
+                      placeholder="e.g. 08012345678 or +234..."
                       required
                       disabled={machine.uiState === "submitting"}
                       value={formValues.whatsappNumber}
@@ -366,6 +398,8 @@ export function RegistrationSection({ controller }: RegistrationSectionProps) {
                           : "hint-whatsappNumber"
                       }
                       className={`${styles.input} ${
+                        formValues.whatsappNumber ? styles.inputFilled : ""
+                      } ${
                         machine.fieldErrors.whatsappNumber ? styles.inputInvalid : ""
                       }`.trim()}
                       onChange={(e) => updateField("whatsappNumber", e.target.value)}
@@ -393,6 +427,7 @@ export function RegistrationSection({ controller }: RegistrationSectionProps) {
                       id="field-telegramUsername"
                       name="telegramUsername"
                       type="text"
+                      placeholder="e.g. @candidate2027"
                       maxLength={33}
                       disabled={machine.uiState === "submitting"}
                       value={formValues.telegramUsername}
@@ -403,6 +438,8 @@ export function RegistrationSection({ controller }: RegistrationSectionProps) {
                           : "hint-telegramUsername"
                       }
                       className={`${styles.input} ${
+                        formValues.telegramUsername ? styles.inputFilled : ""
+                      } ${
                         machine.fieldErrors.telegramUsername
                           ? styles.inputInvalid
                           : ""
@@ -433,6 +470,7 @@ export function RegistrationSection({ controller }: RegistrationSectionProps) {
                       type="email"
                       inputMode="email"
                       autoComplete="email"
+                      placeholder="e.g. candidate@example.com"
                       maxLength={254}
                       disabled={machine.uiState === "submitting"}
                       value={formValues.email}
@@ -443,6 +481,8 @@ export function RegistrationSection({ controller }: RegistrationSectionProps) {
                           : "hint-email"
                       }
                       className={`${styles.input} ${
+                        formValues.email ? styles.inputFilled : ""
+                      } ${
                         machine.fieldErrors.email ? styles.inputInvalid : ""
                       }`.trim()}
                       onChange={(e) => updateField("email", e.target.value)}
@@ -478,6 +518,8 @@ export function RegistrationSection({ controller }: RegistrationSectionProps) {
                           : undefined
                       }
                       className={`${styles.select} ${
+                        formValues.stateOfResidence ? styles.inputFilled : ""
+                      } ${
                         machine.fieldErrors.stateOfResidence
                           ? styles.inputInvalid
                           : ""
@@ -510,6 +552,7 @@ export function RegistrationSection({ controller }: RegistrationSectionProps) {
                       id="field-schoolName"
                       name="schoolName"
                       type="text"
+                      placeholder="e.g. Kings College Lagos"
                       maxLength={100}
                       disabled={machine.uiState === "submitting"}
                       value={formValues.schoolName}
@@ -520,6 +563,8 @@ export function RegistrationSection({ controller }: RegistrationSectionProps) {
                           : undefined
                       }
                       className={`${styles.input} ${
+                        formValues.schoolName ? styles.inputFilled : ""
+                      } ${
                         machine.fieldErrors.schoolName ? styles.inputInvalid : ""
                       }`.trim()}
                       onChange={(e) => updateField("schoolName", e.target.value)}
@@ -722,15 +767,81 @@ export function RegistrationSection({ controller }: RegistrationSectionProps) {
                   onExpireOrError={() => updateField("turnstileToken", "")}
                 />
 
+                {/* Live Requirement Checklist / Feedback */}
+                {!canProceed ? (
+                  <div className={styles.requirementNotice} role="status">
+                    <div className={styles.requirementHeader}>
+                      <span className={styles.requirementBadge}>
+                        Step 1 Required Fields
+                      </span>
+                      <span className={styles.requirementCounter}>
+                        {requiredCompletedCount} of 6 Completed
+                      </span>
+                    </div>
+                    <p className={styles.requirementText}>
+                      Please complete all required fields marked with{" "}
+                      <strong style={{ color: "var(--afograde-color-error)" }}>*</strong> before proceeding to transfer instructions:
+                    </p>
+                    <ul className={styles.requirementList}>
+                      {!isFullNameFilled && (
+                        <li className={styles.requirementChip}>
+                          <span className={styles.requirementChipDot} />
+                          Full Name
+                        </li>
+                      )}
+                      {!isWhatsAppFilled && (
+                        <li className={styles.requirementChip}>
+                          <span className={styles.requirementChipDot} />
+                          WhatsApp Number
+                        </li>
+                      )}
+                      {!isStateFilled && (
+                        <li className={styles.requirementChip}>
+                          <span className={styles.requirementChipDot} />
+                          State of Residence
+                        </li>
+                      )}
+                      {!isElectivesFilled && (
+                        <li className={styles.requirementChip}>
+                          <span className={styles.requirementChipDot} />
+                          3 Science Subjects ({formValues.electiveSubjects.length}/3)
+                        </li>
+                      )}
+                      {!isPlanFilled && (
+                        <li className={styles.requirementChip}>
+                          <span className={styles.requirementChipDot} />
+                          Subscription Plan
+                        </li>
+                      )}
+                      {!isPrivacyFilled && (
+                        <li className={styles.requirementChip}>
+                          <span className={styles.requirementChipDot} />
+                          Privacy Notice
+                        </li>
+                      )}
+                    </ul>
+                  </div>
+                ) : (
+                  <div className={styles.requirementSuccess} role="status">
+                    <span className={styles.requirementCheck} aria-hidden="true">✓</span>
+                    <span>
+                      All required fields completed! You can now proceed to view bank transfer instructions.
+                    </span>
+                  </div>
+                )}
+
                 <Button
                   type="submit"
                   variant="primary"
                   fullWidth
-                  disabled={machine.uiState === "submitting"}
+                  disabled={!canProceed || machine.uiState === "submitting"}
+                  className={!canProceed ? styles.submitBtnLocked : undefined}
                 >
                   {machine.uiState === "submitting"
                     ? "Recording Your Registration..."
-                    : "Submit Registration & View Transfer Instructions"}
+                    : canProceed
+                      ? "Submit Registration & View Transfer Instructions →"
+                      : `Complete All Required Fields to Proceed (${requiredCompletedCount}/6)`}
                 </Button>
               </form>
 
