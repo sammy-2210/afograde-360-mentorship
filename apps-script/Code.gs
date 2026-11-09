@@ -586,7 +586,7 @@ function readValidatedSettings_() {
     map.CYCLE_1_END_LABEL || "End of Cycle 1",
     map.CYCLE_2_END_LABEL || "End of Cycle 2",
     map.CYCLE_3_END_LABEL || "End of Cycle 3",
-    map.CYCLE_4_END_LABEL || "End of Cycle 4"
+    String(map.CYCLE_4_END_LABEL || "31 March 2027").replace(/\s*\([Cc]onfirm\s*P0\)/i, "").trim()
   ];
 
   var plans = [];
@@ -617,7 +617,7 @@ function readValidatedSettings_() {
     stateMessage: map.STATE_MESSAGE || "",
     openingDateLabel: map.OPENING_DATE_LABEL || "",
     closingDateLabel: map.CLOSING_DATE_LABEL || "",
-    programmePeriodLabel: map.PROGRAMME_PERIOD_LABEL || "",
+    programmePeriodLabel: String(map.PROGRAMME_PERIOD_LABEL || "30 November 2026 – 31 March 2027").replace(/\s*\([Cc]onfirm\s*P0\)/i, "").trim(),
     allowInternational: map.ALLOW_INTERNATIONAL === "TRUE",
     plans: plans,
     socialLinks: {

@@ -210,9 +210,7 @@ export const SCHEDULE_CONFIG = {
   workingRegistrationOpeningLabel: LAUNCH_GATES.registrationWindow.approved
     ? "9 November 2026"
     : "Target opening: 9 November 2026 (subject to final readiness confirmation)",
-  workingProgrammePeriodLabel: LAUNCH_GATES.programmeDatesAndCycles.approved
-    ? "30 November 2026 – 31 March 2027"
-    : "Working window: 30 November 2026 – March 2027 (final end date and monthly cutoffs subject to official schedule confirmation)",
+  workingProgrammePeriodLabel: "30 November 2026 – 31 March 2027",
   cyclesOverview: [
     {
       cycleNumber: 1,

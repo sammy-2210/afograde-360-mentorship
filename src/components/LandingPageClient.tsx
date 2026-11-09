@@ -15,7 +15,6 @@ import { FinalCtaSection } from "@/components/sections/FinalCtaSection";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { HowItWorksSection } from "@/components/sections/HowItWorksSection";
 import { ObjectivesSection } from "@/components/sections/ObjectivesSection";
-import { PaymentExplainerSection } from "@/components/sections/PaymentExplainerSection";
 import { RewardsSection } from "@/components/sections/RewardsSection";
 import { TrackRecordSection } from "@/components/sections/TrackRecordSection";
 import { FloatingWhatsAppButton } from "@/components/ui/FloatingWhatsAppButton";
@@ -39,7 +38,6 @@ export function LandingPageClient() {
         />
         <RewardsSection />
         <RegistrationSection controller={controller} />
-        <PaymentExplainerSection />
         <ContactSection />
         <FaqSection />
         <FinalCtaSection />

@@ -87,7 +87,7 @@ if (fs.existsSync(path.join(OUT_DIR, "index.html"))) {
     );
   }
 
-  // 5. Required Section IDs (after user requested removal of standalone #transparency and #plans)
+  // 5. Required Section IDs (after user requested removals)
   const requiredSectionIds = [
     "hero",
     "about",
@@ -98,7 +98,6 @@ if (fs.existsSync(path.join(OUT_DIR, "index.html"))) {
     "track-record",
     "rewards",
     "register",
-    "payment-info",
     "contact",
     "faq",
     "footer",

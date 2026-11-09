@@ -13,9 +13,10 @@ export function DatesStructureSection({
   const openingDisplay =
     serverConfig?.openingDateLabel ??
     SCHEDULE_CONFIG.workingRegistrationOpeningLabel;
-  const periodDisplay =
+  const periodDisplay = (
     serverConfig?.programmePeriodLabel ??
-    SCHEDULE_CONFIG.workingProgrammePeriodLabel;
+    SCHEDULE_CONFIG.workingProgrammePeriodLabel
+  ).replace(/\s*\([Cc]onfirm\s*P0\)/i, "").trim();
 
   return (
     <section id="dates-structure" className="section section-brand-deep">
