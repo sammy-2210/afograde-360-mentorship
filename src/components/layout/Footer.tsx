@@ -12,6 +12,7 @@ import {
   InstagramIcon,
   PhoneIcon,
   TelegramIcon,
+  TikTokIcon,
   UsersGroupIcon,
   WhatsAppIcon,
   XTwitterIcon,
@@ -45,7 +46,10 @@ function renderSocialPlatformIcon(key: SocialPlatformKey) {
     case "whatsapp":
       return <WhatsAppIcon width={18} height={18} />;
     case "whatsappChannel":
+    case "whatsappChannel2":
       return <BroadcastChannelIcon width={18} height={18} />;
+    case "tiktok":
+      return <TikTokIcon width={18} height={18} />;
     case "telegram":
       return <TelegramIcon width={18} height={18} />;
     case "xTwitter":

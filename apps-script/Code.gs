@@ -625,6 +625,8 @@ function readValidatedSettings_() {
       facebookCommunity: map.SOCIAL_FACEBOOK_COMMUNITY || "",
       instagram: map.SOCIAL_INSTAGRAM || "",
       whatsappChannel: map.SOCIAL_WHATSAPP_CHANNEL || "",
+      whatsappChannel2: map.SOCIAL_WHATSAPP_CHANNEL_2 || "",
+      tiktok: map.SOCIAL_TIKTOK || "",
       telegram: map.SOCIAL_TELEGRAM || "",
       xTwitter: map.SOCIAL_X_TWITTER || ""
     },

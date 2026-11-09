@@ -55,6 +55,16 @@ export const OFFICIAL_SOCIAL_PLATFORMS: readonly SocialPlatformEntry[] = [
     url: "",
   },
   {
+    key: "whatsappChannel2",
+    label: "WhatsApp Channel 2",
+    url: "",
+  },
+  {
+    key: "tiktok",
+    label: "TikTok",
+    url: "",
+  },
+  {
     key: "telegram",
     label: "Telegram",
     url: "",

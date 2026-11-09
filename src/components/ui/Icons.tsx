@@ -380,6 +380,22 @@ export function XTwitterIcon(props: SVGProps<SVGSVGElement>) {
   );
 }
 
+export function TikTokIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      width="18"
+      height="18"
+      fill="currentColor"
+      aria-hidden="true"
+      focusable="false"
+      {...props}
+    >
+      <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64c.298 0 .591.045.87.134V9.4a6.34 6.34 0 0 0-.87-.06 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.34-6.34V8.41a8.27 8.27 0 0 0 4.84 1.57V6.69h-.07z" />
+    </svg>
+  );
+}
+
 export function GlobeIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg

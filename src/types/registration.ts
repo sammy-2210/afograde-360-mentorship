@@ -71,6 +71,8 @@ export type SocialPlatformKey =
   | "instagram"
   | "whatsapp"
   | "whatsappChannel"
+  | "whatsappChannel2"
+  | "tiktok"
   | "telegram"
   | "xTwitter"
   | "other";

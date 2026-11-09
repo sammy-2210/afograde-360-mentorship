@@ -99,6 +99,8 @@ function setupAfogradeWorkbook() {
       ["SOCIAL_FACEBOOK_COMMUNITY", "", "Official Facebook Community https:// URL (hidden if blank)"],
       ["SOCIAL_INSTAGRAM", "", "Official Instagram https:// URL (hidden if blank)"],
       ["SOCIAL_WHATSAPP_CHANNEL", "", "Official WhatsApp Channel https:// URL (hidden if blank)"],
+      ["SOCIAL_WHATSAPP_CHANNEL_2", "", "Official WhatsApp Channel 2 https:// URL (hidden if blank)"],
+      ["SOCIAL_TIKTOK", "", "Official TikTok https:// URL (hidden if blank)"],
       ["SOCIAL_TELEGRAM", "", "Official Telegram https:// URL (hidden if blank)"],
       ["SOCIAL_X_TWITTER", "", "Official X (Twitter) https:// URL (hidden if blank)"]
     ];
