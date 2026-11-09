@@ -1,0 +1,336 @@
+/**
+ * AFOGRADE 360+ Mentorship Design Tokens (v1.0.0)
+ * Material Design 3-inspired design token system for the AFOGRADE 360+ Mentorship Series website.
+ *
+ * Auto-generated from afograde-design-tokens.json — do not edit manually.
+ */
+
+:root {
+  color-scheme: light;
+  /* === COLOR === */
+  --afograde-color-brand-deepest: #062806;
+  --afograde-color-brand-deep: #0A3A0A;
+  --afograde-color-brand-primary: #0A4A0A;
+  --afograde-color-brand-bright: #0A5A0A;
+  --afograde-color-brand-tint: #E8F1E8;
+  --afograde-color-light-primary: #0A4A0A;
+  --afograde-color-light-on-primary: #FFFFFF;
+  --afograde-color-light-primary-container: #CBE8C8;
+  --afograde-color-light-on-primary-container: #062806;
+  --afograde-color-light-inverse-primary: #A6D49F;
+  --afograde-color-light-secondary: #52634F;
+  --afograde-color-light-on-secondary: #FFFFFF;
+  --afograde-color-light-secondary-container: #D5E8CF;
+  --afograde-color-light-on-secondary-container: #101F10;
+  --afograde-color-light-tertiary: #386568;
+  --afograde-color-light-on-tertiary: #FFFFFF;
+  --afograde-color-light-tertiary-container: #BCEBED;
+  --afograde-color-light-on-tertiary-container: #002022;
+  --afograde-color-light-error: #BA1A1A;
+  --afograde-color-light-on-error: #FFFFFF;
+  --afograde-color-light-error-container: #FFDAD6;
+  --afograde-color-light-on-error-container: #410002;
+  --afograde-color-light-background: #F8FAF6;
+  --afograde-color-light-on-background: #191D18;
+  --afograde-color-light-surface: #F8FAF6;
+  --afograde-color-light-on-surface: #191D18;
+  --afograde-color-light-surface-variant: #E0E5DA;
+  --afograde-color-light-on-surface-variant: #424940;
+  --afograde-color-light-surface-dim: #D9DED5;
+  --afograde-color-light-surface-bright: #F8FAF6;
+  --afograde-color-light-surface-container-lowest: #FFFFFF;
+  --afograde-color-light-surface-container-low: #F2F5EF;
+  --afograde-color-light-surface-container: #ECEFE9;
+  --afograde-color-light-surface-container-high: #E6EAE3;
+  --afograde-color-light-surface-container-highest: #E0E5DA;
+  --afograde-color-light-outline: #72796E;
+  --afograde-color-light-outline-variant: #C2C9BC;
+  --afograde-color-light-scrim: #000000;
+  --afograde-color-light-shadow: #000000;
+  --afograde-color-light-inverse-surface: #2E322D;
+  --afograde-color-light-inverse-on-surface: #EFF2EA;
+  --afograde-color-dark-primary: #A6D49F;
+  --afograde-color-dark-on-primary: #103810;
+  --afograde-color-dark-primary-container: #245224;
+  --afograde-color-dark-on-primary-container: #CBE8C8;
+  --afograde-color-dark-inverse-primary: #0A4A0A;
+  --afograde-color-dark-secondary: #B9CCB2;
+  --afograde-color-dark-on-secondary: #253524;
+  --afograde-color-dark-secondary-container: #3B4B39;
+  --afograde-color-dark-on-secondary-container: #D5E8CF;
+  --afograde-color-dark-tertiary: #A0CFD1;
+  --afograde-color-dark-on-tertiary: #003739;
+  --afograde-color-dark-tertiary-container: #1E4D50;
+  --afograde-color-dark-on-tertiary-container: #BCEBED;
+  --afograde-color-dark-error: #FFB4AB;
+  --afograde-color-dark-on-error: #690005;
+  --afograde-color-dark-error-container: #93000A;
+  --afograde-color-dark-on-error-container: #FFDAD6;
+  --afograde-color-dark-background: #101510;
+  --afograde-color-dark-on-background: #E1E5DC;
+  --afograde-color-dark-surface: #101510;
+  --afograde-color-dark-on-surface: #E1E5DC;
+  --afograde-color-dark-surface-variant: #424940;
+  --afograde-color-dark-on-surface-variant: #C2C9BC;
+  --afograde-color-dark-surface-dim: #101510;
+  --afograde-color-dark-surface-bright: #363B35;
+  --afograde-color-dark-surface-container-lowest: #0B100B;
+  --afograde-color-dark-surface-container-low: #191F18;
+  --afograde-color-dark-surface-container: #1D231C;
+  --afograde-color-dark-surface-container-high: #272D26;
+  --afograde-color-dark-surface-container-highest: #323831;
+  --afograde-color-dark-outline: #8C9387;
+  --afograde-color-dark-outline-variant: #424940;
+  --afograde-color-dark-scrim: #000000;
+  --afograde-color-dark-shadow: #000000;
+  --afograde-color-dark-inverse-surface: #E1E5DC;
+  --afograde-color-dark-inverse-on-surface: #2E322D;
+  --afograde-color-utility-success: #216B35;
+  --afograde-color-utility-on-success: #FFFFFF;
+  --afograde-color-utility-warning: #8A5200;
+  --afograde-color-utility-on-warning: #FFFFFF;
+  --afograde-color-utility-info: #245D83;
+  --afograde-color-utility-on-info: #FFFFFF;
+  --afograde-color-utility-whatsapp: #25D366;
+  --afograde-color-gradient-brand: linear-gradient(135deg, #0A3A0A 0%, #0A5A0A 100%);
+  --afograde-color-gradient-hero-overlay: linear-gradient(90deg, rgba(6,40,6,0.92) 0%, rgba(10,74,10,0.72) 58%, rgba(10,90,10,0.24) 100%);
+
+  /* === COLOR SEMANTIC ROLES (Light scheme default) === */
+  --afograde-color-primary: var(--afograde-color-light-primary);
+  --afograde-color-on-primary: var(--afograde-color-light-on-primary);
+  --afograde-color-primary-container: var(--afograde-color-light-primary-container);
+  --afograde-color-on-primary-container: var(--afograde-color-light-on-primary-container);
+  --afograde-color-inverse-primary: var(--afograde-color-light-inverse-primary);
+  --afograde-color-secondary: var(--afograde-color-light-secondary);
+  --afograde-color-on-secondary: var(--afograde-color-light-on-secondary);
+  --afograde-color-secondary-container: var(--afograde-color-light-secondary-container);
+  --afograde-color-on-secondary-container: var(--afograde-color-light-on-secondary-container);
+  --afograde-color-tertiary: var(--afograde-color-light-tertiary);
+  --afograde-color-on-tertiary: var(--afograde-color-light-on-tertiary);
+  --afograde-color-tertiary-container: var(--afograde-color-light-tertiary-container);
+  --afograde-color-on-tertiary-container: var(--afograde-color-light-on-tertiary-container);
+  --afograde-color-error: var(--afograde-color-light-error);
+  --afograde-color-on-error: var(--afograde-color-light-on-error);
+  --afograde-color-error-container: var(--afograde-color-light-error-container);
+  --afograde-color-on-error-container: var(--afograde-color-light-on-error-container);
+  --afograde-color-background: var(--afograde-color-light-background);
+  --afograde-color-on-background: var(--afograde-color-light-on-background);
+  --afograde-color-surface: var(--afograde-color-light-surface);
+  --afograde-color-on-surface: var(--afograde-color-light-on-surface);
+  --afograde-color-surface-variant: var(--afograde-color-light-surface-variant);
+  --afograde-color-on-surface-variant: var(--afograde-color-light-on-surface-variant);
+  --afograde-color-surface-dim: var(--afograde-color-light-surface-dim);
+  --afograde-color-surface-bright: var(--afograde-color-light-surface-bright);
+  --afograde-color-surface-container-lowest: var(--afograde-color-light-surface-container-lowest);
+  --afograde-color-surface-container-low: var(--afograde-color-light-surface-container-low);
+  --afograde-color-surface-container: var(--afograde-color-light-surface-container);
+  --afograde-color-surface-container-high: var(--afograde-color-light-surface-container-high);
+  --afograde-color-surface-container-highest: var(--afograde-color-light-surface-container-highest);
+  --afograde-color-outline: var(--afograde-color-light-outline);
+  --afograde-color-outline-variant: var(--afograde-color-light-outline-variant);
+  --afograde-color-scrim: var(--afograde-color-light-scrim);
+  --afograde-color-shadow: var(--afograde-color-light-shadow);
+  --afograde-color-inverse-surface: var(--afograde-color-light-inverse-surface);
+  --afograde-color-inverse-on-surface: var(--afograde-color-light-inverse-on-surface);
+
+  /* === TYPOGRAPHY === */
+  --afograde-typography-font-family-brand: Roboto, Arial, sans-serif;
+  --afograde-typography-font-family-fallback: Arial, sans-serif;
+  --afograde-typography-weights-regular: 400;
+  --afograde-typography-weights-medium: 500;
+  --afograde-typography-weights-semibold: 600;
+  --afograde-typography-weights-bold: 700;
+  --afograde-typography-scale-display-large-font-family: var(--afograde-typography-font-family-brand);
+  --afograde-typography-scale-display-large-font-size: 57px;
+  --afograde-typography-scale-display-large-line-height: 64px;
+  --afograde-typography-scale-display-large-letter-spacing: -0.25px;
+  --afograde-typography-scale-display-large-font-weight: 400;
+  --afograde-typography-scale-display-medium-font-family: var(--afograde-typography-font-family-brand);
+  --afograde-typography-scale-display-medium-font-size: 45px;
+  --afograde-typography-scale-display-medium-line-height: 52px;
+  --afograde-typography-scale-display-medium-letter-spacing: 0px;
+  --afograde-typography-scale-display-medium-font-weight: 400;
+  --afograde-typography-scale-display-small-font-family: var(--afograde-typography-font-family-brand);
+  --afograde-typography-scale-display-small-font-size: 36px;
+  --afograde-typography-scale-display-small-line-height: 44px;
+  --afograde-typography-scale-display-small-letter-spacing: 0px;
+  --afograde-typography-scale-display-small-font-weight: 400;
+  --afograde-typography-scale-headline-large-font-family: var(--afograde-typography-font-family-brand);
+  --afograde-typography-scale-headline-large-font-size: 32px;
+  --afograde-typography-scale-headline-large-line-height: 40px;
+  --afograde-typography-scale-headline-large-letter-spacing: 0px;
+  --afograde-typography-scale-headline-large-font-weight: 400;
+  --afograde-typography-scale-headline-medium-font-family: var(--afograde-typography-font-family-brand);
+  --afograde-typography-scale-headline-medium-font-size: 28px;
+  --afograde-typography-scale-headline-medium-line-height: 36px;
+  --afograde-typography-scale-headline-medium-letter-spacing: 0px;
+  --afograde-typography-scale-headline-medium-font-weight: 400;
+  --afograde-typography-scale-headline-small-font-family: var(--afograde-typography-font-family-brand);
+  --afograde-typography-scale-headline-small-font-size: 24px;
+  --afograde-typography-scale-headline-small-line-height: 32px;
+  --afograde-typography-scale-headline-small-letter-spacing: 0px;
+  --afograde-typography-scale-headline-small-font-weight: 400;
+  --afograde-typography-scale-title-large-font-family: var(--afograde-typography-font-family-brand);
+  --afograde-typography-scale-title-large-font-size: 22px;
+  --afograde-typography-scale-title-large-line-height: 28px;
+  --afograde-typography-scale-title-large-letter-spacing: 0px;
+  --afograde-typography-scale-title-large-font-weight: 400;
+  --afograde-typography-scale-title-medium-font-family: var(--afograde-typography-font-family-brand);
+  --afograde-typography-scale-title-medium-font-size: 16px;
+  --afograde-typography-scale-title-medium-line-height: 24px;
+  --afograde-typography-scale-title-medium-letter-spacing: 0.15px;
+  --afograde-typography-scale-title-medium-font-weight: 500;
+  --afograde-typography-scale-title-small-font-family: var(--afograde-typography-font-family-brand);
+  --afograde-typography-scale-title-small-font-size: 14px;
+  --afograde-typography-scale-title-small-line-height: 20px;
+  --afograde-typography-scale-title-small-letter-spacing: 0.1px;
+  --afograde-typography-scale-title-small-font-weight: 500;
+  --afograde-typography-scale-body-large-font-family: var(--afograde-typography-font-family-brand);
+  --afograde-typography-scale-body-large-font-size: 16px;
+  --afograde-typography-scale-body-large-line-height: 24px;
+  --afograde-typography-scale-body-large-letter-spacing: 0.5px;
+  --afograde-typography-scale-body-large-font-weight: 400;
+  --afograde-typography-scale-body-medium-font-family: var(--afograde-typography-font-family-brand);
+  --afograde-typography-scale-body-medium-font-size: 14px;
+  --afograde-typography-scale-body-medium-line-height: 20px;
+  --afograde-typography-scale-body-medium-letter-spacing: 0.25px;
+  --afograde-typography-scale-body-medium-font-weight: 400;
+  --afograde-typography-scale-body-small-font-family: var(--afograde-typography-font-family-brand);
+  --afograde-typography-scale-body-small-font-size: 12px;
+  --afograde-typography-scale-body-small-line-height: 16px;
+  --afograde-typography-scale-body-small-letter-spacing: 0.4px;
+  --afograde-typography-scale-body-small-font-weight: 400;
+  --afograde-typography-scale-label-large-font-family: var(--afograde-typography-font-family-brand);
+  --afograde-typography-scale-label-large-font-size: 14px;
+  --afograde-typography-scale-label-large-line-height: 20px;
+  --afograde-typography-scale-label-large-letter-spacing: 0.1px;
+  --afograde-typography-scale-label-large-font-weight: 500;
+  --afograde-typography-scale-label-medium-font-family: var(--afograde-typography-font-family-brand);
+  --afograde-typography-scale-label-medium-font-size: 12px;
+  --afograde-typography-scale-label-medium-line-height: 16px;
+  --afograde-typography-scale-label-medium-letter-spacing: 0.5px;
+  --afograde-typography-scale-label-medium-font-weight: 500;
+  --afograde-typography-scale-label-small-font-family: var(--afograde-typography-font-family-brand);
+  --afograde-typography-scale-label-small-font-size: 11px;
+  --afograde-typography-scale-label-small-line-height: 16px;
+  --afograde-typography-scale-label-small-letter-spacing: 0.5px;
+  --afograde-typography-scale-label-small-font-weight: 500;
+  --afograde-typography-responsive-hero-heading-mobile: 36px;
+  --afograde-typography-responsive-hero-heading-tablet: 45px;
+  --afograde-typography-responsive-hero-heading-desktop: 57px;
+  --afograde-typography-responsive-section-heading-mobile: 28px;
+  --afograde-typography-responsive-section-heading-tablet: 32px;
+  --afograde-typography-responsive-section-heading-desktop: 36px;
+  --afograde-typography-responsive-body-mobile: 16px;
+  --afograde-typography-responsive-body-desktop: 16px;
+
+  /* === SPACING === */
+  --afograde-spacing-0: 0px;
+  --afograde-spacing-1: 4px;
+  --afograde-spacing-2: 8px;
+  --afograde-spacing-3: 12px;
+  --afograde-spacing-4: 16px;
+  --afograde-spacing-5: 20px;
+  --afograde-spacing-6: 24px;
+  --afograde-spacing-8: 32px;
+  --afograde-spacing-10: 40px;
+  --afograde-spacing-12: 48px;
+  --afograde-spacing-16: 64px;
+  --afograde-spacing-20: 80px;
+  --afograde-spacing-24: 96px;
+  --afograde-spacing-base-unit: 4px;
+  --afograde-spacing-layout-content-max-width: 1200px;
+  --afograde-spacing-layout-page-gutter-mobile: 20px;
+  --afograde-spacing-layout-page-gutter-tablet: 32px;
+  --afograde-spacing-layout-page-gutter-desktop: 48px;
+  --afograde-spacing-layout-section-vertical-mobile: 56px;
+  --afograde-spacing-layout-section-vertical-desktop: 88px;
+  --afograde-spacing-layout-card-padding: 24px;
+  --afograde-spacing-layout-form-field-gap: 16px;
+
+  /* === SHAPE === */
+  --afograde-shape-none: 0px;
+  --afograde-shape-extra-small: 4px;
+  --afograde-shape-small: 8px;
+  --afograde-shape-medium: 12px;
+  --afograde-shape-large: 16px;
+  --afograde-shape-extra-large: 28px;
+  --afograde-shape-full: 999px;
+
+  /* === ELEVATION === */
+  --afograde-elevation-level0: none;
+  --afograde-elevation-level1: 0px 1px 2px 0px rgba(0, 0, 0, 0.08); /* Subtle card separation */
+  --afograde-elevation-level2: 0px 2px 6px 0px rgba(0, 0, 0, 0.1); /* Raised cards and menus */
+  --afograde-elevation-level3: 0px 4px 10px 0px rgba(0, 0, 0, 0.12); /* Floating action elements and popovers */
+  --afograde-elevation-level4: 0px 6px 14px 0px rgba(0, 0, 0, 0.14); /* Navigation drawers and prominent overlays */
+  --afograde-elevation-level5: 0px 8px 20px 0px rgba(0, 0, 0, 0.16); /* Dialogs and highest-priority overlays */
+
+  /* === COMPONENTS === */
+  --afograde-components-button-height-small: 36px;
+  --afograde-components-button-height-medium: 40px;
+  --afograde-components-button-height-large: 48px;
+  --afograde-components-button-horizontal-padding: 24px;
+  --afograde-components-button-corner-radius: var(--afograde-shape-full);
+  --afograde-components-button-primary-background: var(--afograde-color-light-primary);
+  --afograde-components-button-primary-foreground: var(--afograde-color-light-on-primary);
+  --afograde-components-button-focus-ring: var(--afograde-color-light-tertiary);
+  --afograde-components-input-min-height: 56px;
+  --afograde-components-input-corner-radius: var(--afograde-shape-extra-small);
+  --afograde-components-input-border: var(--afograde-color-light-outline);
+  --afograde-components-input-focus-border: var(--afograde-color-light-primary);
+  --afograde-components-input-background: var(--afograde-color-light-surface-container-lowest);
+  --afograde-components-card-corner-radius: var(--afograde-shape-large);
+  --afograde-components-card-background: var(--afograde-color-light-surface-container-low);
+  --afograde-components-card-elevation: var(--afograde-elevation-level1);
+  --afograde-components-card-padding: var(--afograde-spacing-layout-card-padding);
+  --afograde-components-navigation-desktop-height: 72px;
+  --afograde-components-navigation-mobile-height: 64px;
+  --afograde-components-navigation-background: var(--afograde-color-light-surface);
+  --afograde-components-navigation-active-color: var(--afograde-color-light-primary);
+
+  /* === MOTION === */
+  --afograde-motion-duration-short: 100ms;
+  --afograde-motion-duration-medium: 250ms;
+  --afograde-motion-duration-long: 400ms;
+  --afograde-motion-easing-standard: cubic-bezier(0.2, 0, 0, 1);
+  --afograde-motion-easing-emphasized: cubic-bezier(0.2, 0, 0, 1);
+
+  /* === ACCESSIBILITY === */
+  --afograde-accessibility-minimum-body-font-size: 14px;
+  --afograde-accessibility-recommended-body-font-size: 16px;
+  --afograde-accessibility-minimum-touch-target: 48px;
+
+  /* === RESPONSIVE ACTIVE ALIASES (Mobile-first base) === */
+  --afograde-typography-hero-heading-size: var(--afograde-typography-responsive-hero-heading-mobile);
+  --afograde-typography-section-heading-size: var(--afograde-typography-responsive-section-heading-mobile);
+  --afograde-typography-body-size: var(--afograde-typography-responsive-body-mobile);
+  --afograde-spacing-page-gutter: var(--afograde-spacing-layout-page-gutter-mobile);
+  --afograde-spacing-section-vertical: var(--afograde-spacing-layout-section-vertical-mobile);
+}
+
+@media (min-width: 768px) {
+  :root {
+    --afograde-typography-hero-heading-size: var(--afograde-typography-responsive-hero-heading-tablet);
+    --afograde-typography-section-heading-size: var(--afograde-typography-responsive-section-heading-tablet);
+    --afograde-spacing-page-gutter: var(--afograde-spacing-layout-page-gutter-tablet);
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --afograde-typography-hero-heading-size: var(--afograde-typography-responsive-hero-heading-desktop);
+    --afograde-typography-section-heading-size: var(--afograde-typography-responsive-section-heading-desktop);
+    --afograde-typography-body-size: var(--afograde-typography-responsive-body-desktop);
+    --afograde-spacing-page-gutter: var(--afograde-spacing-layout-page-gutter-desktop);
+    --afograde-spacing-section-vertical: var(--afograde-spacing-layout-section-vertical-desktop);
+  }
+}
+
+/* Respect prefers-reduced-motion; remove non-essential transitions and parallax. */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --afograde-motion-duration-short: 0ms;
+    --afograde-motion-duration-medium: 0ms;
+    --afograde-motion-duration-long: 0ms;
+  }
+}

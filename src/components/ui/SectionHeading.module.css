@@ -1,0 +1,50 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--afograde-spacing-3);
+  max-width: 740px;
+  margin-bottom: var(--afograde-spacing-10);
+}
+
+.centered {
+  margin-inline: auto;
+  text-align: center;
+  align-items: center;
+}
+
+.heading {
+  color: var(--afograde-ink-black);
+  position: relative;
+  padding-bottom: var(--afograde-spacing-3);
+}
+
+.heading::after {
+  content: "";
+  display: block;
+  width: 52px;
+  height: 4px;
+  margin-top: var(--afograde-spacing-3);
+  border-radius: var(--afograde-shape-full);
+  background: var(--afograde-color-gradient-brand);
+}
+
+.centered .heading::after {
+  margin-inline: auto;
+}
+
+.lead {
+  color: var(--afograde-ink-muted);
+}
+
+.inverse .heading {
+  color: var(--afograde-color-on-primary);
+}
+
+.inverse .heading::after {
+  background: var(--afograde-color-inverse-primary);
+}
+
+.inverse .lead {
+  color: rgba(255, 255, 255, 0.92);
+}
+

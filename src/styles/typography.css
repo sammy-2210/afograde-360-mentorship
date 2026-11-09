@@ -1,0 +1,166 @@
+/**
+ * Material Design 3 Typography System — AFOGRADE 360+ Mentorship Series
+ * Driven strictly by custom properties generated in tokens.css.
+ */
+
+.type-hero-heading {
+  font-family: var(--afograde-typography-font-family-brand);
+  font-size: var(--afograde-typography-hero-heading-size);
+  line-height: var(--afograde-typography-scale-display-small-line-height);
+  letter-spacing: -0.015em;
+  font-weight: var(--afograde-typography-weights-bold);
+}
+
+@media (min-width: 768px) {
+  .type-hero-heading {
+    line-height: var(--afograde-typography-scale-display-medium-line-height);
+  }
+}
+
+@media (min-width: 1024px) {
+  .type-hero-heading {
+    line-height: var(--afograde-typography-scale-display-large-line-height);
+    letter-spacing: var(--afograde-typography-scale-display-large-letter-spacing);
+  }
+}
+
+.type-section-heading {
+  font-family: var(--afograde-typography-font-family-brand);
+  font-size: var(--afograde-typography-section-heading-size);
+  line-height: var(--afograde-typography-scale-headline-medium-line-height);
+  letter-spacing: -0.01em;
+  font-weight: var(--afograde-typography-weights-bold);
+}
+
+@media (min-width: 768px) {
+  .type-section-heading {
+    line-height: var(--afograde-typography-scale-headline-large-line-height);
+  }
+}
+
+@media (min-width: 1024px) {
+  .type-section-heading {
+    line-height: var(--afograde-typography-scale-display-small-line-height);
+  }
+}
+
+.type-display-large {
+  font-family: var(--afograde-typography-scale-display-large-font-family);
+  font-size: var(--afograde-typography-scale-display-large-font-size);
+  line-height: var(--afograde-typography-scale-display-large-line-height);
+  letter-spacing: var(--afograde-typography-scale-display-large-letter-spacing);
+  font-weight: var(--afograde-typography-scale-display-large-font-weight);
+}
+
+.type-display-medium {
+  font-family: var(--afograde-typography-scale-display-medium-font-family);
+  font-size: var(--afograde-typography-scale-display-medium-font-size);
+  line-height: var(--afograde-typography-scale-display-medium-line-height);
+  letter-spacing: var(--afograde-typography-scale-display-medium-letter-spacing);
+  font-weight: var(--afograde-typography-scale-display-medium-font-weight);
+}
+
+.type-display-small {
+  font-family: var(--afograde-typography-scale-display-small-font-family);
+  font-size: var(--afograde-typography-scale-display-small-font-size);
+  line-height: var(--afograde-typography-scale-display-small-line-height);
+  letter-spacing: var(--afograde-typography-scale-display-small-letter-spacing);
+  font-weight: var(--afograde-typography-scale-display-small-font-weight);
+}
+
+.type-headline-large {
+  font-family: var(--afograde-typography-scale-headline-large-font-family);
+  font-size: var(--afograde-typography-scale-headline-large-font-size);
+  line-height: var(--afograde-typography-scale-headline-large-line-height);
+  letter-spacing: var(--afograde-typography-scale-headline-large-letter-spacing);
+  font-weight: var(--afograde-typography-weights-semibold);
+}
+
+.type-headline-medium {
+  font-family: var(--afograde-typography-scale-headline-medium-font-family);
+  font-size: var(--afograde-typography-scale-headline-medium-font-size);
+  line-height: var(--afograde-typography-scale-headline-medium-line-height);
+  letter-spacing: var(--afograde-typography-scale-headline-medium-letter-spacing);
+  font-weight: var(--afograde-typography-weights-semibold);
+}
+
+.type-headline-small {
+  font-family: var(--afograde-typography-scale-headline-small-font-family);
+  font-size: var(--afograde-typography-scale-headline-small-font-size);
+  line-height: var(--afograde-typography-scale-headline-small-line-height);
+  letter-spacing: var(--afograde-typography-scale-headline-small-letter-spacing);
+  font-weight: var(--afograde-typography-weights-semibold);
+}
+
+.type-title-large {
+  font-family: var(--afograde-typography-scale-title-large-font-family);
+  font-size: var(--afograde-typography-scale-title-large-font-size);
+  line-height: var(--afograde-typography-scale-title-large-line-height);
+  letter-spacing: var(--afograde-typography-scale-title-large-letter-spacing);
+  font-weight: var(--afograde-typography-weights-semibold);
+}
+
+.type-title-medium {
+  font-family: var(--afograde-typography-scale-title-medium-font-family);
+  font-size: var(--afograde-typography-scale-title-medium-font-size);
+  line-height: var(--afograde-typography-scale-title-medium-line-height);
+  letter-spacing: var(--afograde-typography-scale-title-medium-letter-spacing);
+  font-weight: var(--afograde-typography-scale-title-medium-font-weight);
+}
+
+.type-title-small {
+  font-family: var(--afograde-typography-scale-title-small-font-family);
+  font-size: var(--afograde-typography-scale-title-small-font-size);
+  line-height: var(--afograde-typography-scale-title-small-line-height);
+  letter-spacing: var(--afograde-typography-scale-title-small-letter-spacing);
+  font-weight: var(--afograde-typography-scale-title-small-font-weight);
+}
+
+.type-body-large {
+  font-family: var(--afograde-typography-scale-body-large-font-family);
+  font-size: var(--afograde-typography-scale-body-large-font-size);
+  line-height: var(--afograde-typography-scale-body-large-line-height);
+  letter-spacing: var(--afograde-typography-scale-body-large-letter-spacing);
+  font-weight: var(--afograde-typography-scale-body-large-font-weight);
+}
+
+.type-body-medium {
+  font-family: var(--afograde-typography-scale-body-medium-font-family);
+  font-size: var(--afograde-typography-scale-body-medium-font-size);
+  line-height: var(--afograde-typography-scale-body-medium-line-height);
+  letter-spacing: var(--afograde-typography-scale-body-medium-letter-spacing);
+  font-weight: var(--afograde-typography-scale-body-medium-font-weight);
+}
+
+.type-body-small {
+  font-family: var(--afograde-typography-scale-body-small-font-family);
+  font-size: var(--afograde-typography-scale-body-small-font-size);
+  line-height: var(--afograde-typography-scale-body-small-line-height);
+  letter-spacing: var(--afograde-typography-scale-body-small-letter-spacing);
+  font-weight: var(--afograde-typography-scale-body-small-font-weight);
+}
+
+.type-label-large {
+  font-family: var(--afograde-typography-scale-label-large-font-family);
+  font-size: var(--afograde-typography-scale-label-large-font-size);
+  line-height: var(--afograde-typography-scale-label-large-line-height);
+  letter-spacing: var(--afograde-typography-scale-label-large-letter-spacing);
+  font-weight: var(--afograde-typography-scale-label-large-font-weight);
+}
+
+.type-label-medium {
+  font-family: var(--afograde-typography-scale-label-medium-font-family);
+  font-size: var(--afograde-typography-scale-label-medium-font-size);
+  line-height: var(--afograde-typography-scale-label-medium-line-height);
+  letter-spacing: var(--afograde-typography-scale-label-medium-letter-spacing);
+  font-weight: var(--afograde-typography-scale-label-medium-font-weight);
+}
+
+.type-label-small {
+  font-family: var(--afograde-typography-scale-label-small-font-family);
+  font-size: var(--afograde-typography-scale-label-small-font-size);
+  line-height: var(--afograde-typography-scale-label-small-line-height);
+  letter-spacing: var(--afograde-typography-scale-label-small-letter-spacing);
+  font-weight: var(--afograde-typography-scale-label-small-font-weight);
+}
+

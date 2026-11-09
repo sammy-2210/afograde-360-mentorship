@@ -1,0 +1,92 @@
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--afograde-spacing-3);
+}
+
+.item {
+  background-color: var(--afograde-color-surface-container-lowest);
+  border: 1.5px solid var(--afograde-border-brand-subtle);
+  border-left: 5px solid var(--afograde-color-primary);
+  border-radius: var(--afograde-shape-large);
+  overflow: hidden;
+  box-shadow: var(--afograde-elevation-level1);
+  transition:
+    border-color var(--afograde-motion-duration-short) var(--afograde-motion-easing-standard),
+    box-shadow var(--afograde-motion-duration-short) var(--afograde-motion-easing-standard);
+}
+
+.item:hover {
+  border-color: var(--afograde-color-primary);
+  box-shadow: var(--afograde-elevation-level2);
+}
+
+.trigger {
+  width: 100%;
+  min-height: 58px;
+  padding: var(--afograde-spacing-4) var(--afograde-spacing-6);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--afograde-spacing-4);
+  background: transparent;
+  border: none;
+  text-align: left;
+  color: var(--afograde-ink-black);
+  font-weight: var(--afograde-typography-weights-bold);
+  font-size: 1.0625rem;
+  cursor: pointer;
+  transition: background-color var(--afograde-motion-duration-short) var(--afograde-motion-easing-standard);
+}
+
+.trigger:hover {
+  background-color: var(--afograde-color-brand-tint);
+}
+
+.trigger[aria-expanded="true"] {
+  background-color: var(--afograde-color-brand-tint);
+  color: var(--afograde-color-brand-deepest);
+}
+
+.icon {
+  flex-shrink: 0;
+  width: 30px;
+  height: 30px;
+  padding: 5px;
+  border-radius: var(--afograde-shape-full);
+  background-color: var(--afograde-color-brand-tint);
+  color: var(--afograde-color-primary);
+  transition:
+    transform var(--afograde-motion-duration-medium) var(--afograde-motion-easing-standard),
+    background-color var(--afograde-motion-duration-short) var(--afograde-motion-easing-standard),
+    color var(--afograde-motion-duration-short) var(--afograde-motion-easing-standard);
+}
+
+.iconOpen {
+  transform: rotate(180deg);
+  background-color: var(--afograde-color-primary);
+  color: var(--afograde-color-on-primary);
+}
+
+.panel {
+  padding: 0 var(--afograde-spacing-6) var(--afograde-spacing-5);
+  color: var(--afograde-ink-body);
+  border-top: 1px solid rgba(10, 74, 10, 0.16);
+  padding-top: var(--afograde-spacing-4);
+}
+
+@media (max-width: 640px) {
+  .trigger {
+    min-height: 52px;
+    padding: var(--afograde-spacing-4);
+    font-size: 1rem;
+    gap: var(--afograde-spacing-3);
+  }
+
+  .panel {
+    padding: 0 var(--afograde-spacing-4) var(--afograde-spacing-4);
+    font-size: 0.9375rem;
+  }
+}
+
+

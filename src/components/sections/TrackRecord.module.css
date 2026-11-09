@@ -1,0 +1,419 @@
+.section {
+  background-color: var(--afograde-color-surface-container-lowest);
+}
+
+.partBlock {
+  display: flex;
+  flex-direction: column;
+  gap: var(--afograde-spacing-6);
+}
+
+.partBlock+.partBlock {
+  margin-top: var(--afograde-spacing-16);
+  padding-top: var(--afograde-spacing-12);
+  border-top: 1.5px solid var(--afograde-border-brand-subtle);
+}
+
+.subHeader {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--afograde-spacing-3);
+}
+
+.subTitle {
+  color: var(--afograde-ink-black);
+  letter-spacing: 0.02em;
+}
+
+.scoresGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--afograde-spacing-4);
+}
+
+@media (min-width: 640px) {
+  .scoresGrid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--afograde-spacing-5);
+  }
+}
+
+@media (min-width: 1024px) {
+  .scoresGrid {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+
+.scoreCard {
+  position: relative;
+  background: linear-gradient(160deg,
+      var(--afograde-ink-black) 0%,
+      var(--afograde-color-brand-deepest) 65%,
+      var(--afograde-color-brand-primary) 100%);
+  border: 1.5px solid rgba(166, 212, 159, 0.42);
+  border-top: 4px solid var(--afograde-color-inverse-primary);
+  border-radius: var(--afograde-shape-large);
+  padding: var(--afograde-spacing-5) var(--afograde-spacing-4);
+  text-align: center;
+  color: var(--afograde-color-on-primary);
+  box-shadow: var(--afograde-elevation-level2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--afograde-spacing-2);
+  transition:
+    transform var(--afograde-motion-duration-medium) var(--afograde-motion-easing-standard),
+    box-shadow var(--afograde-motion-duration-medium) var(--afograde-motion-easing-standard),
+    border-color var(--afograde-motion-duration-medium) var(--afograde-motion-easing-standard);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .scoreCard:hover {
+    transform: translateY(-4px);
+    border-color: var(--afograde-color-inverse-primary);
+    box-shadow: var(--afograde-elevation-level4);
+  }
+}
+
+.scoreYearTag {
+  font-size: 0.75rem;
+  font-weight: var(--afograde-typography-weights-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--afograde-color-inverse-primary);
+}
+
+.scoreValue {
+  font-size: clamp(1.875rem, 6.5vw, 2.625rem);
+  line-height: 1.05;
+  font-weight: var(--afograde-typography-weights-bold);
+  letter-spacing: -0.02em;
+  color: var(--afograde-color-on-primary);
+}
+
+.scoreDenom {
+  font-size: 0.8125rem;
+  color: rgba(255, 255, 255, 0.78);
+  font-weight: var(--afograde-typography-weights-medium);
+}
+
+.scoreMeterTrack {
+  width: 100%;
+  height: 5px;
+  border-radius: var(--afograde-shape-full);
+  background-color: rgba(255, 255, 255, 0.16);
+  overflow: hidden;
+  margin-top: var(--afograde-spacing-1);
+}
+
+.scoreMeterFill {
+  height: 100%;
+  border-radius: var(--afograde-shape-full);
+  background-color: var(--afograde-color-inverse-primary);
+}
+
+.supportingBanner {
+  padding: var(--afograde-spacing-4) var(--afograde-spacing-6);
+  border-radius: var(--afograde-shape-large);
+  background-color: var(--afograde-color-brand-tint);
+  border: 1.5px solid var(--afograde-border-brand-subtle);
+  border-left: 5px solid var(--afograde-color-primary);
+  color: var(--afograde-ink-black);
+  font-weight: var(--afograde-typography-weights-bold);
+  font-size: 1.0625rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--afograde-spacing-3);
+}
+
+/* Part B: Testimonials Carousel */
+.carouselShell {
+  display: flex;
+  flex-direction: column;
+  gap: var(--afograde-spacing-5);
+}
+
+.testimonialCard {
+  background-color: var(--afograde-color-surface-container-lowest);
+  border: 1.5px solid var(--afograde-border-brand-subtle);
+  border-top: 5px solid var(--afograde-color-primary);
+  border-radius: var(--afograde-shape-extra-large);
+  padding: var(--afograde-spacing-6);
+  box-shadow: var(--afograde-elevation-level2);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--afograde-spacing-6);
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .testimonialCard {
+    padding: var(--afograde-spacing-8);
+  }
+
+  .testimonialCardWithShot {
+    grid-template-columns: 1.2fr 0.8fr;
+  }
+}
+
+.testimonialBody {
+  display: flex;
+  flex-direction: column;
+  gap: var(--afograde-spacing-4);
+}
+
+.quoteText {
+  font-size: 1.125rem;
+  line-height: 1.65;
+  color: var(--afograde-ink-body);
+}
+
+.studentMeta {
+  display: flex;
+  align-items: center;
+  gap: var(--afograde-spacing-3);
+  padding-top: var(--afograde-spacing-3);
+  border-top: 1px solid var(--afograde-border-brand-subtle);
+}
+
+.avatar {
+  width: 52px;
+  height: 52px;
+  border-radius: var(--afograde-shape-full);
+  object-fit: cover;
+  border: 2px solid var(--afograde-color-primary);
+  flex-shrink: 0;
+}
+
+.avatarInitial {
+  width: 52px;
+  height: 52px;
+  border-radius: var(--afograde-shape-full);
+  background: var(--afograde-color-gradient-brand);
+  color: var(--afograde-color-on-primary);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: var(--afograde-typography-weights-bold);
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
+.studentName {
+  font-weight: var(--afograde-typography-weights-bold);
+  color: var(--afograde-ink-black);
+  font-size: 1.0625rem;
+}
+
+.studentCourse {
+  font-size: 0.875rem;
+  color: var(--afograde-color-primary);
+  font-weight: var(--afograde-typography-weights-semibold);
+}
+
+.screenshotFrame {
+  background-color: var(--afograde-color-brand-tint);
+  border: 1px solid var(--afograde-border-brand-subtle);
+  border-radius: var(--afograde-shape-large);
+  padding: var(--afograde-spacing-3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.screenshotImg {
+  max-height: 320px;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+  border-radius: var(--afograde-shape-small);
+}
+
+.carouselControls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--afograde-spacing-4);
+}
+
+.navBtns {
+  display: flex;
+  align-items: center;
+  gap: var(--afograde-spacing-2);
+}
+
+.circleBtn {
+  width: var(--afograde-accessibility-minimum-touch-target);
+  height: var(--afograde-accessibility-minimum-touch-target);
+  border-radius: var(--afograde-shape-full);
+  border: 1.5px solid var(--afograde-color-primary);
+  background-color: var(--afograde-color-surface-container-lowest);
+  color: var(--afograde-ink-black);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition:
+    background-color var(--afograde-motion-duration-short) var(--afograde-motion-easing-standard),
+    color var(--afograde-motion-duration-short) var(--afograde-motion-easing-standard);
+}
+
+.circleBtn:hover {
+  background-color: var(--afograde-color-primary);
+  color: var(--afograde-color-on-primary);
+}
+
+.dots {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--afograde-spacing-2);
+}
+
+.dotBtn {
+  width: 12px;
+  height: 12px;
+  padding: 0;
+  border-radius: var(--afograde-shape-full);
+  border: none;
+  background-color: var(--afograde-color-primary-container);
+  cursor: pointer;
+  transition:
+    width var(--afograde-motion-duration-short) var(--afograde-motion-easing-standard),
+    background-color var(--afograde-motion-duration-short) var(--afograde-motion-easing-standard);
+}
+
+.dotBtnActive {
+  width: 28px;
+  background-color: var(--afograde-color-primary);
+}
+
+/* Part C: Result & Review Gallery (Aspect-Ratio Safe) */
+.galleryGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--afograde-spacing-6);
+}
+
+@media (min-width: 640px) {
+  .galleryGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .galleryGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.galleryCard {
+  background-color: var(--afograde-color-surface-container-lowest);
+  border: 1.5px solid var(--afograde-border-brand-subtle);
+  border-radius: var(--afograde-shape-large);
+  overflow: hidden;
+  box-shadow: var(--afograde-elevation-level1);
+  display: flex;
+  flex-direction: column;
+}
+
+.galleryMediaBtn {
+  border: none;
+  padding: var(--afograde-spacing-4);
+  background-color: #f4f8f3;
+  cursor: zoom-in;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 240px;
+}
+
+.galleryImg {
+  max-height: 280px;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+  border-radius: var(--afograde-shape-small);
+}
+
+.galleryMeta {
+  padding: var(--afograde-spacing-4) var(--afograde-spacing-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--afograde-spacing-2);
+  border-top: 1px solid var(--afograde-border-brand-subtle);
+}
+
+.galleryTitle {
+  font-weight: var(--afograde-typography-weights-bold);
+  color: var(--afograde-ink-black);
+}
+
+.galleryCaption {
+  font-size: 0.9375rem;
+  color: var(--afograde-ink-body);
+}
+
+.lightboxBackdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background-color: rgba(11, 16, 11, 0.88);
+  padding: var(--afograde-spacing-5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--afograde-spacing-4);
+}
+
+.lightboxImg {
+  max-width: min(92vw, 960px);
+  max-height: 78vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: var(--afograde-shape-medium);
+  background-color: var(--afograde-color-surface-container-lowest);
+}
+
+.lightboxClose {
+  min-height: var(--afograde-accessibility-minimum-touch-target);
+  padding-inline: var(--afograde-spacing-5);
+  border-radius: var(--afograde-shape-full);
+  border: 1.5px solid var(--afograde-color-inverse-primary);
+  background-color: var(--afograde-ink-black);
+  color: var(--afograde-color-on-primary);
+  font-weight: var(--afograde-typography-weights-bold);
+  cursor: pointer;
+}
+
+@media (max-width: 480px) {
+  .scoreCard {
+    padding: var(--afograde-spacing-4) var(--afograde-spacing-3);
+  }
+}
+
+@media (max-width: 640px) {
+  .supportingBanner {
+    padding: var(--afograde-spacing-4);
+    font-size: 0.96875rem;
+  }
+
+  .testimonialCard {
+    padding: var(--afograde-spacing-5) var(--afograde-spacing-4);
+  }
+
+  .galleryMediaBtn {
+    min-height: 200px;
+    padding: var(--afograde-spacing-3);
+  }
+
+  .galleryMeta {
+    padding: var(--afograde-spacing-3) var(--afograde-spacing-4);
+  }
+}

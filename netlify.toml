@@ -1,0 +1,47 @@
+# ==============================================================================
+# Netlify Static Deployment & Security Configuration — AFOGRADE 360+ Mentorship
+# ==============================================================================
+# Note (GATE-P0-04 / PRD Section 15.1 & 20): Confirm current Netlify commercial
+# terms and monthly bandwidth/build allowances before public campaign launch.
+
+[build]
+  command = "npm run build"
+  publish = "out"
+
+[build.environment]
+  NODE_VERSION = "22"
+  NPM_FLAGS = "--no-audit --no-fund"
+
+# Preview & branch deploys must never be indexed by search engines (PRD Section 17)
+[context.deploy-preview.environment]
+  NEXT_PUBLIC_SITE_ENV = "preview"
+
+[context.branch-deploy.environment]
+  NEXT_PUBLIC_SITE_ENV = "preview"
+
+# Global HTTP Security Headers (PRD Section 18.3)
+# Note: During Phase 3 pilot testing, validate CSP compatibility using
+# Content-Security-Policy-Report-Only before switching to strict enforcement if
+# any third-party endpoint domains change.
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "accelerometer=(), autoplay=(), camera=(), display-capture=(), geolocation=(), gyroscope=(), microphone=(), payment=(), usb=()"
+    Strict-Transport-Security = "max-age=63072000; includeSubDomains; preload"
+    Content-Security-Policy = "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'self'; script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com https://www.googletagmanager.com; frame-src https://challenges.cloudflare.com; connect-src 'self' https://script.google.com https://script.googleusercontent.com https://challenges.cloudflare.com https://www.google-analytics.com https://region1.google-analytics.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; upgrade-insecure-requests"
+
+# Long-lived immutable caching for content-hashed Next.js static assets
+[[headers]]
+  for = "/_next/static/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Ensure preview contexts also send X-Robots-Tag header on non-production URLs
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-DNS-Prefetch-Control = "on"
+

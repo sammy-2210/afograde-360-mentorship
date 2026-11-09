@@ -1,0 +1,46 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--afograde-spacing-2);
+  padding: var(--afograde-spacing-1) var(--afograde-spacing-3);
+  border-radius: var(--afograde-shape-full);
+  font-family: var(--afograde-typography-font-family-brand);
+  font-size: var(--afograde-typography-scale-label-medium-font-size);
+  line-height: var(--afograde-typography-scale-label-medium-line-height);
+  letter-spacing: var(--afograde-typography-scale-label-medium-letter-spacing);
+  font-weight: var(--afograde-typography-weights-semibold);
+}
+
+.brand {
+  background-color: var(--afograde-color-primary-container);
+  color: var(--afograde-color-brand-deepest);
+  border: 1px solid rgba(10, 74, 10, 0.36);
+}
+
+.neutral {
+  background-color: var(--afograde-ink-black);
+  color: var(--afograde-color-on-primary);
+  border: 1px solid var(--afograde-color-brand-deep);
+}
+
+.success {
+  background-color: var(--afograde-color-utility-success);
+  color: var(--afograde-color-utility-on-success);
+}
+
+.warning {
+  background-color: var(--afograde-color-utility-warning);
+  color: var(--afograde-color-utility-on-warning);
+}
+
+.info {
+  background-color: var(--afograde-color-tertiary-container);
+  color: var(--afograde-color-on-tertiary-container);
+}
+
+.inverse {
+  background-color: rgba(255, 255, 255, 0.16);
+  color: var(--afograde-color-on-primary);
+  border: 1px solid rgba(255, 255, 255, 0.32);
+}
+

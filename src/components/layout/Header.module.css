@@ -1,0 +1,502 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(12px);
+  border-top: 4px solid var(--afograde-color-primary);
+  border-bottom: 1.5px solid var(--afograde-border-brand-subtle);
+  box-shadow: var(--afograde-elevation-level1);
+}
+
+.inner {
+  height: var(--afograde-components-navigation-mobile-height);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--afograde-spacing-4);
+}
+
+@media (min-width: 1024px) {
+  .inner {
+    height: var(--afograde-components-navigation-desktop-height);
+  }
+}
+
+.brandLink {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--afograde-spacing-3);
+  text-decoration: none;
+  color: var(--afograde-color-brand-deepest);
+  min-height: var(--afograde-accessibility-minimum-touch-target);
+}
+
+.brandLogoFrame {
+  width: 46px;
+  height: 46px;
+  border-radius: var(--afograde-shape-medium);
+  background-color: var(--afograde-color-surface-container-lowest);
+  border: 1.5px solid var(--afograde-color-primary-container);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  overflow: hidden;
+  box-shadow: var(--afograde-elevation-level1);
+  transition: border-color 260ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@media (min-width: 1024px) {
+  .brandLogoFrame {
+    width: 52px;
+    height: 52px;
+  }
+}
+
+.brandLink:hover .brandLogoFrame {
+  border-color: var(--afograde-color-primary);
+}
+
+.brandLogoImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.22);
+  transform-origin: center;
+  display: block;
+}
+
+.brandText {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
+}
+
+.brandTitle {
+  font-weight: var(--afograde-typography-weights-bold);
+  font-size: 1.0625rem;
+  letter-spacing: 0.02em;
+  color: var(--afograde-ink-black);
+}
+
+.brandSubtitle {
+  font-size: 0.75rem;
+  font-weight: var(--afograde-typography-weights-semibold);
+  color: var(--afograde-color-primary);
+}
+
+.desktopNav {
+  display: none;
+}
+
+.desktopActions {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .desktopNav {
+    display: flex;
+    align-items: center;
+    gap: var(--afograde-spacing-1);
+  }
+
+  .desktopActions {
+    display: flex;
+    align-items: center;
+    gap: var(--afograde-spacing-3);
+  }
+}
+
+/* === Header Navigation Links: Slow, Smooth Sliding Underline === */
+.navLink {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--afograde-accessibility-minimum-touch-target);
+  padding-inline: var(--afograde-spacing-3);
+  text-decoration: none;
+  color: var(--afograde-ink-black);
+  font-size: 0.9375rem;
+  font-weight: var(--afograde-typography-weights-semibold);
+  transition: color 500ms ease;
+}
+
+.navLinkText {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 5px;
+  overflow: hidden;
+}
+
+.navLinkText::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2.5px;
+  border-radius: var(--afograde-shape-full);
+  background-color: var(--afograde-color-primary);
+  transform: translateX(-105%);
+  transition: transform 500ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.navLink:hover,
+.navLink:focus-visible {
+  color: var(--afograde-color-primary);
+}
+
+.navLink:hover .navLinkText::after,
+.navLink:focus-visible .navLinkText::after {
+  transform: translateX(0);
+  transition: transform 1.0s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* === Header "Register Now" CTA: Shadow-Free Pill + Sliding Fill + Kinetic Arrow Badge === */
+.headerRegisterBtn {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: var(--afograde-accessibility-minimum-touch-target);
+  padding: 5px 6px 5px 20px;
+  border-radius: var(--afograde-shape-full);
+  border: 2px solid var(--afograde-color-primary);
+  background-color: var(--afograde-color-primary);
+  box-shadow: none;
+  font-family: var(--afograde-typography-font-family-brand);
+  font-size: 0.96875rem;
+  font-weight: var(--afograde-typography-weights-bold);
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  user-select: none;
+  transition:
+    border-color 420ms cubic-bezier(0.4, 0, 0.2, 1),
+    transform 360ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.headerRegisterBtnFull {
+  width: 100%;
+  justify-content: center;
+}
+
+.headerRegisterBg {
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background-color: var(--afograde-color-primary-container);
+  transform: translateX(-102%);
+  pointer-events: none;
+  z-index: 1;
+  transition: transform 480ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.headerRegisterLabel {
+  position: relative;
+  z-index: 2;
+  color: var(--afograde-color-on-primary);
+  transition: color 320ms cubic-bezier(0.4, 0, 0.2, 1) 60ms;
+}
+
+.headerRegisterIconBadge {
+  position: relative;
+  z-index: 2;
+  width: 34px;
+  height: 34px;
+  border-radius: var(--afograde-shape-full);
+  background-color: rgba(255, 255, 255, 0.18);
+  color: var(--afograde-color-on-primary);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition:
+    background-color 420ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 420ms cubic-bezier(0.4, 0, 0.2, 1),
+    transform 420ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.headerRegisterArrowViewport {
+  position: relative;
+  width: 16px;
+  height: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.headerArrowResting,
+.headerArrowIncoming {
+  position: absolute;
+  inset: 0;
+  transition: transform 480ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.headerArrowResting {
+  transform: translateX(0);
+}
+
+.headerArrowIncoming {
+  transform: translateX(-20px);
+}
+
+.headerRegisterBtn:hover,
+.headerRegisterBtn:focus-visible {
+  border-color: var(--afograde-ink-black);
+  transform: translateY(-3px);
+}
+
+.headerRegisterBtn:hover .headerRegisterBg,
+.headerRegisterBtn:focus-visible .headerRegisterBg {
+  transform: translateX(0);
+}
+
+.headerRegisterBtn:hover .headerRegisterLabel,
+.headerRegisterBtn:focus-visible .headerRegisterLabel {
+  color: var(--afograde-ink-black);
+}
+
+.headerRegisterBtn:hover .headerRegisterIconBadge,
+.headerRegisterBtn:focus-visible .headerRegisterIconBadge {
+  background-color: var(--afograde-ink-black);
+  color: var(--afograde-color-on-primary);
+  transform: scale(1.06);
+}
+
+.headerRegisterBtn:hover .headerArrowResting,
+.headerRegisterBtn:focus-visible .headerArrowResting {
+  transform: translateX(20px);
+}
+
+.headerRegisterBtn:hover .headerArrowIncoming,
+.headerRegisterBtn:focus-visible .headerArrowIncoming {
+  transform: translateX(0);
+}
+
+.headerRegisterBtn:active {
+  transform: translateY(0);
+  transition-duration: 120ms;
+}
+
+.headerRegisterBtn:focus-visible {
+  outline: 3px solid var(--afograde-color-primary);
+  outline-offset: 3px;
+}
+
+.menuToggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--afograde-accessibility-minimum-touch-target);
+  height: var(--afograde-accessibility-minimum-touch-target);
+  border-radius: var(--afograde-shape-full);
+  border: 1.5px solid var(--afograde-color-primary);
+  background-color: var(--afograde-color-brand-tint);
+  color: var(--afograde-color-brand-deepest);
+  box-shadow: none;
+  cursor: pointer;
+  transition:
+    background-color 240ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 240ms cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 240ms cubic-bezier(0.4, 0, 0.2, 1),
+    transform 220ms cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+.menuToggle:hover {
+  background-color: var(--afograde-color-primary);
+  color: var(--afograde-color-on-primary);
+  transform: translateY(-2px);
+}
+
+.menuToggleActive {
+  background-color: var(--afograde-ink-black);
+  border-color: var(--afograde-ink-black);
+  color: var(--afograde-color-on-primary);
+}
+
+.menuToggleActive:hover {
+  background-color: var(--afograde-color-brand-deepest);
+  border-color: var(--afograde-color-brand-deepest);
+}
+
+@media (min-width: 1024px) {
+  .menuToggle {
+    display: none;
+  }
+}
+
+/* Dimmed backdrop covering full viewport below header */
+.mobileBackdrop {
+  position: fixed;
+  top: var(--afograde-components-navigation-mobile-height);
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(11, 16, 11, 0.62);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 98;
+  animation: mobileBackdropFade 220ms ease;
+}
+
+@media (min-width: 1024px) {
+  .mobileBackdrop {
+    display: none;
+  }
+}
+
+@keyframes mobileBackdropFade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Slide-down mobile sheet */
+.mobileDrawer {
+  position: fixed;
+  top: var(--afograde-components-navigation-mobile-height);
+  left: 0;
+  right: 0;
+  max-height: calc(100vh - var(--afograde-components-navigation-mobile-height));
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  background-color: var(--afograde-color-surface-container-lowest);
+  border-bottom: 3.5px solid var(--afograde-color-primary);
+  padding: var(--afograde-spacing-4) var(--afograde-spacing-page-gutter)
+    calc(var(--afograde-spacing-8) + env(safe-area-inset-bottom, 0px));
+  z-index: 99;
+  display: flex;
+  flex-direction: column;
+  gap: var(--afograde-spacing-4);
+  animation: mobileDrawerSlide 260ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (min-width: 1024px) {
+  .mobileDrawer {
+    display: none;
+  }
+}
+
+@keyframes mobileDrawerSlide {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.mobileDrawerHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 10px 14px;
+  border-radius: var(--afograde-shape-medium);
+  background-color: var(--afograde-color-brand-tint);
+  border-left: 4px solid var(--afograde-color-primary);
+}
+
+.mobileDrawerBadge {
+  font-size: 0.75rem;
+  font-weight: var(--afograde-typography-weights-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--afograde-color-primary);
+}
+
+.mobileDrawerTagline {
+  font-size: 0.9375rem;
+  font-weight: var(--afograde-typography-weights-bold);
+  color: var(--afograde-ink-black);
+}
+
+.mobileNavList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--afograde-spacing-1);
+}
+
+.mobileNavLink {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 50px;
+  padding: 10px 14px;
+  border-radius: var(--afograde-shape-medium);
+  border-bottom: 1px solid rgba(10, 74, 10, 0.08);
+  text-decoration: none;
+  color: var(--afograde-ink-black);
+  font-weight: var(--afograde-typography-weights-semibold);
+  font-size: 1.0625rem;
+  transition:
+    background-color 200ms ease,
+    color 200ms ease,
+    padding-left 220ms ease;
+}
+
+.mobileNavArrow {
+  color: var(--afograde-color-primary);
+  flex-shrink: 0;
+  transition: transform 220ms ease;
+}
+
+.mobileNavLink:hover,
+.mobileNavLink:focus-visible {
+  background-color: var(--afograde-color-brand-tint);
+  color: var(--afograde-color-brand-deepest);
+  padding-left: 18px;
+}
+
+.mobileNavLink:hover .mobileNavArrow {
+  transform: translateX(3px);
+}
+
+.mobileNavLink:active {
+  background-color: var(--afograde-color-primary-container);
+  color: var(--afograde-color-brand-deepest);
+}
+
+.mobileDrawerActions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--afograde-spacing-3);
+  padding-top: var(--afograde-spacing-3);
+  border-top: 1px solid rgba(10, 74, 10, 0.14);
+}
+
+.mobileContactCall {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--afograde-spacing-2);
+  min-height: 44px;
+  padding: 10px 16px;
+  border-radius: var(--afograde-shape-full);
+  border: 1.5px solid var(--afograde-border-brand-subtle);
+  background-color: var(--afograde-color-surface-container-low);
+  color: var(--afograde-ink-black);
+  font-size: 0.9375rem;
+  font-weight: var(--afograde-typography-weights-bold);
+  text-decoration: none;
+  transition:
+    background-color 220ms ease,
+    border-color 220ms ease;
+}
+
+.mobileContactCall:hover {
+  background-color: var(--afograde-color-brand-tint);
+  border-color: var(--afograde-color-primary);
+}

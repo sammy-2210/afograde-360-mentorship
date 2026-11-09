@@ -1,0 +1,546 @@
+/* Shared & Section-Scoped Layout Styles — AFOGRADE 360+ Mentorship Series */
+
+/* 7.1 HERO */
+.hero {
+  position: relative;
+  background: var(--afograde-color-gradient-brand);
+  color: var(--afograde-color-on-primary);
+  padding-top: var(--afograde-spacing-12);
+  padding-bottom: var(--afograde-spacing-16);
+  overflow: hidden;
+}
+
+@media (min-width: 1024px) {
+  .hero {
+    padding-top: var(--afograde-spacing-20);
+    padding-bottom: var(--afograde-spacing-24);
+  }
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(
+    circle at 85% 20%,
+    rgba(203, 232, 200, 0.14) 0%,
+    transparent 55%
+  );
+  pointer-events: none;
+}
+
+.heroGrid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--afograde-spacing-10);
+  align-items: center;
+}
+
+@media (min-width: 1024px) {
+  .heroGrid {
+    grid-template-columns: 1.25fr 0.95fr;
+    gap: var(--afograde-spacing-12);
+  }
+}
+
+.heroContent {
+  display: flex;
+  flex-direction: column;
+  gap: var(--afograde-spacing-5);
+}
+
+.heroBadgeRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--afograde-spacing-3);
+}
+
+.statusDot {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--afograde-shape-full);
+  background-color: #8bf59b;
+  display: inline-block;
+}
+
+.statusDotPending {
+  background-color: #ffd97d;
+}
+
+.heroLead {
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 620px;
+  font-size: 1.125rem;
+}
+
+.heroTagline {
+  color: var(--afograde-color-inverse-primary);
+  font-weight: var(--afograde-typography-weights-medium);
+  font-style: italic;
+}
+
+.heroActions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--afograde-spacing-3);
+  margin-top: var(--afograde-spacing-2);
+}
+
+@media (max-width: 559px) {
+  .heroActions > * {
+    width: 100%;
+  }
+}
+
+@media (min-width: 560px) {
+  .heroActions {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+}
+
+.heroSummaryCard {
+  background: linear-gradient(
+    160deg,
+    var(--afograde-ink-black) 0%,
+    var(--afograde-color-brand-deepest) 100%
+  );
+  border: 1.5px solid rgba(166, 212, 159, 0.45);
+  border-radius: var(--afograde-shape-extra-large);
+  padding: var(--afograde-spacing-6);
+  box-shadow: var(--afograde-elevation-level4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--afograde-spacing-5);
+}
+
+@media (min-width: 768px) {
+  .heroSummaryCard {
+    padding: var(--afograde-spacing-8);
+  }
+}
+
+.heroCardHeader {
+  padding-bottom: var(--afograde-spacing-4);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.heroCardEyebrow {
+  font-size: 0.8125rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--afograde-color-inverse-primary);
+  font-weight: var(--afograde-typography-weights-bold);
+}
+
+.heroPriceHighlight {
+  font-size: clamp(1.75rem, 6.5vw, 2rem);
+  font-weight: var(--afograde-typography-weights-bold);
+  color: var(--afograde-color-on-primary);
+  margin-top: var(--afograde-spacing-1);
+}
+
+.heroPriceUnit {
+  font-size: 1rem;
+  font-weight: var(--afograde-typography-weights-regular);
+  color: rgba(255, 255, 255, 0.84);
+}
+
+.heroFactList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--afograde-spacing-3);
+}
+
+.heroFactItem {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--afograde-spacing-3);
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 0.96875rem;
+}
+
+.heroFactIcon {
+  color: var(--afograde-color-inverse-primary);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* Generic Responsive Card Grids */
+.gridTwo {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--afograde-spacing-6);
+}
+
+@media (min-width: 768px) {
+  .gridTwo {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.gridThree {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--afograde-spacing-6);
+}
+
+@media (min-width: 768px) {
+  .gridThree {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .gridThree {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.gridFour {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--afograde-spacing-5);
+}
+
+@media (min-width: 640px) {
+  .gridFour {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .gridFour {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Surface Cards */
+.card {
+  background-color: var(--afograde-color-surface-container-lowest);
+  border: 1.5px solid var(--afograde-border-brand-subtle);
+  border-top: 4px solid var(--afograde-color-primary);
+  border-radius: var(--afograde-components-card-corner-radius);
+  padding: var(--afograde-components-card-padding);
+  box-shadow: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--afograde-spacing-3);
+  transition:
+    border-color 280ms cubic-bezier(0.4, 0, 0.2, 1),
+    transform 260ms cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+.card:hover {
+  border-color: var(--afograde-color-primary);
+  transform: translateY(-4px);
+}
+
+.cardElevatedWhite {
+  background-color: var(--afograde-color-surface-container-lowest);
+  border: 1.5px solid var(--afograde-border-brand-subtle);
+  border-top: 4px solid var(--afograde-color-primary);
+  border-radius: var(--afograde-shape-large);
+  padding: var(--afograde-spacing-6);
+  box-shadow: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--afograde-spacing-3);
+  transition:
+    border-color 280ms cubic-bezier(0.4, 0, 0.2, 1),
+    transform 260ms cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+.cardElevatedWhite:hover {
+  border-color: var(--afograde-color-primary);
+  transform: translateY(-4px);
+}
+
+.cardInkTop {
+  border-top-color: var(--afograde-ink-black);
+}
+
+.cardLeftAccent {
+  border-top-width: 1.5px;
+  border-top-color: var(--afograde-border-brand-subtle);
+  border-left: 5px solid var(--afograde-color-primary);
+}
+
+.cardAccent {
+  background-color: var(--afograde-color-brand-tint);
+  border: 2px solid var(--afograde-color-primary);
+  border-top: 5px solid var(--afograde-color-primary);
+}
+
+.cardObsidianBrand {
+  background: var(--afograde-surface-obsidian-brand);
+  border: 2px solid var(--afograde-color-brand-bright);
+  border-top: 5px solid var(--afograde-color-inverse-primary);
+  border-radius: var(--afograde-shape-large);
+  padding: var(--afograde-spacing-6);
+  box-shadow: var(--afograde-elevation-level3);
+  color: var(--afograde-color-on-primary);
+  display: flex;
+  flex-direction: column;
+  gap: var(--afograde-spacing-3);
+}
+
+.cardDarkGlass {
+  background-color: rgba(11, 16, 11, 0.72);
+  border: 1.5px solid rgba(166, 212, 159, 0.38);
+  border-top: 4px solid var(--afograde-color-inverse-primary);
+  border-radius: var(--afograde-shape-large);
+  padding: var(--afograde-spacing-6);
+  box-shadow: var(--afograde-elevation-level2);
+  color: var(--afograde-color-on-primary);
+  display: flex;
+  flex-direction: column;
+  gap: var(--afograde-spacing-3);
+}
+
+.cardNumberPill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: var(--afograde-shape-medium);
+  background: var(--afograde-color-gradient-brand);
+  color: var(--afograde-color-on-primary);
+  font-weight: var(--afograde-typography-weights-bold);
+  font-size: 1rem;
+  box-shadow: var(--afograde-elevation-level1);
+}
+
+.cardNumberPillInk {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: var(--afograde-shape-medium);
+  background-color: var(--afograde-ink-black);
+  color: var(--afograde-color-inverse-primary);
+  border: 1.5px solid var(--afograde-color-primary);
+  font-weight: var(--afograde-typography-weights-bold);
+  font-size: 1rem;
+  box-shadow: var(--afograde-elevation-level1);
+}
+
+.shieldIconBadge {
+  width: 46px;
+  height: 46px;
+  border-radius: var(--afograde-shape-medium);
+  background-color: var(--afograde-color-brand-tint);
+  border: 1px solid var(--afograde-color-primary-container);
+  color: var(--afograde-color-primary);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cardTitle {
+  color: var(--afograde-ink-black);
+}
+
+.cardBody {
+  color: var(--afograde-ink-body);
+}
+
+/* Subject Chips Bar */
+.subjectsPanel {
+  margin-top: var(--afograde-spacing-8);
+  padding: var(--afograde-spacing-6) var(--afograde-spacing-8);
+  border-radius: var(--afograde-shape-large);
+  background: linear-gradient(
+    135deg,
+    var(--afograde-ink-black) 0%,
+    var(--afograde-color-brand-deepest) 54%,
+    var(--afograde-color-brand-primary) 100%
+  );
+  color: var(--afograde-color-on-primary);
+  border: 1.5px solid rgba(166, 212, 159, 0.35);
+  box-shadow: var(--afograde-elevation-level2);
+  display: flex;
+  flex-direction: column;
+  gap: var(--afograde-spacing-4);
+}
+
+.subjectChipsRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--afograde-spacing-3);
+}
+
+.subjectChip {
+  padding: var(--afograde-spacing-2) var(--afograde-spacing-4);
+  border-radius: var(--afograde-shape-full);
+  background-color: var(--afograde-color-surface-container-lowest);
+  border: 1.5px solid var(--afograde-color-inverse-primary);
+  color: var(--afograde-ink-black);
+  font-weight: var(--afograde-typography-weights-bold);
+  font-size: 0.9375rem;
+  box-shadow: var(--afograde-elevation-level1);
+}
+
+/* Pricing Cards */
+.planCard {
+  background-color: var(--afograde-color-surface-container-lowest);
+  border: 1.5px solid var(--afograde-border-brand-subtle);
+  border-top: 4px solid var(--afograde-color-primary);
+  border-radius: var(--afograde-shape-large);
+  padding: var(--afograde-spacing-6);
+  box-shadow: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--afograde-spacing-6);
+  transition:
+    border-color 280ms cubic-bezier(0.4, 0, 0.2, 1),
+    transform 260ms cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+.planCard:hover {
+  border-color: var(--afograde-color-primary);
+  transform: translateY(-4px);
+}
+
+.planCardFeatured {
+  border-color: var(--afograde-color-primary);
+  border-width: 2px;
+  border-top: 6px solid var(--afograde-ink-black);
+  box-shadow: none;
+  background: linear-gradient(
+    180deg,
+    var(--afograde-color-primary-container) 0%,
+    var(--afograde-color-brand-tint) 30%,
+    var(--afograde-color-surface-container-lowest) 68%
+  );
+}
+
+.planCardFeatured:hover {
+  border-color: var(--afograde-ink-black);
+  transform: translateY(-4px);
+}
+
+.planCardUnavailable {
+  opacity: 0.62;
+}
+
+.planPriceLarge {
+  font-size: 2rem;
+  line-height: 1.15;
+  font-weight: var(--afograde-typography-weights-bold);
+  color: var(--afograde-color-primary);
+}
+
+.planMetaList {
+  list-style: none;
+  padding: 0;
+  margin: var(--afograde-spacing-3) 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--afograde-spacing-2);
+  font-size: 0.9375rem;
+  color: var(--afograde-ink-body);
+}
+
+.planMetaList strong {
+  color: var(--afograde-ink-black);
+}
+
+/* Callout / Notice Box */
+.noticeBox {
+  margin-top: var(--afograde-spacing-8);
+  padding: var(--afograde-spacing-5) var(--afograde-spacing-6);
+  border-radius: var(--afograde-shape-large);
+  background-color: var(--afograde-color-surface-container-lowest);
+  border-left: 5px solid var(--afograde-ink-black);
+  border-top: 1px solid var(--afograde-border-brand-subtle);
+  border-right: 1px solid var(--afograde-border-brand-subtle);
+  border-bottom: 1px solid var(--afograde-border-brand-subtle);
+  box-shadow: var(--afograde-elevation-level1);
+  color: var(--afograde-ink-body);
+  display: flex;
+  flex-direction: column;
+  gap: var(--afograde-spacing-2);
+}
+
+.noticeBox strong {
+  color: var(--afograde-color-brand-deepest);
+}
+
+/* Final CTA Banner */
+.finalCtaBox {
+  background: linear-gradient(
+    135deg,
+    var(--afograde-ink-black) 0%,
+    var(--afograde-color-brand-deep) 52%,
+    var(--afograde-color-brand-bright) 100%
+  );
+  border: 1.5px solid rgba(166, 212, 159, 0.36);
+  color: var(--afograde-color-on-primary);
+  border-radius: var(--afograde-shape-extra-large);
+  padding: var(--afograde-spacing-10) var(--afograde-spacing-6);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--afograde-spacing-5);
+  box-shadow: var(--afograde-elevation-level4);
+}
+
+@media (min-width: 768px) {
+  .finalCtaBox {
+    padding: var(--afograde-spacing-16) var(--afograde-spacing-12);
+  }
+}
+
+.finalCtaActions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--afograde-spacing-4);
+  margin-top: var(--afograde-spacing-2);
+}
+
+@media (max-width: 640px) {
+  .heroSummaryCard {
+    padding: var(--afograde-spacing-5) var(--afograde-spacing-4);
+  }
+
+  .card,
+  .cardElevatedWhite,
+  .cardObsidianBrand,
+  .cardDarkGlass,
+  .planCard {
+    padding: var(--afograde-spacing-5) var(--afograde-spacing-4);
+  }
+
+  .subjectsPanel {
+    padding: var(--afograde-spacing-5) var(--afograde-spacing-4);
+  }
+
+  .finalCtaBox {
+    padding: var(--afograde-spacing-8) var(--afograde-spacing-4);
+  }
+}
+
+@media (max-width: 559px) {
+  .finalCtaActions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .finalCtaActions > * {
+    width: 100%;
+  }
+}
+
+

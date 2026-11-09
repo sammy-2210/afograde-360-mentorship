@@ -1,0 +1,40 @@
+.banner {
+  position: fixed;
+  bottom: calc(92px + env(safe-area-inset-bottom, 0px));
+  right: var(--afograde-spacing-4);
+  left: var(--afograde-spacing-4);
+  max-width: 520px;
+  margin-left: auto;
+  z-index: 95;
+  background-color: var(--afograde-color-surface-container-lowest);
+  border: 1.5px solid var(--afograde-color-outline-variant);
+  border-radius: var(--afograde-shape-large);
+  box-shadow: var(--afograde-elevation-level4);
+  padding: var(--afograde-spacing-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--afograde-spacing-4);
+}
+
+@media (min-width: 1024px) {
+  .banner {
+    bottom: var(--afograde-spacing-5);
+  }
+}
+
+.title {
+  color: var(--afograde-color-on-surface);
+  font-weight: var(--afograde-typography-weights-bold);
+}
+
+.copy {
+  color: var(--afograde-color-on-surface-variant);
+  font-size: 0.9375rem;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--afograde-spacing-3);
+}
+

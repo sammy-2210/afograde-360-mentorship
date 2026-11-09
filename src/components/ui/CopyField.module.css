@@ -1,0 +1,72 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--afograde-spacing-2);
+  padding: var(--afograde-spacing-4);
+  background-color: var(--afograde-color-surface-container-lowest);
+  border: 1.5px solid var(--afograde-color-outline-variant);
+  border-radius: var(--afograde-shape-medium);
+}
+
+.label {
+  color: var(--afograde-color-on-surface-variant);
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--afograde-spacing-3);
+}
+
+.value {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 1.25rem;
+  font-weight: var(--afograde-typography-weights-bold);
+  letter-spacing: 0.04em;
+  color: var(--afograde-color-brand-deepest);
+  word-break: break-all;
+}
+
+.copyButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--afograde-spacing-2);
+  min-height: var(--afograde-accessibility-minimum-touch-target);
+  padding-inline: var(--afograde-spacing-4);
+  border-radius: var(--afograde-shape-full);
+  border: 1.5px solid var(--afograde-color-primary);
+  background-color: var(--afograde-color-brand-tint);
+  color: var(--afograde-color-brand-deepest);
+  box-shadow: none;
+  font-weight: var(--afograde-typography-weights-semibold);
+  font-size: 0.9375rem;
+  cursor: pointer;
+  transition:
+    background-color 280ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 280ms cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 280ms cubic-bezier(0.4, 0, 0.2, 1),
+    transform 260ms cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+.copyButton:hover {
+  background-color: var(--afograde-color-primary);
+  color: var(--afograde-color-on-primary);
+  transform: translateY(-3px);
+}
+
+.copyButton:active {
+  transform: translateY(0);
+}
+
+.copied {
+  background-color: var(--afograde-color-utility-success);
+  border-color: var(--afograde-color-utility-success);
+  color: var(--afograde-color-utility-on-success);
+}
+
+.copied:hover {
+  background-color: var(--afograde-color-utility-success);
+}

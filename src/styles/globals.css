@@ -1,0 +1,223 @@
+/**
+ * Global Styles, Accessibility Foundations & Layout Primitives
+ * AFOGRADE 360+ Mentorship Series
+ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 100%;
+  color-scheme: light !important;
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(
+    var(--afograde-components-navigation-mobile-height) + var(--afograde-spacing-4)
+  );
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+@media (min-width: 1024px) {
+  html {
+    scroll-padding-top: calc(
+      var(--afograde-components-navigation-desktop-height) + var(--afograde-spacing-4)
+    );
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+:root {
+  color-scheme: light !important;
+  /* High-authority ink & brand accent aliases derived from design tokens */
+  --afograde-ink-black: var(--afograde-color-dark-surface-container-lowest); /* #0B100B */
+  --afograde-ink-pure: var(--afograde-color-scrim); /* #000000 */
+  --afograde-ink-body: var(--afograde-color-on-surface); /* #191D18 */
+  --afograde-ink-muted: #2c332b;
+  --afograde-border-brand-subtle: rgba(10, 74, 10, 0.22);
+  --afograde-border-brand-strong: rgba(10, 74, 10, 0.45);
+  --afograde-surface-obsidian-brand: linear-gradient(
+    155deg,
+    var(--afograde-color-dark-surface-container-lowest) 0%,
+    var(--afograde-color-brand-deepest) 100%
+  );
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color-scheme: light !important;
+  background-color: var(--afograde-color-surface-container-lowest);
+  color: var(--afograde-ink-body);
+  font-family: var(--afograde-typography-font-family-brand);
+  font-size: var(--afograde-accessibility-recommended-body-font-size);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: clip;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+ol,
+dl,
+dd,
+figure,
+blockquote {
+  margin: 0;
+}
+
+ul,
+ol {
+  padding-left: var(--afograde-spacing-5);
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: var(--afograde-color-primary);
+  text-underline-offset: 0.2em;
+  transition: color var(--afograde-motion-duration-short) var(--afograde-motion-easing-standard);
+}
+
+a:hover {
+  color: var(--afograde-color-brand-deepest);
+}
+
+/* Enforce >= 16px on mobile form inputs to prevent browser auto-zoom (PRD Section 8) */
+button,
+input,
+select,
+textarea {
+  color-scheme: light !important;
+  font-family: inherit;
+  font-size: max(16px, 1rem);
+  line-height: 1.4;
+}
+
+/* Enforce strict light theme across all devices regardless of OS/browser dark theme preferences */
+@media (prefers-color-scheme: dark) {
+  :root,
+  html,
+  body {
+    color-scheme: light !important;
+    background-color: var(--afograde-color-surface-container-lowest) !important;
+    color: var(--afograde-ink-body) !important;
+  }
+
+  button,
+  input,
+  select,
+  textarea {
+    color-scheme: light !important;
+    background-color: var(--afograde-components-input-background) !important;
+    color: var(--afograde-ink-black) !important;
+  }
+}
+
+/* WCAG 2.2 AA Focus Visible Indicator */
+:focus-visible {
+  outline: 3px solid var(--afograde-color-tertiary);
+  outline-offset: 2px;
+}
+
+/* Accessible Skip-to-Content Link (PRD Section 18.2) */
+.skip-link {
+  position: fixed;
+  top: var(--afograde-spacing-3);
+  left: var(--afograde-spacing-3);
+  z-index: 1000;
+  padding: var(--afograde-spacing-3) var(--afograde-spacing-5);
+  min-height: var(--afograde-accessibility-minimum-touch-target);
+  display: inline-flex;
+  align-items: center;
+  background-color: var(--afograde-color-brand-deepest);
+  color: var(--afograde-color-on-primary);
+  font-weight: var(--afograde-typography-weights-bold);
+  text-decoration: none;
+  border-radius: var(--afograde-shape-full);
+  box-shadow: var(--afograde-elevation-level4);
+  transform: translateY(-200%);
+  transition: transform var(--afograde-motion-duration-short) var(--afograde-motion-easing-standard);
+}
+
+.skip-link:focus,
+.skip-link:focus-visible {
+  transform: translateY(0);
+  outline: 3px solid var(--afograde-color-inverse-primary);
+  outline-offset: 2px;
+}
+
+/* Screen-reader only utility */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Layout Primitives */
+.container {
+  width: 100%;
+  max-width: calc(
+    var(--afograde-spacing-layout-content-max-width) + (2 * var(--afograde-spacing-page-gutter))
+  );
+  margin-inline: auto;
+  padding-inline: var(--afograde-spacing-page-gutter);
+}
+
+.section {
+  padding-block: var(--afograde-spacing-section-vertical);
+}
+
+.section-surface-low {
+  background-color: var(--afograde-color-brand-tint);
+  border-top: 1px solid rgba(10, 74, 10, 0.14);
+  border-bottom: 1px solid rgba(10, 74, 10, 0.14);
+}
+
+.section-surface-mid {
+  background-color: var(--afograde-color-primary-container);
+}
+
+.section-brand-tint {
+  background: linear-gradient(
+    180deg,
+    var(--afograde-color-brand-tint) 0%,
+    #f2f7f1 100%
+  );
+  border-top: 1px solid rgba(10, 74, 10, 0.16);
+  border-bottom: 1px solid rgba(10, 74, 10, 0.16);
+}
+
+.section-brand-deep {
+  background: linear-gradient(
+    145deg,
+    var(--afograde-color-dark-surface-container-lowest) 0%,
+    var(--afograde-color-brand-deepest) 42%,
+    var(--afograde-color-brand-deep) 100%
+  );
+  color: var(--afograde-color-on-primary);
+}

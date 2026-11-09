@@ -1,0 +1,279 @@
+.footer {
+  background: linear-gradient(
+    180deg,
+    var(--afograde-color-brand-deepest) 0%,
+    var(--afograde-ink-black) 100%
+  );
+  border-top: 4px solid var(--afograde-color-brand-bright);
+  color: var(--afograde-color-on-primary);
+  padding-top: var(--afograde-spacing-16);
+  padding-bottom: calc(var(--afograde-spacing-24) + env(safe-area-inset-bottom, 0px));
+}
+
+@media (min-width: 1024px) {
+  .footer {
+    padding-bottom: var(--afograde-spacing-12);
+  }
+}
+
+.topGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--afograde-spacing-10);
+  padding-bottom: var(--afograde-spacing-10);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+@media (min-width: 768px) {
+  .topGrid {
+    grid-template-columns: 1.45fr 1fr 1.05fr;
+  }
+}
+
+.brandBlock {
+  display: flex;
+  flex-direction: column;
+  gap: var(--afograde-spacing-4);
+  max-width: 480px;
+}
+
+.brandHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--afograde-spacing-3);
+}
+
+.footerLogoFrame {
+  width: 56px;
+  height: 56px;
+  border-radius: var(--afograde-shape-medium);
+  background-color: var(--afograde-color-surface-container-lowest);
+  border: 2px solid rgba(203, 232, 200, 0.36);
+  box-shadow: var(--afograde-elevation-level2);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.footerLogoImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.22);
+  transform-origin: center;
+  display: block;
+}
+
+.orgName {
+  font-weight: var(--afograde-typography-weights-bold);
+  font-size: 1.25rem;
+  line-height: 1.2;
+}
+
+.tagline {
+  color: var(--afograde-color-inverse-primary);
+  font-weight: var(--afograde-typography-weights-medium);
+}
+
+.summary {
+  color: rgba(255, 255, 255, 0.84);
+}
+
+.socialBlock {
+  margin-top: var(--afograde-spacing-2);
+}
+
+.socialList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--afograde-spacing-2);
+}
+
+.socialChip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--afograde-spacing-2);
+  min-height: var(--afograde-accessibility-minimum-touch-target);
+  padding: 8px 14px;
+  border-radius: var(--afograde-shape-full);
+  background-color: rgba(255, 255, 255, 0.08);
+  border: 1.5px solid rgba(203, 232, 200, 0.28);
+  box-shadow: none;
+  color: var(--afograde-color-on-primary);
+  font-size: 0.875rem;
+  font-weight: var(--afograde-typography-weights-semibold);
+  text-decoration: none;
+  transition:
+    background-color 280ms cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 280ms cubic-bezier(0.4, 0, 0.2, 1),
+    transform 260ms cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+.socialChip:hover {
+  background-color: var(--afograde-color-brand-bright);
+  border-color: var(--afograde-color-inverse-primary);
+  transform: translateY(-3px);
+}
+
+.socialChip:active {
+  transform: translateY(0);
+}
+
+.socialChip:focus-visible {
+  outline: 3px solid var(--afograde-color-inverse-primary);
+  outline-offset: 2px;
+}
+
+.socialIconWrap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--afograde-color-inverse-primary);
+  transition: transform var(--afograde-motion-duration-short) var(--afograde-motion-easing-emphasized);
+}
+
+.socialChip:hover .socialIconWrap {
+  color: var(--afograde-color-on-primary);
+  transform: scale(1.1);
+}
+
+.colHeading {
+  font-size: 0.9375rem;
+  font-weight: var(--afograde-typography-weights-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--afograde-color-inverse-primary);
+  margin-bottom: var(--afograde-spacing-3);
+}
+
+.linkList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--afograde-spacing-1);
+}
+
+.footerLink {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: none;
+  transition: color 280ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.footerLinkText {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 4px;
+  overflow: hidden;
+}
+
+.footerLinkText::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  border-radius: var(--afograde-shape-full);
+  background-color: var(--afograde-color-inverse-primary);
+  transform: translateX(-104%);
+  transition: transform 500ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.footerLink:hover {
+  color: var(--afograde-color-inverse-primary);
+}
+
+.footerLink:hover .footerLinkText::after,
+.footerLink:focus-visible .footerLinkText::after {
+  transform: translateX(0);
+  transition: transform 1.0s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.footerLink:focus-visible {
+  outline: 3px solid var(--afograde-color-inverse-primary);
+  outline-offset: 2px;
+}
+
+.contactColumn {
+  display: flex;
+  flex-direction: column;
+}
+
+.contactPhoneLink {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--afograde-spacing-2);
+  min-height: 44px;
+  color: var(--afograde-color-on-primary);
+  font-weight: var(--afograde-typography-weights-bold);
+  text-decoration: none;
+  transition: color var(--afograde-motion-duration-short) var(--afograde-motion-easing-standard);
+}
+
+.contactPhoneLink:hover {
+  color: var(--afograde-color-inverse-primary);
+}
+
+.contactPhoneLink:focus-visible {
+  outline: 3px solid var(--afograde-color-inverse-primary);
+  outline-offset: 2px;
+}
+
+.whatsappCtaItem {
+  padding-block: var(--afograde-spacing-2);
+}
+
+.bottomRow {
+  padding-top: var(--afograde-spacing-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--afograde-spacing-3);
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 0.875rem;
+}
+
+.copyright {
+  font-weight: var(--afograde-typography-weights-semibold);
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.antiImpersonation {
+  max-width: 580px;
+}
+
+@media (min-width: 768px) {
+  .bottomRow {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .antiImpersonation {
+    text-align: right;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .socialChip,
+  .socialIconWrap,
+  .footerLink,
+  .footerLinkText::after {
+    transition: none;
+  }
+
+  .socialChip:hover,
+  .socialChip:active,
+  .socialChip:hover .socialIconWrap {
+    transform: none;
+  }
+}
