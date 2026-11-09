@@ -198,12 +198,24 @@ function ensureSheet_(ss, name) {
 }
 
 function applyScriptColumnProtection_(sheet, a1Range, description) {
-  var protection = sheet.getRange(a1Range).protect().setDescription(description);
-  var me = Session.getEffectiveUser();
-  protection.addEditor(me);
-  protection.removeEditors(protection.getEditors());
-  if (protection.canDomainEdit()) {
-    protection.setDomainEdit(false);
+  try {
+    var protection = sheet.getRange(a1Range).protect().setDescription(description);
+    var me = Session.getEffectiveUser();
+    if (me && me.getEmail()) {
+      protection.addEditor(me);
+      var editors = protection.getEditors();
+      for (var i = 0; i < editors.length; i++) {
+        var ed = editors[i];
+        if (ed.getEmail() !== me.getEmail()) {
+          protection.removeEditor(ed);
+        }
+      }
+    }
+    if (protection.canDomainEdit()) {
+      protection.setDomainEdit(false);
+    }
+  } catch (err) {
+    Logger.log("Note on column protection for " + a1Range + ": " + err);
   }
 }
 
