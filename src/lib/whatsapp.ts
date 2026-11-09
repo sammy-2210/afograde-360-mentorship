@@ -70,6 +70,11 @@ export function buildWhatsAppMessage(ctx: WhatsAppLinkContext): string {
 export function buildWhatsAppUrl(ctx: WhatsAppLinkContext): string {
   const message = buildWhatsAppMessage(ctx);
   const encoded = encodeURIComponent(message);
-  return `https://wa.me/${BRAND_CONFIG.whatsappInternationalDigits}?text=${encoded}`;
+  // Complaints and enquiries use 08066402077; registration & payment verification use 09079255537
+  const phoneDigits =
+    ctx.intent === "general_enquiry"
+      ? BRAND_CONFIG.supportWhatsAppDigits
+      : BRAND_CONFIG.registrationWhatsAppDigits;
+  return `https://wa.me/${phoneDigits}?text=${encoded}`;
 }
 

@@ -202,11 +202,11 @@ export function Header() {
               />
 
               <a
-                href={BRAND_CONFIG.callHref}
+                href={BRAND_CONFIG.supportCallHref}
                 className={styles.mobileContactCall}
               >
                 <PhoneIcon width={16} height={16} />
-                <span>Call Line: {BRAND_CONFIG.whatsappDisplay}</span>
+                <span>Call Line: {BRAND_CONFIG.supportWhatsAppDisplay}</span>
               </a>
             </div>
           </nav>

@@ -23,9 +23,17 @@ export const BRAND_CONFIG = {
   logoAlt: "AFOGRADE Tutorials & EduServices official logo",
   logoWidth: 1254,
   logoHeight: 1254,
+  // Registration & Payment Verification Line (remains 09079255537)
   whatsappDisplay: "09079255537",
   whatsappInternationalDigits: "2349079255537",
-  callHref: "tel:+2349079255537",
+  registrationWhatsAppDisplay: "09079255537",
+  registrationWhatsAppDigits: "2349079255537",
+  registrationCallHref: "tel:+2349079255537",
+  // Complaints & Enquiries Line (08066402077)
+  supportWhatsAppDisplay: "08066402077",
+  supportWhatsAppDigits: "2348066402077",
+  supportCallHref: "tel:+2348066402077",
+  callHref: "tel:+2348066402077",
 } as const;
 
 /**

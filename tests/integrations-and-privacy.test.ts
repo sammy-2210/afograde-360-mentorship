@@ -15,6 +15,11 @@ describe("WhatsApp Deep Links, UTM First-Touch Capture, Analytics PII Blocking &
     });
 
     assert.ok(url.startsWith("https://wa.me/2349079255537?text="));
+
+    const enquiryUrl = buildWhatsAppUrl({
+      intent: "general_enquiry",
+    });
+    assert.ok(enquiryUrl.startsWith("https://wa.me/2348066402077?text="));
     const msg = buildWhatsAppMessage({
       intent: "payment_proof",
       registrationId: "AFO-2027-00009",

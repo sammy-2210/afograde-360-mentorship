@@ -10,25 +10,25 @@ export function ContactSection() {
     <section id="contact" className="section section-surface-low">
       <div className="container">
         <SectionHeading
-          eyebrow="Official Support Channel"
+          eyebrow="Official Support Channels"
           title="Need Help Before or After Registering?"
-          lead={`Speak directly with ${BRAND_CONFIG.organisationName} through our single verified WhatsApp and telephone line.`}
+          lead={`Speak directly with ${BRAND_CONFIG.organisationName} through our dedicated lines for enquiries, complaints, and registration assistance.`}
         />
 
         <div className={styles.gridTwo}>
           <div className={styles.cardElevatedWhite}>
             <h3 className={`type-title-large ${styles.cardTitle}`}>
-              Official WhatsApp &amp; Call Line
+              Enquiries &amp; Complaints Line
             </h3>
             <p
               className="type-headline-medium"
               style={{ color: "var(--afograde-color-primary)", fontWeight: 700 }}
             >
-              {BRAND_CONFIG.whatsappDisplay}
+              {BRAND_CONFIG.supportWhatsAppDisplay}
             </p>
             <p className={`type-body-large ${styles.cardBody}`}>
-              Available for programme enquiries, subject-combination questions,
-              registration assistance, and payment-proof submission.
+              Available for general programme enquiries, complaints, syllabus
+              questions, timetable guidance, and student or parent support.
             </p>
             <div
               style={{
@@ -40,25 +40,31 @@ export function ContactSection() {
             >
               <WhatsAppCta
                 intent="general_enquiry"
-                label="General Enquiry on WhatsApp"
+                label="Enquiry on WhatsApp"
                 variant="whatsapp"
                 ctaLocation="contact_general"
               />
-              <Button href={BRAND_CONFIG.callHref} variant="outline">
+              <Button href={BRAND_CONFIG.supportCallHref} variant="outline">
                 <PhoneIcon />
-                <span>Call {BRAND_CONFIG.whatsappDisplay}</span>
+                <span>Call {BRAND_CONFIG.supportWhatsAppDisplay}</span>
               </Button>
             </div>
           </div>
 
           <div className={`${styles.cardElevatedWhite} ${styles.cardInkTop}`}>
             <h3 className={`type-title-large ${styles.cardTitle}`}>
-              Registration &amp; Recovery Help
+              Registration &amp; Verification Help
             </h3>
+            <p
+              className="type-headline-medium"
+              style={{ color: "var(--afograde-ink-black)", fontWeight: 700 }}
+            >
+              {BRAND_CONFIG.registrationWhatsAppDisplay}
+            </p>
             <p className={`type-body-large ${styles.cardBody}`}>
-              Having trouble loading the registration form, switching devices,
-              or retrieving your Registration ID? Use a direct support message
-              below:
+              Dedicated line for registration assistance, bank transfer
+              verification, attaching payment screenshots, and recovering your
+              Registration ID.
             </p>
             <div
               style={{
@@ -80,6 +86,10 @@ export function ContactSection() {
                 variant="outline"
                 ctaLocation="contact_recovery"
               />
+              <Button href={BRAND_CONFIG.registrationCallHref} variant="outline">
+                <PhoneIcon />
+                <span>Call {BRAND_CONFIG.registrationWhatsAppDisplay}</span>
+              </Button>
             </div>
           </div>
         </div>

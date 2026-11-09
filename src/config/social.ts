@@ -46,8 +46,8 @@ export const OFFICIAL_SOCIAL_PLATFORMS: readonly SocialPlatformEntry[] = [
   },
   {
     key: "whatsapp",
-    label: "WhatsApp",
-    url: "https://wa.me/2349079255537",
+    label: "WhatsApp Support",
+    url: "https://wa.me/2348066402077",
   },
   {
     key: "whatsappChannel",
