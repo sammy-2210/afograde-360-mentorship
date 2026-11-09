@@ -97,14 +97,7 @@ export function TurnstileWidget({
   }, [resetNonce]);
 
   if (!configured) {
-    return (
-      <div className={styles.turnstileWrap}>
-        <p className={styles.turnstileUnconfigured}>
-          Anti-spam verification (Cloudflare Turnstile) is awaiting public site-key
-          configuration (<code>NEXT_PUBLIC_TURNSTILE_SITE_KEY</code>).
-        </p>
-      </div>
-    );
+    return null;
   }
 
   return (
