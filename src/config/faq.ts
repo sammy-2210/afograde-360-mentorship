@@ -71,6 +71,6 @@ export const FAQ_ITEMS: readonly FaqItem[] = [
     id: "faq-prizes",
     question: "How do candidates qualify for the HP Elite Laptop, Smartphone, and cash awards?",
     answer:
-      "Merit awards—including an HP Elite Laptop, a Smartphone, and a ₦50,000 cash grant—are subject to AFOGRADE's official qualification rules, active programme participation, independent verification of official 2027 UTME scores, and tie-break procedures published for registered participants.",
+      "Merit awards (including an HP Elite Laptop, a Smartphone, and a ₦50,000 cash grant) are subject to AFOGRADE's official qualification rules, active programme participation, independent verification of official 2027 UTME scores, and tie-break procedures published for registered participants.",
   },
 ] as const;

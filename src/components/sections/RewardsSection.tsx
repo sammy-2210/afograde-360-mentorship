@@ -4,6 +4,21 @@ import { Badge } from "@/components/ui/Badge";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import styles from "./Sections.module.css";
 
+const PRIZE_MEDIA: Record<string, { src: string; alt: string }> = {
+  "HP Elite Laptop": {
+    src: "/images/prize-laptop.jpg",
+    alt: "HP Elite Laptop academic prize on clean modern study desk",
+  },
+  Smartphone: {
+    src: "/images/prize-smartphone.svg",
+    alt: "Sleek modern smartphone with UTME speed test application",
+  },
+  "₦50,000 Cash Grant": {
+    src: "/images/prize-cash-grant.svg",
+    alt: "AFOGRADE ₦50,000 academic excellence cash grant award voucher",
+  },
+};
+
 export function RewardsSection() {
   return (
     <section id="rewards" className="section section-brand-tint">
@@ -17,42 +32,60 @@ export function RewardsSection() {
         <div className={styles.gridThree}>
           {REWARDS_CONFIG.awards.map((item, idx) => {
             const isTopAward = idx === 0;
+            const media = PRIZE_MEDIA[item.prize] ?? {
+              src: "/images/prize-laptop.jpg",
+              alt: item.prize,
+            };
+
             return (
               <article
                 key={item.prize}
-                className={
-                  isTopAward
-                    ? styles.cardObsidianBrand
-                    : `${styles.cardElevatedWhite} ${styles.cardInkTop}`
-                }
+                className={`${styles.prizeCard} ${
+                  isTopAward ? styles.prizeCardTop : styles.prizeCardStandard
+                }`}
               >
-                <div>
-                  <Badge variant={isTopAward ? "inverse" : "neutral"}>
-                    {item.rank}
-                  </Badge>
+                <div className={styles.prizeImageWrap}>
+                  <img
+                    src={media.src}
+                    alt={media.alt}
+                    width={400}
+                    height={230}
+                    loading="lazy"
+                    decoding="async"
+                    className={styles.prizeImg}
+                  />
+                  <div className={styles.prizeBadgeWrap}>
+                    <Badge variant={isTopAward ? "inverse" : "neutral"}>
+                      {item.rank}
+                    </Badge>
+                  </div>
                 </div>
-                <h3
-                  className="type-headline-small"
-                  style={{
-                    color: isTopAward
-                      ? "var(--afograde-color-on-primary)"
-                      : "var(--afograde-ink-black)",
-                  }}
-                >
-                  {item.prize}
-                </h3>
-                <p
-                  className={`type-body-large ${
-                    isTopAward ? "" : styles.cardBody
-                  }`.trim()}
-                  style={
-                    isTopAward
-                      ? { color: "rgba(255, 255, 255, 0.9)" }
-                      : undefined
-                  }
-                >
-                  {item.summary}
-                </p>
+
+                <div className={styles.prizeContent}>
+                  <h3
+                    className="type-title-large"
+                    style={{
+                      color: isTopAward
+                        ? "var(--afograde-color-on-primary)"
+                        : "var(--afograde-ink-black)",
+                      margin: "0 0 var(--afograde-spacing-2) 0",
+                    }}
+                  >
+                    {item.prize}
+                  </h3>
+                  <p
+                    className={`type-body-medium ${
+                      isTopAward ? "" : styles.cardBody
+                    }`.trim()}
+                    style={
+                      isTopAward
+                        ? { color: "rgba(255, 255, 255, 0.92)", margin: 0 }
+                        : { margin: 0 }
+                    }
+                  >
+                    {item.summary}
+                  </p>
+                </div>
               </article>
             );
           })}

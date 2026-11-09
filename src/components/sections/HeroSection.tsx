@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { BRAND_CONFIG, SCHEDULE_CONFIG } from "@/config/programme";
 import { navigateToRegistrationForm } from "@/lib/navigation";
 import { formatNaira } from "@/lib/validation";
@@ -14,6 +15,17 @@ interface HeroSectionProps {
   uiState: RegistrationUiState;
 }
 
+const HERO_STUDY_IMAGES = [
+  {
+    src: "/images/hero-study-1.jpg",
+    alt: "Nigerian students studying collaboratively in modern library",
+  },
+  {
+    src: "/images/hero-study-2.jpg",
+    alt: "UTME science candidates preparing with textbooks and laptops",
+  },
+];
+
 function getHeroStatusLabel(uiState: RegistrationUiState): {
   text: string;
   isLiveOpen: boolean;
@@ -25,7 +37,7 @@ function getHeroStatusLabel(uiState: RegistrationUiState): {
     case "duplicate_confirmation":
       return { text: "Online Registration Open", isLiveOpen: true };
     case "payment":
-      return { text: "Registration Recorded — Transfer Pending", isLiveOpen: true };
+      return { text: "Registration Recorded: Transfer Pending", isLiveOpen: true };
     case "not_open":
       return { text: "Registration Opening Soon", isLiveOpen: false };
     case "paused":
@@ -41,9 +53,31 @@ function getHeroStatusLabel(uiState: RegistrationUiState): {
 
 export function HeroSection({ uiState }: HeroSectionProps) {
   const statusInfo = getHeroStatusLabel(uiState);
+  const [activeSlide, setActiveSlide] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveSlide((prev) => (prev + 1) % HERO_STUDY_IMAGES.length);
+    }, 6500);
+    return () => clearInterval(timer);
+  }, []);
 
   return (
     <section id="hero" className={styles.hero}>
+      {/* Background Study Images Carousel */}
+      <div className={styles.heroCarouselTrack} aria-hidden="true">
+        {HERO_STUDY_IMAGES.map((img, idx) => (
+          <div
+            key={img.src}
+            className={`${styles.heroCarouselSlide} ${
+              idx === activeSlide ? styles.heroCarouselSlideActive : ""
+            }`.trim()}
+            style={{ backgroundImage: `url(${img.src})` }}
+          />
+        ))}
+        <div className={styles.heroOverlay} />
+      </div>
+
       <div className={`container ${styles.heroGrid}`}>
         <div className={styles.heroContent}>
           <div className={styles.heroBadgeRow}>
@@ -56,6 +90,27 @@ export function HeroSection({ uiState }: HeroSectionProps) {
               />
               <span>{statusInfo.text}</span>
             </Badge>
+
+            {/* Carousel Dot Indicators */}
+            <div
+              className={styles.heroCarouselDots}
+              role="tablist"
+              aria-label="Study background images"
+            >
+              {HERO_STUDY_IMAGES.map((img, idx) => (
+                <button
+                  key={img.src}
+                  type="button"
+                  role="tab"
+                  aria-selected={idx === activeSlide}
+                  aria-label={`Show study background ${idx + 1}`}
+                  className={`${styles.heroCarouselDot} ${
+                    idx === activeSlide ? styles.heroCarouselDotActive : ""
+                  }`.trim()}
+                  onClick={() => setActiveSlide(idx)}
+                />
+              ))}
+            </div>
           </div>
 
           <h1 className="type-hero-heading">
@@ -63,9 +118,7 @@ export function HeroSection({ uiState }: HeroSectionProps) {
           </h1>
 
           <p className={styles.heroLead}>
-            Structured online UTME tutorials, timed speed tests, active question
-            battles, and university admission mentorship delivered by{" "}
-            <strong>{BRAND_CONFIG.organisationName}</strong>.
+            A 4 months lock in programme for the 2027 UTME ORGANIZED TO BRIDGE THE EXPENSIVE EDUCATIONAL SYSTEM.
           </p>
 
           <p className={`type-title-medium ${styles.heroTagline}`}>

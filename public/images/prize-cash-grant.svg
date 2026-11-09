@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="100%" height="100%">
+  <defs>
+    <linearGradient id="grantBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0A4A0A"/>
+      <stop offset="100%" stop-color="#062806"/>
+    </linearGradient>
+    <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FDE047"/>
+      <stop offset="50%" stop-color="#EAB308"/>
+      <stop offset="100%" stop-color="#CA8A04"/>
+    </linearGradient>
+    <filter id="certShadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#000000" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+
+  <!-- Canvas -->
+  <rect width="400" height="300" rx="16" fill="#F8FAFC"/>
+
+  <!-- Ambient glow -->
+  <circle cx="200" cy="150" r="120" fill="#EAB308" opacity="0.1"/>
+
+  <!-- Certificate / Award Card -->
+  <g filter="url(#certShadow)">
+    <rect x="50" y="35" width="300" height="230" rx="16" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="2"/>
+    <rect x="58" y="43" width="284" height="214" rx="12" fill="none" stroke="url(#goldGradient)" stroke-width="2" stroke-dasharray="8 4"/>
+
+    <!-- Header Banner -->
+    <rect x="58" y="43" width="284" height="48" rx="12" fill="url(#grantBg)"/>
+    <rect x="58" y="79" width="284" height="12" fill="url(#grantBg)"/>
+    
+    <text x="200" y="68" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="800" fill="url(#goldGradient)" text-anchor="middle" letter-spacing="2">
+      AFOGRADE MERIT GRANT
+    </text>
+    <text x="200" y="82" font-family="system-ui, -apple-system, sans-serif" font-size="8" font-weight="600" fill="#FFFFFF" text-anchor="middle" letter-spacing="1">
+      ACADEMIC EXCELLENCE AWARD
+    </text>
+
+    <!-- Cash Amount Highlight -->
+    <text x="200" y="132" font-family="system-ui, -apple-system, sans-serif" font-size="34" font-weight="900" fill="#0A4A0A" text-anchor="middle">
+      ₦50,000
+    </text>
+    <text x="200" y="152" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#475569" text-anchor="middle" letter-spacing="0.5">
+      Direct Educational Cash Grant
+    </text>
+
+    <line x1="90" y1="168" x2="310" y2="168" stroke="#E2E8F0" stroke-width="1"/>
+
+    <!-- Award Description Details -->
+    <text x="200" y="188" font-family="system-ui, -apple-system, sans-serif" font-size="9" fill="#64748B" text-anchor="middle">
+      Awarded to Top-Performing Verified 2027 Pacesetters
+    </text>
+    <text x="200" y="202" font-family="system-ui, -apple-system, sans-serif" font-size="8" font-weight="600" fill="#0A4A0A" text-anchor="middle">
+      Official Score Verification • Direct Bank Transfer Disbursement
+    </text>
+
+    <!-- Gold Seal Medallion -->
+    <g transform="translate(200, 232)">
+      <circle cx="0" cy="0" r="16" fill="url(#goldGradient)"/>
+      <circle cx="0" cy="0" r="13" fill="#0A4A0A"/>
+      <path d="M-5 -2 L0 5 L7 -6" stroke="url(#goldGradient)" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+  </g>
+</svg>
+

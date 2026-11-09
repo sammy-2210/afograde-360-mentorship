@@ -131,18 +131,32 @@ function setupAfogradeWorkbook() {
 
   var testSheet = ensureSheet_(ss, TAB_TESTIMONIALS);
   if (testSheet.getLastRow() === 0) {
-    testSheet.getRange(1, 1, 1, 7).setValues([[
-      "Display_Name",
-      "Institution_And_Course",
-      "Review_Text",
-      "Student_Photo_URL (Google Drive or https)",
-      "Feedback_Screenshot_URL (Optional)",
+    var testHeaders = [
+      "Student_Name",
+      "UTME_Score",
+      "UTME_Year",
+      "Current_University",
+      "Course_Of_Study",
+      "Student_Photo_URL (Drive share link or https)",
+      "Review_Text (Optional)",
       "Consent_Verified",
       "Approved_To_Publish"
-    ]]);
+    ];
+    testSheet.getRange(1, 1, 1, testHeaders.length).setValues([testHeaders]);
     testSheet.setFrozenRows(1);
-    testSheet.getRange(1, 1, 1, 7).setFontWeight("bold");
-    testSheet.getRange(2, 6, 200, 2).setDataValidation(checkboxRule);
+    testSheet.getRange(1, 1, 1, testHeaders.length).setFontWeight("bold");
+
+    // Seed initial verified pacesetter scholar rows
+    var sampleScholars = [
+      ["Samuel K.", 347, "2026", "University of Ibadan (UI)", "Medicine & Surgery", "", "The structured questions and daily timed drills built my speed and accuracy for the 347 score.", true, true],
+      ["Blessing A.", 341, "2026", "University of Lagos (UNILAG)", "Computer Engineering", "", "AFOGRADE mock battles and question strategy made UTME science questions feel familiar on exam day.", true, true],
+      ["Emmanuel O.", 315, "2026", "Obafemi Awolowo University (OAU)", "Pharmacy", "", "Direct subject breakdown and mentor accountability kept me focused and consistent throughout the cycles.", true, true],
+      ["Chioma N.", 310, "2026", "University of Ilorin (UNILORIN)", "Nursing Science", "", "High-yield revision notes and question walk-throughs helped me cross the 300+ mark with confidence.", true, true],
+      ["Farouq B.", 308, "2026", "Federal University of Technology Akure (FUTA)", "Mechanical Engineering", "", "The intensive Physics and Chemistry drills transformed my weak areas into my highest scoring sections.", true, true],
+      ["Amina T.", 290, "2026", "University of Lagos (UNILAG)", "Medical Laboratory Science", "", "Clear explanation of core concepts and consistent peer support made a huge difference in my score.", true, true]
+    ];
+    testSheet.getRange(2, 1, sampleScholars.length, testHeaders.length).setValues(sampleScholars);
+    testSheet.getRange(2, 8, 200, 2).setDataValidation(checkboxRule);
   }
 
   var galSheet = ensureSheet_(ss, TAB_GALLERY);

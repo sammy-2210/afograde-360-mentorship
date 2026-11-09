@@ -102,132 +102,103 @@ export function TrackRecordSection({
           </div>
         ) : null}
 
-        {/* PART B: STUDENT REVIEWS & TESTIMONIALS (Auto-shown only when consent-verified reviews exist) */}
-        {testimonials.length > 0 && currentReview ? (
+        {/* PART B: STUDENT SCHOLARS & HALL OF FAME */}
+        {testimonials.length > 0 ? (
           <div className={styles.partBlock}>
             <div className={styles.subHeader}>
               <div>
                 <h3 className={`type-headline-small ${styles.subTitle}`}>
-                  {TRACK_RECORD_COPY.partBHeading}
+                  PACESETTERS HALL OF FAME
                 </h3>
                 <p
                   className="type-body-medium"
                   style={{ color: "var(--afograde-ink-muted)", marginTop: "4px" }}
                 >
-                  {TRACK_RECORD_COPY.partBLead}
+                  Authentic success stories: Student scores, verified courses, and tertiary institutions across Nigeria.
                 </p>
               </div>
-              {testimonials.length > 1 ? (
-                <span className="type-label-large" style={{ color: "var(--afograde-color-primary)" }}>
-                  Review {activeSlide + 1} of {testimonials.length}
-                </span>
-              ) : null}
+              <Badge variant="brand">Verified Academic Records</Badge>
             </div>
 
-            <div
-              className={styles.carouselShell}
-              aria-roledescription="carousel"
-              aria-label="Student testimonials"
-            >
-              <article
-                className={`${styles.testimonialCard} ${
-                  currentReview.feedbackScreenshotUrl
-                    ? styles.testimonialCardWithShot
-                    : ""
-                }`.trim()}
-              >
-                <div className={styles.testimonialBody}>
-                  <p className={styles.quoteText}>
-                    “{currentReview.reviewText}”
-                  </p>
-                  <div className={styles.studentMeta}>
-                    {currentReview.photoUrl ? (
+            <div className={styles.scholarsGrid} role="list" aria-label="Verified student scholars">
+              {testimonials.map((student) => (
+                <article key={student.id} role="listitem" className={styles.scholarCard}>
+                  <div className={styles.scholarTopRow}>
+                    {student.photoUrl ? (
                       <img
-                        src={currentReview.photoUrl}
-                        alt={currentReview.displayName}
-                        width={52}
-                        height={52}
+                        src={student.photoUrl}
+                        alt={student.displayName}
+                        width={60}
+                        height={60}
                         loading="lazy"
                         decoding="async"
-                        className={styles.avatar}
+                        className={styles.scholarAvatar}
                       />
                     ) : (
-                      <span className={styles.avatarInitial} aria-hidden="true">
-                        {currentReview.displayName.charAt(0).toUpperCase()}
+                      <span className={styles.scholarAvatarInitial} aria-hidden="true">
+                        {student.displayName.charAt(0).toUpperCase()}
                       </span>
                     )}
-                    <div>
-                      <p className={styles.studentName}>
-                        {currentReview.displayName}
-                      </p>
-                      {currentReview.institutionAndCourse ? (
-                        <p className={styles.studentCourse}>
-                          {currentReview.institutionAndCourse}
-                        </p>
-                      ) : null}
+
+                    <div className={styles.scholarMetaBlock}>
+                      <h4 className={styles.scholarName}>{student.displayName}</h4>
+                      <span className={styles.scholarYearTag}>
+                        {student.examYear || "2026"} UTME
+                      </span>
+                    </div>
+
+                    {student.score ? (
+                      <div className={styles.scholarScorePillWrap}>
+                        <span className={styles.scholarScoreValue}>{student.score}</span>
+                        <span className={styles.scholarScoreDenom}>/ 400</span>
+                      </div>
+                    ) : null}
+                  </div>
+
+                  <div className={styles.scholarAcademicDetails}>
+                    <div className={styles.scholarDetailRow}>
+                      <span className={styles.scholarDetailLabel}>Course:</span>
+                      <strong className={styles.scholarDetailValue}>
+                        {student.course || student.institutionAndCourse?.split("—")[0]?.trim() || student.institutionAndCourse || "Science Programme"}
+                      </strong>
+                    </div>
+
+                    <div className={styles.scholarDetailRow}>
+                      <span className={styles.scholarDetailLabel}>Institution:</span>
+                      <span className={styles.scholarDetailValue}>
+                        {student.university || student.institutionAndCourse?.split("—")[1]?.trim() || student.institutionAndCourse || "Federal / State University"}
+                      </span>
                     </div>
                   </div>
-                </div>
 
-                {currentReview.feedbackScreenshotUrl ? (
-                  <div className={styles.screenshotFrame}>
-                    <img
-                      src={currentReview.feedbackScreenshotUrl}
-                      alt={`Original feedback from ${currentReview.displayName}`}
-                      loading="lazy"
-                      decoding="async"
-                      className={styles.screenshotImg}
-                    />
-                  </div>
-                ) : null}
-              </article>
+                  {student.reviewText ? (
+                    <p className={styles.scholarReviewQuote}>
+                      “{student.reviewText}”
+                    </p>
+                  ) : null}
 
-              {testimonials.length > 1 ? (
-                <div className={styles.carouselControls}>
-                  <div className={styles.dots} role="tablist" aria-label="Select testimonial">
-                    {testimonials.map((rev, idx) => (
-                      <button
-                        key={rev.id}
-                        type="button"
-                        role="tab"
-                        aria-selected={idx === activeSlide}
-                        aria-label={`View review ${idx + 1} from ${rev.displayName}`}
-                        className={`${styles.dotBtn} ${
-                          idx === activeSlide ? styles.dotBtnActive : ""
-                        }`.trim()}
-                        onClick={() => setActiveSlide(idx)}
-                      />
-                    ))}
-                  </div>
-
-                  <div className={styles.navBtns}>
+                  {student.feedbackScreenshotUrl ? (
                     <button
                       type="button"
-                      className={styles.circleBtn}
-                      aria-label="Previous testimonial"
+                      className={styles.viewSlipBtn}
                       onClick={() =>
-                        setActiveSlide((prev) =>
-                          prev === 0 ? testimonials.length - 1 : prev - 1
-                        )
+                        setLightboxItem({
+                          id: student.id,
+                          category: "Student Testimonial",
+                          title: `${student.displayName} Verification Slip`,
+                          imageUrl: student.feedbackScreenshotUrl!,
+                          caption: `Verified UTME result & admission milestone for ${student.displayName}.`,
+                          consentVerified: true,
+                          approved: true,
+                        })
                       }
                     >
-                      <ChevronLeftIcon />
+                      <span>View Verification Slip</span>
+                      <ChevronRightIcon width={14} height={14} />
                     </button>
-                    <button
-                      type="button"
-                      className={styles.circleBtn}
-                      aria-label="Next testimonial"
-                      onClick={() =>
-                        setActiveSlide((prev) =>
-                          prev === testimonials.length - 1 ? 0 : prev + 1
-                        )
-                      }
-                    >
-                      <ChevronRightIcon />
-                    </button>
-                  </div>
-                </div>
-              ) : null}
+                  ) : null}
+                </article>
+              ))}
             </div>
           </div>
         ) : null}

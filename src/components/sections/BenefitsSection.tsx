@@ -3,6 +3,8 @@ import {
   BENEFITS_LIST,
   COMPULSORY_SUBJECT,
 } from "@/config/programme";
+import { CheckCircleIcon } from "@/components/ui/Icons";
+import { Badge } from "@/components/ui/Badge";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import styles from "./Sections.module.css";
 
@@ -16,46 +18,52 @@ export function BenefitsSection() {
           lead="Every programme cycle combines live teaching, revision recordings, active recall drills, and admission guidance."
         />
 
-        <div className={styles.gridThree}>
-          {BENEFITS_LIST.map((item, idx) => (
-            <article key={item.id} className={styles.card}>
-              <span className={styles.cardNumberPill} aria-hidden="true">
-                {String(idx + 1).padStart(2, "0")}
-              </span>
-              <h3 className={`type-title-large ${styles.cardTitle}`}>
-                {item.title}
-              </h3>
-              <p className={`type-body-large ${styles.cardBody}`}>
-                {item.description.trim()}
-              </p>
-            </article>
-          ))}
-        </div>
-
-        <div className={styles.subjectsPanel} aria-label="Covered UTME subjects">
-          <div>
-            <h3
-              className="type-title-large"
-              style={{ color: "var(--afograde-color-on-primary)" }}
-            >
-              Approved UTME Subjects Covered
+        {/* Single Spacious Deliverables Card */}
+        <article className={styles.singleMasterCard}>
+          <div className={styles.masterCardHeader}>
+            <Badge variant="brand">Full Subscription Benefits</Badge>
+            <h3 className={`type-title-large ${styles.masterCardTitle}`}>
+              Complete 4-Cycle Academic Deliverables
             </h3>
-            <p
-              className="type-body-medium"
-              style={{ marginTop: "4px", color: "rgba(255, 255, 255, 0.9)" }}
-            >
-              {COMPULSORY_SUBJECT} is compulsory for every UTME candidate, paired
-              with your combination from the four core subjects below:
+            <p className={styles.masterCardLead}>
+              Everything you need to master your 4 UTME subjects without paying for expensive physical lesson centers:
             </p>
           </div>
-          <div className={styles.subjectChipsRow}>
-            {ALL_PROGRAMME_SUBJECTS.map((subject) => (
-              <span key={subject} className={styles.subjectChip}>
-                {subject}
-              </span>
+
+          <div className={styles.benefitsTwoColGrid}>
+            {BENEFITS_LIST.map((item, idx) => (
+              <div key={item.id} className={styles.benefitPointCard}>
+                <div className={styles.benefitPointHeader}>
+                  <span className={styles.benefitIndexPill}>
+                    {String(idx + 1).padStart(2, "0")}
+                  </span>
+                  <h4 className={styles.benefitPointTitle}>{item.title}</h4>
+                </div>
+                <p className={styles.benefitPointDesc}>{item.description.trim()}</p>
+              </div>
             ))}
           </div>
-        </div>
+
+          {/* Embedded Covered UTME Subjects Panel */}
+          <div className={styles.subjectsPanelEmbedded} aria-label="Covered UTME subjects">
+            <div>
+              <h4 className={styles.subjectsPanelTitle}>
+                Approved UTME Subjects Covered
+              </h4>
+              <p className={styles.subjectsPanelSubtitle}>
+                {COMPULSORY_SUBJECT} is compulsory for every UTME candidate, paired
+                with your combination from the four core subjects:
+              </p>
+            </div>
+            <div className={styles.subjectChipsRow}>
+              {ALL_PROGRAMME_SUBJECTS.map((subject) => (
+                <span key={subject} className={styles.subjectChip}>
+                  {subject}
+                </span>
+              ))}
+            </div>
+          </div>
+        </article>
       </div>
     </section>
   );

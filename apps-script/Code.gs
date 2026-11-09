@@ -662,20 +662,62 @@ function readTrackRecordSheets_() {
 
   var testSheet = ss.getSheetByName("Testimonials");
   if (testSheet && testSheet.getLastRow() > 1) {
-    var tRows = testSheet.getRange(2, 1, testSheet.getLastRow() - 1, 7).getValues();
+    var maxCols = Math.max(7, testSheet.getLastColumn());
+    var tRows = testSheet.getRange(2, 1, testSheet.getLastRow() - 1, maxCols).getValues();
+    var headers = testSheet.getRange(1, 1, 1, maxCols).getValues()[0].map(function(h) {
+      return String(h || "").toLowerCase().replace(/[^a-z0-9_]/g, "_").replace(/_+/g, "_");
+    });
+
+    function findCol_(nameMatches, fallbackIdx) {
+      for (var m = 0; m < nameMatches.length; m++) {
+        for (var c = 0; c < headers.length; c++) {
+          if (headers[c].indexOf(nameMatches[m]) !== -1) return c;
+        }
+      }
+      return fallbackIdx;
+    }
+
+    var idxName = findCol_(["display_name", "student_name", "name"], 0);
+    var idxScore = findCol_(["utme_score", "score"], -1);
+    var idxYear = findCol_(["utme_year", "exam_year", "year"], -1);
+    var idxUni = findCol_(["university", "institution"], -1);
+    var idxCourse = findCol_(["course_of_study", "course"], -1);
+    var idxInst = findCol_(["institution_and_course"], 1);
+    var idxPhoto = findCol_(["student_photo_url", "photo", "image"], 3);
+    var idxReview = findCol_(["review_text", "quote", "review"], 2);
+    var idxShot = findCol_(["feedback_screenshot", "screenshot"], 4);
+    var idxConsent = findCol_(["consent_verified", "consent"], 5);
+    var idxApproved = findCol_(["approved_to_publish", "approved"], 6);
+
     for (var t = 0; t < tRows.length; t++) {
-      var tConsent = tRows[t][5] === true || String(tRows[t][5]).toUpperCase() === "TRUE";
-      var tApproved = tRows[t][6] === true || String(tRows[t][6]).toUpperCase() === "TRUE";
-      var tName = String(tRows[t][0] || "").trim();
-      var tReview = String(tRows[t][2] || "").trim();
-      if (tConsent && tApproved && tName && tReview) {
+      var row = tRows[t];
+      var tConsent = idxConsent >= 0 ? (row[idxConsent] === true || String(row[idxConsent]).toUpperCase() === "TRUE") : true;
+      var tApproved = idxApproved >= 0 ? (row[idxApproved] === true || String(row[idxApproved]).toUpperCase() === "TRUE") : true;
+      var tName = String(row[idxName] || "").trim();
+      var tScore = idxScore >= 0 && !isNaN(Number(row[idxScore])) && Number(row[idxScore]) > 0 ? Number(row[idxScore]) : undefined;
+      var tYear = idxYear >= 0 ? String(row[idxYear] || "").trim() : "";
+      var tUni = idxUni >= 0 ? String(row[idxUni] || "").trim() : "";
+      var tCourse = idxCourse >= 0 ? String(row[idxCourse] || "").trim() : "";
+      var tInst = idxInst >= 0 ? String(row[idxInst] || "").trim() : "";
+      if (!tInst && (tUni || tCourse)) {
+        tInst = tCourse && tUni ? (tCourse + " — " + tUni) : (tUni || tCourse);
+      }
+      var tReview = idxReview >= 0 ? String(row[idxReview] || "").trim() : "";
+      var tPhoto = idxPhoto >= 0 ? String(row[idxPhoto] || "").trim() : "";
+      var tShot = idxShot >= 0 ? String(row[idxShot] || "").trim() : "";
+
+      if (tConsent && tApproved && tName) {
         out.testimonials.push({
-          id: "test-row-" + (t + 2),
+          id: "scholar-row-" + (t + 2),
           displayName: tName,
-          institutionAndCourse: String(tRows[t][1] || "").trim(),
+          score: tScore,
+          examYear: tYear || "2026",
+          university: tUni,
+          course: tCourse,
+          institutionAndCourse: tInst,
           reviewText: tReview,
-          photoUrl: String(tRows[t][3] || "").trim(),
-          feedbackScreenshotUrl: String(tRows[t][4] || "").trim(),
+          photoUrl: tPhoto,
+          feedbackScreenshotUrl: tShot,
           consentVerified: true,
           approved: true
         });

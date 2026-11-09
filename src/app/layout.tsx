@@ -74,7 +74,7 @@ export function generateMetadata(): Metadata {
           url: "/images/og-preview.svg",
           width: 1200,
           height: 630,
-          alt: `${BRAND_CONFIG.programmeName} — ${BRAND_CONFIG.organisationName}`,
+          alt: `${BRAND_CONFIG.programmeName} · ${BRAND_CONFIG.organisationName}`,
         },
       ],
     },

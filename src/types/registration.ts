@@ -34,9 +34,13 @@ export interface PastUtmeScoreItem {
 export interface StudentTestimonialItem {
   id: string;
   displayName: string;
-  photoUrl?: string;
+  score?: number;
+  examYear?: string;
+  university?: string;
+  course?: string;
   institutionAndCourse?: string;
-  reviewText: string;
+  photoUrl?: string;
+  reviewText?: string;
   feedbackScreenshotUrl?: string;
   consentVerified: boolean;
   approved: boolean;

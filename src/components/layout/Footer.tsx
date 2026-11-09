@@ -90,7 +90,7 @@ export function Footer({ socialLinks, isSubpage = false }: FooterProps) {
             </div>
 
             <p className={`type-body-medium ${styles.summary}`}>
-              {BRAND_CONFIG.programmeName} — {BRAND_CONFIG.campaignName} for{" "}
+              {BRAND_CONFIG.programmeName}: {BRAND_CONFIG.campaignName} for{" "}
               {BRAND_CONFIG.targetCohortLabel}.
             </p>
 

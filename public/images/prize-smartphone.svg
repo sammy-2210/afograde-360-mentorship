@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="100%" height="100%">
+  <defs>
+    <linearGradient id="phoneBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0F172A"/>
+      <stop offset="100%" stop-color="#1E293B"/>
+    </linearGradient>
+    <linearGradient id="phoneScreen" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0A4A0A"/>
+      <stop offset="50%" stop-color="#145A14"/>
+      <stop offset="100%" stop-color="#062806"/>
+    </linearGradient>
+    <linearGradient id="accentGlow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#22C55E"/>
+      <stop offset="100%" stop-color="#4ADE80"/>
+    </linearGradient>
+    <filter id="phoneShadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#000000" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+
+  <!-- Background Canvas -->
+  <rect width="400" height="300" rx="16" fill="#F8FAFC"/>
+
+  <!-- Subtle ambient aura -->
+  <circle cx="200" cy="150" r="110" fill="#22C55E" opacity="0.08"/>
+
+  <!-- Phone Body -->
+  <g filter="url(#phoneShadow)">
+    <!-- Outer Frame -->
+    <rect x="125" y="24" width="150" height="252" rx="26" fill="url(#phoneBg)" stroke="#334155" stroke-width="3"/>
+    
+    <!-- Screen Bezel -->
+    <rect x="131" y="30" width="138" height="240" rx="20" fill="url(#phoneScreen)"/>
+    
+    <!-- Camera Island (Pill) -->
+    <rect x="175" y="38" width="50" height="12" rx="6" fill="#020617"/>
+    <circle cx="210" cy="44" r="3" fill="#1E293B"/>
+    
+    <!-- App UI Mockup -->
+    <!-- App Header -->
+    <text x="145" y="70" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#FFFFFF">AFOGRADE 360+</text>
+    <circle cx="250" cy="67" r="4" fill="#4ADE80"/>
+
+    <!-- Score Target Card -->
+    <rect x="141" y="82" width="118" height="54" rx="10" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+    <text x="150" y="99" font-family="system-ui, -apple-system, sans-serif" font-size="9" fill="#86EFAC">TARGET SCORE</text>
+    <text x="150" y="125" font-family="system-ui, -apple-system, sans-serif" font-size="22" font-weight="800" fill="#FFFFFF">360+</text>
+    <text x="212" y="123" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#CBD5E1">/ 400</text>
+
+    <!-- Progress Bar -->
+    <rect x="141" y="146" width="118" height="6" rx="3" fill="rgba(255,255,255,0.15)"/>
+    <rect x="141" y="146" width="94" height="6" rx="3" fill="url(#accentGlow)"/>
+
+    <!-- Subject Badges -->
+    <rect x="141" y="162" width="55" height="18" rx="6" fill="rgba(255,255,255,0.15)"/>
+    <text x="146" y="174" font-family="system-ui, -apple-system, sans-serif" font-size="8" font-weight="600" fill="#FFFFFF">Physics • 92%</text>
+
+    <rect x="202" y="162" width="57" height="18" rx="6" fill="rgba(255,255,255,0.15)"/>
+    <text x="207" y="174" font-family="system-ui, -apple-system, sans-serif" font-size="8" font-weight="600" fill="#FFFFFF">Chem • 90%</text>
+
+    <!-- Speed Test Alert -->
+    <rect x="141" y="190" width="118" height="42" rx="10" fill="#FFFFFF"/>
+    <circle cx="157" cy="211" r="9" fill="#0A4A0A"/>
+    <path d="M154 211 L156 213 L161 208" stroke="#FFFFFF" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <text x="172" y="206" font-family="system-ui, -apple-system, sans-serif" font-size="9" font-weight="700" fill="#0F172A">Speed Drill Ready</text>
+    <text x="172" y="221" font-family="system-ui, -apple-system, sans-serif" font-size="8" fill="#64748B">2027 Mock Challenge</text>
+
+    <!-- Bottom Home Indicator -->
+    <rect x="175" y="258" width="50" height="4" rx="2" fill="#FFFFFF" opacity="0.6"/>
+  </g>
+</svg>
+

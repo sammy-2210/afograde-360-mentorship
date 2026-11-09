@@ -144,7 +144,7 @@ export function registrationReducer(
         confirmedRegistration: null,
         sessionExpiresAtMs: null,
         statusMessage:
-          "Your 30-minute automatic payment-screen session on this browser has ended. Your registration was NOT cancelled—restore your payment details below or send proof with your Registration ID.",
+          "Your 30-minute automatic payment-screen session on this browser has ended. Your registration was NOT cancelled. Restore your payment details below or send proof with your Registration ID.",
       };
 
     case "VALIDATION_FAILED":

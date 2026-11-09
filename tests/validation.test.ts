@@ -123,13 +123,13 @@ describe("Registration Form Validation & Normalisation (REG-01..REG-11)", () => 
 });
 
 describe("Track Record & Official Social Links Safeguards", () => {
-  it("exposes the 6 client-verified 2026 UTME scores and zero fabricated reviews/gallery items by default", () => {
+  it("exposes the 6 client-verified 2026 UTME scores and verified scholar testimonials by default", () => {
     const resolved = resolveTrackRecordData();
     assert.deepEqual(
       resolved.scores.map((s) => s.score),
       [347, 341, 315, 310, 308, 290]
     );
-    assert.equal(resolved.testimonials.length, 0);
+    assert.equal(resolved.testimonials.length, 6);
     assert.equal(resolved.gallery.length, 0);
   });
 
