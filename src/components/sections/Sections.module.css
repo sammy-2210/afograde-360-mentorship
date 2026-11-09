@@ -21,15 +21,10 @@
   content: "";
   position: absolute;
   inset: 0;
-  background-image: radial-gradient(
-    circle at 85% 20%,
-    rgba(203, 232, 200, 0.14) 0%,
-    transparent 55%
-  );
   pointer-events: none;
 }
 
-/* Hero Carousel Background */
+/* Hero Carousel Background — Clearly Visible Photographs of Students Studying */
 .heroCarouselTrack {
   position: absolute;
   inset: 0;
@@ -44,23 +39,24 @@
   background-size: cover;
   background-position: center;
   opacity: 0;
-  transform: scale(1.06);
-  transition: opacity 1.4s ease-in-out, transform 8s ease-out;
+  transform: scale(1.04);
+  transition: opacity 1.2s ease-in-out, transform 7s ease-out;
 }
 
 .heroCarouselSlideActive {
-  opacity: 0.35;
+  opacity: 1;
   transform: scale(1);
 }
 
 .heroOverlay {
   position: absolute;
   inset: 0;
+  /* Translucent overlay that lets students studying show through clearly while keeping text readable */
   background: linear-gradient(
-    135deg,
-    rgba(6, 40, 6, 0.93) 0%,
-    rgba(10, 74, 10, 0.87) 50%,
-    rgba(15, 23, 42, 0.94) 100%
+    180deg,
+    rgba(6, 32, 6, 0.62) 0%,
+    rgba(10, 60, 10, 0.52) 45%,
+    rgba(6, 28, 6, 0.78) 100%
   );
   pointer-events: none;
 }
@@ -69,8 +65,8 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background: rgba(255, 255, 255, 0.14);
-  padding: 4px 8px;
+  background: rgba(0, 0, 0, 0.35);
+  padding: 4px 10px;
   border-radius: var(--afograde-shape-full);
 }
 
@@ -454,14 +450,14 @@
 .planCard {
   background-color: var(--afograde-color-surface-container-lowest);
   border: 1.5px solid var(--afograde-border-brand-subtle);
-  border-top: 4px solid var(--afograde-color-primary);
-  border-radius: var(--afograde-shape-large);
-  padding: var(--afograde-spacing-6);
+  border-top: 3.5px solid var(--afograde-color-primary);
+  border-radius: var(--afograde-shape-medium);
+  padding: var(--afograde-spacing-5) var(--afograde-spacing-5);
   box-shadow: none;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: var(--afograde-spacing-6);
+  gap: var(--afograde-spacing-4);
   transition:
     border-color 280ms cubic-bezier(0.4, 0, 0.2, 1),
     transform 260ms cubic-bezier(0.33, 1, 0.68, 1);
@@ -605,7 +601,7 @@
 }
 
 /* ==========================================================================
-   PRIZE CARDS & AWARDS
+   PRIZE CARDS & AWARDS (Sleek & Compact)
    ========================================================================== */
 .prizeCard {
   background: #ffffff;
@@ -616,31 +612,33 @@
   flex-direction: column;
   transition: transform var(--afograde-motion-duration-short) ease, box-shadow var(--afograde-motion-duration-short) ease;
   width: 100%;
+  max-width: 360px;
+  margin: 0 auto;
 }
 
 @media (prefers-reduced-motion: no-preference) {
   .prizeCard:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 16px 32px rgba(10, 74, 10, 0.09);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 24px rgba(10, 74, 10, 0.08);
   }
 }
 
 .prizeCardStandard {
-  border-top: 4px solid var(--afograde-color-primary);
+  border-top: 3.5px solid var(--afograde-color-primary);
 }
 
 .prizeCardTop {
   background: linear-gradient(165deg, var(--afograde-ink-black) 0%, var(--afograde-color-brand-deepest) 60%, var(--afograde-color-brand-primary) 100%);
   color: #ffffff;
-  border: 2px solid var(--afograde-color-inverse-primary);
-  border-top: 5px solid var(--afograde-color-inverse-primary);
+  border: 1.5px solid var(--afograde-color-inverse-primary);
+  border-top: 4px solid var(--afograde-color-inverse-primary);
 }
 
 .prizeImageWrap {
   position: relative;
   width: 100%;
-  height: 220px;
-  background: #f1f5f9;
+  height: 140px;
+  background: #f8fafc;
   overflow: hidden;
 }
 
@@ -654,215 +652,90 @@
 
 .prizeBadgeWrap {
   position: absolute;
-  top: var(--afograde-spacing-3);
-  left: var(--afograde-spacing-3);
+  top: 8px;
+  left: 8px;
   z-index: 2;
 }
 
 .prizeContent {
-  padding: var(--afograde-spacing-6);
+  padding: var(--afograde-spacing-4);
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: var(--afograde-spacing-2);
+  gap: 4px;
 }
 
 /* ==========================================================================
-   SINGLE MASTER CARDS (Spacious, Uncluttered, Breathable Layout)
+   SINGLE BULLET CARDS (Clean Single Card with Bullet Points — No Subcards)
    ========================================================================== */
-.singleMasterCard {
+.singleBulletCard {
   background: #ffffff;
   border: 1px solid rgba(10, 74, 10, 0.14);
-  border-top: 5px solid var(--afograde-color-primary);
+  border-left: 5px solid var(--afograde-color-primary);
   border-radius: var(--afograde-shape-large);
-  padding: var(--afograde-spacing-8) var(--afograde-spacing-8);
-  box-shadow: 0 10px 32px rgba(10, 74, 10, 0.04);
-  display: flex;
-  flex-direction: column;
-  gap: var(--afograde-spacing-6);
+  padding: var(--afograde-spacing-6) var(--afograde-spacing-6);
+  box-shadow: 0 4px 20px rgba(10, 74, 10, 0.04);
 }
 
-.masterCardHeader {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: var(--afograde-spacing-2);
-}
-
-.masterCardTitle {
-  color: var(--afograde-color-primary);
-  font-size: clamp(1.25rem, 3.5vw, 1.625rem);
-  font-weight: 800;
-  margin: 0;
-  line-height: 1.25;
-}
-
-.masterCardLead {
-  font-size: 1.0625rem;
-  color: #475569;
-  margin: 0;
-  line-height: 1.6;
-}
-
-.spaciousPointsList {
+.cleanBulletList {
   list-style: none;
   padding: 0;
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: var(--afograde-spacing-4);
-}
-
-.spaciousPointItem {
-  display: flex;
-  align-items: flex-start;
-  gap: var(--afograde-spacing-4);
-  padding: var(--afograde-spacing-5) var(--afograde-spacing-5);
-  background: #f8faf8;
-  border-radius: var(--afograde-shape-medium);
-  border-left: 3px solid rgba(10, 74, 10, 0.2);
-  transition: background-color var(--afograde-motion-duration-short) ease, transform var(--afograde-motion-duration-short) ease;
-}
-
-.spaciousPointItem:hover {
-  background: #f0f7f0;
-}
-
-.spaciousPointFeatured {
-  background: #ebf5eb;
-  border-left: 5px solid var(--afograde-color-primary);
-}
-
-.pointIconWrap {
-  flex-shrink: 0;
-  margin-top: 2px;
-}
-
-.pointIcon {
-  color: var(--afograde-color-primary);
-}
-
-.pointIconFeatured {
-  color: var(--afograde-color-primary);
-}
-
-.pointTextWrap {
-  font-size: 1.03125rem;
-  line-height: 1.65;
-  color: var(--afograde-ink-black);
-}
-
-.pointHighlight {
-  color: var(--afograde-color-primary);
-  font-weight: 800;
-}
-
-.pointDetail {
-  color: #334155;
-}
-
-/* Benefits Two Column Grid in Master Card */
-.benefitsTwoColGrid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--afograde-spacing-4);
-}
-
-@media (min-width: 768px) {
-  .benefitsTwoColGrid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--afograde-spacing-5);
-  }
-}
-
-.benefitPointCard {
-  background: #f8faf8;
-  border: 1px solid rgba(10, 74, 10, 0.1);
-  border-radius: var(--afograde-shape-medium);
-  padding: var(--afograde-spacing-5);
-  display: flex;
-  flex-direction: column;
-  gap: var(--afograde-spacing-2);
-  transition: transform var(--afograde-motion-duration-short) ease, border-color var(--afograde-motion-duration-short) ease;
-}
-
-.benefitPointCard:hover {
-  border-color: var(--afograde-color-primary);
-  transform: translateY(-2px);
-}
-
-.benefitPointHeader {
-  display: flex;
-  align-items: center;
   gap: var(--afograde-spacing-3);
 }
 
-.benefitIndexPill {
-  font-size: 0.75rem;
-  font-weight: 900;
-  background: var(--afograde-color-primary);
-  color: #ffffff;
-  padding: 3px 8px;
+.cleanBulletItem {
+  position: relative;
+  padding-left: 24px;
+  font-size: 1.03125rem;
+  line-height: 1.65;
+  color: #334155;
+}
+
+.cleanBulletItem::before {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 10px;
+  width: 8px;
+  height: 8px;
   border-radius: var(--afograde-shape-full);
+  background-color: var(--afograde-color-primary);
 }
 
-.benefitPointTitle {
-  font-size: 1.0625rem;
-  font-weight: 800;
+.cleanBulletItem strong {
   color: var(--afograde-color-primary);
-  margin: 0;
+  font-weight: 700;
 }
 
-.benefitPointDesc {
-  font-size: 0.9375rem;
-  color: #475569;
-  margin: 0;
-  line-height: 1.6;
-}
-
-.subjectsPanelEmbedded {
+.subjectsCleanBar {
   margin-top: var(--afograde-spacing-4);
-  background: linear-gradient(135deg, var(--afograde-color-brand-deepest) 0%, var(--afograde-color-primary) 100%);
-  color: #ffffff;
-  border-radius: var(--afograde-shape-medium);
-  padding: var(--afograde-spacing-6);
-  display: flex;
-  flex-direction: column;
-  gap: var(--afograde-spacing-4);
+  padding-top: var(--afograde-spacing-4);
+  border-top: 1px dashed rgba(10, 74, 10, 0.18);
+  font-size: 0.9375rem;
+  color: #334155;
+  line-height: 1.55;
 }
 
-@media (min-width: 900px) {
-  .subjectsPanelEmbedded {
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-  }
-}
-
-.subjectsPanelTitle {
-  font-size: 1.125rem;
-  font-weight: 800;
-  color: #ffffff;
-  margin: 0;
-}
-
-.subjectsPanelSubtitle {
-  font-size: 0.875rem;
-  color: rgba(255, 255, 255, 0.9);
-  margin: 4px 0 0 0;
+.subjectsCleanBar strong {
+  color: var(--afograde-color-primary);
+  font-weight: 700;
 }
 
 @media (max-width: 767px) {
   .prizeCard {
-    width: 100%;
+    max-width: 100%;
   }
 
-  .singleMasterCard {
-    padding: var(--afograde-spacing-6) var(--afograde-spacing-4);
+  .singleBulletCard {
+    padding: var(--afograde-spacing-5) var(--afograde-spacing-4);
   }
 
-  .spaciousPointItem {
-    padding: var(--afograde-spacing-4) var(--afograde-spacing-3);
+  .cleanBulletItem {
+    padding-left: 20px;
+    font-size: 0.96875rem;
   }
 }
 

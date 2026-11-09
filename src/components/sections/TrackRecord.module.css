@@ -440,20 +440,20 @@
 .scholarCard {
   background: #ffffff;
   border: 1px solid rgba(10, 74, 10, 0.14);
-  border-top: 4px solid var(--afograde-color-primary);
-  border-radius: var(--afograde-shape-large);
-  padding: var(--afograde-spacing-6);
+  border-top: 3px solid var(--afograde-color-primary);
+  border-radius: var(--afograde-shape-medium);
+  padding: var(--afograde-spacing-4) var(--afograde-spacing-4);
   display: flex;
   flex-direction: column;
-  gap: var(--afograde-spacing-4);
+  gap: var(--afograde-spacing-3);
   transition: transform var(--afograde-motion-duration-short) ease, box-shadow var(--afograde-motion-duration-short) ease, border-color var(--afograde-motion-duration-short) ease;
 }
 
 @media (prefers-reduced-motion: no-preference) {
   .scholarCard:hover {
-    transform: translateY(-4px);
+    transform: translateY(-3px);
     border-color: var(--afograde-color-primary);
-    box-shadow: 0 14px 30px rgba(10, 74, 10, 0.08);
+    box-shadow: 0 10px 24px rgba(10, 74, 10, 0.08);
   }
 }
 
@@ -465,8 +465,8 @@
 }
 
 .scholarAvatar {
-  width: 58px;
-  height: 58px;
+  width: 44px;
+  height: 44px;
   border-radius: var(--afograde-shape-full);
   object-fit: cover;
   border: 2px solid var(--afograde-color-primary);
@@ -475,8 +475,8 @@
 }
 
 .scholarAvatarInitial {
-  width: 58px;
-  height: 58px;
+  width: 44px;
+  height: 44px;
   border-radius: var(--afograde-shape-full);
   display: flex;
   align-items: center;
@@ -484,7 +484,7 @@
   background: linear-gradient(135deg, var(--afograde-color-primary) 0%, var(--afograde-color-brand-deepest) 100%);
   color: #ffffff;
   font-weight: 800;
-  font-size: 1.35rem;
+  font-size: 1.125rem;
   border: 2px solid var(--afograde-color-inverse-primary);
   flex-shrink: 0;
 }
@@ -495,8 +495,8 @@
 }
 
 .scholarName {
-  font-size: 1.125rem;
-  font-weight: 800;
+  font-size: 0.96875rem;
+  font-weight: 700;
   color: var(--afograde-ink-black);
   margin: 0;
   line-height: 1.25;
@@ -504,13 +504,13 @@
 
 .scholarYearTag {
   display: inline-block;
-  font-size: 0.75rem;
+  font-size: 0.6875rem;
   font-weight: 700;
   color: var(--afograde-color-primary);
   background: #f0f7f0;
-  padding: 2px 8px;
+  padding: 1px 7px;
   border-radius: var(--afograde-shape-full);
-  margin-top: 4px;
+  margin-top: 2px;
 }
 
 .scholarScorePillWrap {
@@ -519,20 +519,20 @@
   align-items: flex-end;
   background: #f4faf4;
   border: 1px solid rgba(10, 74, 10, 0.2);
-  padding: 4px 10px;
+  padding: 3px 8px;
   border-radius: var(--afograde-shape-medium);
   flex-shrink: 0;
 }
 
 .scholarScoreValue {
-  font-size: 1.25rem;
+  font-size: 1.0625rem;
   font-weight: 900;
   color: var(--afograde-color-primary);
   line-height: 1;
 }
 
 .scholarScoreDenom {
-  font-size: 0.6875rem;
+  font-size: 0.625rem;
   font-weight: 600;
   color: var(--afograde-ink-muted);
 }
@@ -540,8 +540,8 @@
 .scholarAcademicDetails {
   display: flex;
   flex-direction: column;
-  gap: var(--afograde-spacing-2);
-  padding: var(--afograde-spacing-3) var(--afograde-spacing-4);
+  gap: 2px;
+  padding: 8px 12px;
   background: #f8faf8;
   border-radius: var(--afograde-shape-medium);
 }
@@ -549,11 +549,11 @@
 .scholarDetailRow {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 1px;
 }
 
 .scholarDetailLabel {
-  font-size: 0.6875rem;
+  font-size: 0.625rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.06em;
@@ -561,14 +561,14 @@
 }
 
 .scholarDetailValue {
-  font-size: 0.875rem;
+  font-size: 0.8125rem;
   color: var(--afograde-ink-black);
   line-height: 1.35;
 }
 
 .scholarReviewQuote {
-  font-size: 0.875rem;
-  line-height: 1.55;
+  font-size: 0.8125rem;
+  line-height: 1.45;
   color: #334155;
   font-style: italic;
   margin: 0;
@@ -580,9 +580,9 @@
   align-self: flex-start;
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  padding: 6px 12px;
-  font-size: 0.8125rem;
+  gap: 5px;
+  padding: 4px 10px;
+  font-size: 0.75rem;
   font-weight: 700;
   color: var(--afograde-color-primary);
   background: transparent;
