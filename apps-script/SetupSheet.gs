@@ -114,18 +114,10 @@ function setupAfogradeWorkbook() {
 
   var scoresSheet = ensureSheet_(ss, TAB_SCORES);
   if (scoresSheet.getLastRow() === 0) {
-    var defaultScores = [
-      ["Score", "Exam Year", "Optional Note", "Approved_To_Publish"],
-      [347, "2026", "", true],
-      [341, "2026", "", true],
-      [315, "2026", "", true],
-      [310, "2026", "", true],
-      [308, "2026", "", true],
-      [290, "2026", "", true]
-    ];
-    scoresSheet.getRange(1, 1, defaultScores.length, 4).setValues(defaultScores);
+    var scoreHeaders = ["Score", "Exam Year", "Optional Note", "Approved_To_Publish"];
+    scoresSheet.getRange(1, 1, 1, scoreHeaders.length).setValues([scoreHeaders]);
     scoresSheet.setFrozenRows(1);
-    scoresSheet.getRange(1, 1, 1, 4).setFontWeight("bold");
+    scoresSheet.getRange(1, 1, 1, scoreHeaders.length).setFontWeight("bold");
     scoresSheet.getRange(2, 4, 100, 1).setDataValidation(checkboxRule);
   }
 
@@ -146,16 +138,6 @@ function setupAfogradeWorkbook() {
     testSheet.setFrozenRows(1);
     testSheet.getRange(1, 1, 1, testHeaders.length).setFontWeight("bold");
 
-    // Seed initial verified pacesetter scholar rows
-    var sampleScholars = [
-      ["Samuel K.", 347, "2026", "University of Ibadan (UI)", "Medicine & Surgery", "", "The structured questions and daily timed drills built my speed and accuracy for the 347 score.", true, true],
-      ["Blessing A.", 341, "2026", "University of Lagos (UNILAG)", "Computer Engineering", "", "AFOGRADE mock battles and question strategy made UTME science questions feel familiar on exam day.", true, true],
-      ["Emmanuel O.", 315, "2026", "Obafemi Awolowo University (OAU)", "Pharmacy", "", "Direct subject breakdown and mentor accountability kept me focused and consistent throughout the cycles.", true, true],
-      ["Chioma N.", 310, "2026", "University of Ilorin (UNILORIN)", "Nursing Science", "", "High-yield revision notes and question walk-throughs helped me cross the 300+ mark with confidence.", true, true],
-      ["Farouq B.", 308, "2026", "Federal University of Technology Akure (FUTA)", "Mechanical Engineering", "", "The intensive Physics and Chemistry drills transformed my weak areas into my highest scoring sections.", true, true],
-      ["Amina T.", 290, "2026", "University of Lagos (UNILAG)", "Medical Laboratory Science", "", "Clear explanation of core concepts and consistent peer support made a huge difference in my score.", true, true]
-    ];
-    testSheet.getRange(2, 1, sampleScholars.length, testHeaders.length).setValues(sampleScholars);
     testSheet.getRange(2, 8, 200, 2).setDataValidation(checkboxRule);
   }
 
@@ -235,3 +217,27 @@ function applyScriptColumnProtection_(sheet, a1Range, description) {
   }
 }
 
+
+/**
+ * One-click utility function for staff to wipe any placeholder mock data from
+ * the Scores, Testimonials, and Gallery sheets in the active Google Sheet,
+ * preserving clean header columns ready for verified entries.
+ */
+function clearAllMockDataFromSheet() {
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+
+  var scoresSheet = ss.getSheetByName(TAB_SCORES);
+  if (scoresSheet && scoresSheet.getLastRow() > 1) {
+    scoresSheet.getRange(2, 1, scoresSheet.getLastRow() - 1, scoresSheet.getLastColumn()).clearContent();
+  }
+
+  var testSheet = ss.getSheetByName(TAB_TESTIMONIALS);
+  if (testSheet && testSheet.getLastRow() > 1) {
+    testSheet.getRange(2, 1, testSheet.getLastRow() - 1, testSheet.getLastColumn()).clearContent();
+  }
+
+  var galSheet = ss.getSheetByName(TAB_GALLERY);
+  if (galSheet && galSheet.getLastRow() > 1) {
+    galSheet.getRange(2, 1, galSheet.getLastRow() - 1, galSheet.getLastColumn()).clearContent();
+  }
+}

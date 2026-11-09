@@ -602,3 +602,31 @@
   background-color: var(--afograde-color-primary);
   color: #ffffff;
 }
+
+.emptyDirectoryCard {
+  background: #ffffff;
+  border: 1.5px dashed rgba(10, 74, 10, 0.22);
+  border-radius: var(--afograde-shape-medium);
+  padding: var(--afograde-spacing-8) var(--afograde-spacing-6);
+  text-align: center;
+  max-width: 620px;
+  margin: 0 auto;
+}
+
+.emptyDirectoryIcon {
+  font-size: 2.25rem;
+  margin-bottom: var(--afograde-spacing-2);
+}
+
+.emptyDirectoryTitle {
+  color: var(--afograde-ink-black);
+  margin-bottom: var(--afograde-spacing-2);
+  font-size: 1.125rem;
+}
+
+.emptyDirectoryText {
+  color: var(--afograde-ink-muted);
+  line-height: 1.55;
+  margin: 0;
+  font-size: 0.9375rem;
+}

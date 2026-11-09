@@ -123,14 +123,33 @@ describe("Registration Form Validation & Normalisation (REG-01..REG-11)", () => 
 });
 
 describe("Track Record & Official Social Links Safeguards", () => {
-  it("exposes the 6 client-verified 2026 UTME scores and verified scholar testimonials by default", () => {
+  it("defaults to empty records when no mock data is configured", () => {
     const resolved = resolveTrackRecordData();
-    assert.deepEqual(
-      resolved.scores.map((s) => s.score),
-      [347, 341, 315, 310, 308, 290]
-    );
-    assert.equal(resolved.testimonials.length, 6);
+    assert.deepEqual(resolved.scores, []);
+    assert.equal(resolved.testimonials.length, 0);
     assert.equal(resolved.gallery.length, 0);
+  });
+
+  it("resolves verified scores and scholar testimonials when provided by server", () => {
+    const resolved = resolveTrackRecordData({
+      scores: [{ id: "score-1", score: 347, examYear: "2026", approved: true }],
+      testimonials: [
+        {
+          id: "scholar-1",
+          displayName: "Verified Scholar",
+          score: 347,
+          examYear: "2026",
+          university: "University of Ibadan (UI)",
+          course: "Medicine & Surgery",
+          consentVerified: true,
+          approved: true,
+        },
+      ],
+    });
+    assert.equal(resolved.scores.length, 1);
+    assert.equal(resolved.scores[0]?.score, 347);
+    assert.equal(resolved.testimonials.length, 1);
+    assert.equal(resolved.testimonials[0]?.displayName, "Verified Scholar");
   });
 
   it("strictly filters out unconsented or unapproved reviews and normalises Google Drive share links", () => {

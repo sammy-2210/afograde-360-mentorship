@@ -37,9 +37,6 @@ export function TrackRecordSection({
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [lightboxItem]);
 
-  if (testimonials.length === 0 && gallery.length === 0) {
-    return null;
-  }
 
   return (
     <section id="track-record" className={`section ${styles.section}`}>
@@ -133,6 +130,20 @@ export function TrackRecordSection({
                 </article>
               ))}
             </div>
+          </div>
+        ) : null}
+
+        {testimonials.length === 0 && gallery.length === 0 ? (
+          <div className={styles.emptyDirectoryCard}>
+            <div className={styles.emptyDirectoryIcon} aria-hidden="true">
+              🎓
+            </div>
+            <h3 className={`type-headline-small ${styles.emptyDirectoryTitle}`}>
+              Verified Pacesetter Directory
+            </h3>
+            <p className={`type-body-medium ${styles.emptyDirectoryText}`}>
+              Official scholar profiles, top UTME scores, and verified tertiary admissions are published directly from our academic records. Join our official community channels for real-time announcements.
+            </p>
           </div>
         ) : null}
 
