@@ -179,8 +179,8 @@ export function validateSingleField(
       if (trimmed.length > 100) {
         return "School name must be 100 characters or fewer.";
       }
-      if (/[<>]/.test(trimmed)) {
-        return "School name contains invalid characters.";
+      if (/[<>]/.test(trimmed) || /^[=+@\-]/.test(trimmed)) {
+        return "School name cannot begin with formula symbols (=, +, -, @) or contain HTML tags.";
       }
       return undefined;
     }

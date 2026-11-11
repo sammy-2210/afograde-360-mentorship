@@ -238,29 +238,29 @@ function handleRegister_(body, corr) {
     var utm = sanitizeUtmObject_(body.utm);
 
     var rowValues = [
-      registrationId,
-      lagosTimestamp,
-      validated.student.fullName,
-      validated.student.whatsappCanonical,
-      validated.student.telegramUsername,
-      validated.student.email,
-      validated.student.stateOfResidence,
-      validated.student.schoolName,
-      validated.student.subjectsLabel,
-      validated.plan.name,
+      sanitizeSheetCell_(registrationId),
+      sanitizeSheetCell_(lagosTimestamp),
+      sanitizeSheetCell_(validated.student.fullName),
+      sanitizeSheetCell_(validated.student.whatsappCanonical),
+      sanitizeSheetCell_(validated.student.telegramUsername),
+      sanitizeSheetCell_(validated.student.email),
+      sanitizeSheetCell_(validated.student.stateOfResidence),
+      sanitizeSheetCell_(validated.student.schoolName),
+      sanitizeSheetCell_(validated.student.subjectsLabel),
+      sanitizeSheetCell_(validated.plan.name),
       validated.plan.months,
-      validated.plan.startCycleLabel,
-      validated.plan.accessEndLabel,
+      sanitizeSheetCell_(validated.plan.startCycleLabel),
+      sanitizeSheetCell_(validated.plan.accessEndLabel),
       validated.plan.totalAmountNgn,
       "Pending",
       "No",
       "",
       "Not Granted",
-      utm.utm_source,
-      utm.utm_medium,
-      utm.utm_campaign,
-      utm.utm_content,
-      utm.utm_term,
+      sanitizeSheetCell_(utm.utm_source),
+      sanitizeSheetCell_(utm.utm_medium),
+      sanitizeSheetCell_(utm.utm_campaign),
+      sanitizeSheetCell_(utm.utm_content),
+      sanitizeSheetCell_(utm.utm_term),
       "",
       ""
     ];
@@ -478,8 +478,8 @@ function validateStudentFields_(raw, cfg) {
   }
 
   var school = String(raw.schoolName || "").trim();
-  if (school.length > 100 || /[<>]/.test(school)) {
-    fieldErrors.schoolName = "School name must be 100 characters or fewer.";
+  if (school.length > 100 || /[<>]/.test(school) || /^[=+@\-]/.test(school)) {
+    fieldErrors.schoolName = "School name must be 100 characters or fewer and cannot contain formulas or special symbols.";
   }
 
   var subjectsLabel = String(raw.subjectsLabel || "").trim();
@@ -823,13 +823,33 @@ function checkBestEffortThrottle_(keyHash) {
   }
 }
 
+/**
+ * Neutralizes CSV / Spreadsheet formula injection (CWE-1236).
+ * Any cell value starting with '=', '+', '-', '@', tab, or newline will be
+ * prefixed with a single quote "'" to force Google Sheets to store it strictly
+ * as inert plain text, preventing malicious formula execution when opened.
+ */
+function sanitizeSheetCell_(val) {
+  if (val === null || val === undefined) return "";
+  if (typeof val === "number" || typeof val === "boolean") return val;
+  var str = String(val).trim();
+  if (/^[=+@\-\t\r]/.test(str)) {
+    return "'" + str;
+  }
+  return str;
+}
+
 function sanitizeUtmObject_(raw) {
   var out = { utm_source: "", utm_medium: "", utm_campaign: "", utm_content: "", utm_term: "" };
   if (!raw || typeof raw !== "object") return out;
   var keys = ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term"];
   for (var i = 0; i < keys.length; i++) {
     var k = keys[i];
-    out[k] = String(raw[k] || "").replace(/[<>="'\u0000-\u001F]/g, "").trim().slice(0, 100);
+    var cleaned = String(raw[k] || "").replace(/[<>="'\u0000-\u001F]/g, "").trim().slice(0, 100);
+    while (/^[=+@\-]/.test(cleaned)) {
+      cleaned = cleaned.slice(1).trim();
+    }
+    out[k] = cleaned;
   }
   return out;
 }

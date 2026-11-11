@@ -15,12 +15,13 @@ export const viewport: Viewport = {
 
 export function generateMetadata(): Metadata {
   const indexable = isProductionIndexable();
+  const canonicalBase = PUBLIC_ENV.siteUrl || "https://www.afogradementorshipseries.com";
   const title = `${BRAND_CONFIG.programmeName} (2027 UTME) | ${BRAND_CONFIG.organisationName}`;
   const description =
     "Online UTME tutorials, mock speed tests, question battles, and university admission mentorship for 2027 UTME candidates under AFOGRADE's 5,000 Pacesetters Project.";
 
   return {
-    ...(indexable ? { metadataBase: new URL(PUBLIC_ENV.siteUrl) } : {}),
+    metadataBase: new URL(canonicalBase),
     title,
     description,
     icons: {
