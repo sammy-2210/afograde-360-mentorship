@@ -241,3 +241,42 @@ function clearAllMockDataFromSheet() {
     galSheet.getRange(2, 1, galSheet.getLastRow() - 1, galSheet.getLastColumn()).clearContent();
   }
 }
+
+/**
+ * One-click utility function to reset the registration sequence back to 1 (AFO-2027-00001).
+ *
+ * This function:
+ * 1. Resets the internal counter property (LAST_REG_SEQ) to "0".
+ * 2. Wipes test registration rows from the "Registrations" sheet (preserving header row 1).
+ * 3. Wipes test session metadata from "_SystemMeta" (preserving header row 1).
+ * 4. Wipes test logs from "Errors" (preserving header row 1).
+ *
+ * After running this, the very next candidate registration will be assigned AFO-2027-00001.
+ */
+function resetRegistrationsAndStartFromOne() {
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+
+  // 1. Reset the counter stored in Apps Script Properties
+  var props = PropertiesService.getScriptProperties();
+  props.setProperty("LAST_REG_SEQ", "0");
+
+  // 2. Clear test rows from Registrations sheet (keep headers in row 1)
+  var regSheet = ss.getSheetByName(TAB_REGISTRATIONS);
+  if (regSheet && regSheet.getLastRow() > 1) {
+    regSheet.deleteRows(2, regSheet.getLastRow() - 1);
+  }
+
+  // 3. Clear test rows from _SystemMeta (keep headers in row 1)
+  var metaSheet = ss.getSheetByName(TAB_IDEMPOTENCY);
+  if (metaSheet && metaSheet.getLastRow() > 1) {
+    metaSheet.deleteRows(2, metaSheet.getLastRow() - 1);
+  }
+
+  // 4. Clear test rows from Errors sheet (keep headers in row 1)
+  var errSheet = ss.getSheetByName(TAB_ERRORS);
+  if (errSheet && errSheet.getLastRow() > 1) {
+    errSheet.deleteRows(2, errSheet.getLastRow() - 1);
+  }
+
+  Logger.log("Successfully reset registration counter to 0 and cleared all test rows. Next Registration ID will be AFO-2027-00001.");
+}
