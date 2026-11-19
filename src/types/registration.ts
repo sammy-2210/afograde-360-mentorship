@@ -51,6 +51,10 @@ export interface StudentTestimonialItem {
   photoUrl?: string;
   reviewText?: string;
   feedbackScreenshotUrl?: string;
+  /** Per-subject UTME breakdown, e.g. [{ subject: "ENG", score: 62 }]. */
+  subjectScores?: { subject: string; score: number }[];
+  /** Sheet display names this entry replaces (the Sheet row is then hidden). */
+  replacesSheetNames?: string[];
   consentVerified: boolean;
   approved: boolean;
 }

@@ -25,6 +25,14 @@ export function TrackRecordSection({
     resolveTrackRecordData(serverTrackRecord);
   const [lightboxItem, setLightboxItem] =
     useState<TrackRecordGalleryItem | null>(null);
+  const [expandedIds, setExpandedIds] = useState<Set<string>>(new Set());
+  const toggleExpanded = (id: string) =>
+    setExpandedIds((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) next.delete(id);
+      else next.add(id);
+      return next;
+    });
 
   useEffect(() => {
     if (!lightboxItem) return;
@@ -51,60 +59,105 @@ export function TrackRecordSection({
         {testimonials.length > 0 ? (
           <div className={styles.partBlock}>
             <div className={styles.scholarsGrid} role="list" aria-label="Verified student scholars">
-              {testimonials.map((student) => (
+              {testimonials.map((student) => {
+                const isExpanded = expandedIds.has(student.id);
+                const isLongReview = (student.reviewText?.length ?? 0) > 260;
+                return (
                 <article key={student.id} role="listitem" className={styles.scholarCard}>
-                  <div className={styles.scholarTopRow}>
+                  <div
+                    className={`${styles.scholarPhotoFrame} ${
+                      !student.photoUrl && !student.feedbackScreenshotUrl
+                        ? styles.scholarPhotoFrameCompact
+                        : ""
+                    }`.trim()}
+                  >
+                    <span className={styles.scholarPhotoAccent} aria-hidden="true" />
                     {student.photoUrl ? (
                       <img
                         src={student.photoUrl}
                         alt={student.displayName}
-                        width={40}
-                        height={40}
                         loading="lazy"
                         decoding="async"
-                        className={styles.scholarAvatar}
+                        className={styles.scholarPhoto}
+                      />
+                    ) : student.feedbackScreenshotUrl ? (
+                      <img
+                        src={student.feedbackScreenshotUrl}
+                        alt={`${student.displayName} 2026 UTME result`}
+                        loading="lazy"
+                        decoding="async"
+                        className={`${styles.scholarPhoto} ${styles.scholarSlipAsPhoto}`}
                       />
                     ) : (
-                      <span className={styles.scholarAvatarInitial} aria-hidden="true">
+                      <span className={styles.scholarPhotoInitial} aria-hidden="true">
                         {student.displayName.charAt(0).toUpperCase()}
                       </span>
                     )}
+                  </div>
 
-                    <div className={styles.scholarMetaBlock}>
-                      <h4 className={styles.scholarName}>{student.displayName}</h4>
-                      <span className={styles.scholarYearTag}>
-                        {student.examYear || "2026"} UTME
-                      </span>
+                  <dl className={styles.scholarFacts}>
+                    <div className={styles.scholarFactRow}>
+                      <dt>Name:</dt>
+                      <dd className={styles.scholarName}>{student.displayName}</dd>
                     </div>
-
+                    <div className={styles.scholarFactRow}>
+                      <dt>Year:</dt>
+                      <dd>{student.examYear || "2026"} UTME</dd>
+                    </div>
                     {student.score ? (
-                      <div className={styles.scholarScorePillWrap}>
-                        <span className={styles.scholarScoreValue}>{student.score}</span>
-                        <span className={styles.scholarScoreDenom}>/ 400</span>
+                      <div className={styles.scholarFactRow}>
+                        <dt>Score:</dt>
+                        <dd className={styles.scholarScoreValue}>
+                          {student.score}
+                          <span className={styles.scholarScoreDenom}> / 400</span>
+                        </dd>
                       </div>
                     ) : null}
-                  </div>
+                    {student.course ? (
+                      <div className={styles.scholarFactRow}>
+                        <dt>Course:</dt>
+                        <dd>{student.course}</dd>
+                      </div>
+                    ) : null}
+                    {student.university && student.university !== student.course ? (
+                      <div className={styles.scholarFactRow}>
+                        <dt>School:</dt>
+                        <dd>{student.university}</dd>
+                      </div>
+                    ) : null}
+                  </dl>
 
-                  <div className={styles.scholarAcademicDetails}>
-                    <div className={styles.scholarDetailRow}>
-                      <span className={styles.scholarDetailLabel}>Course:</span>
-                      <strong className={styles.scholarDetailValue}>
-                        {student.course || student.institutionAndCourse?.split("—")[0]?.trim() || student.institutionAndCourse || "Science Programme"}
-                      </strong>
-                    </div>
-
-                    <div className={styles.scholarDetailRow}>
-                      <span className={styles.scholarDetailLabel}>Institution:</span>
-                      <span className={styles.scholarDetailValue}>
-                        {student.university || student.institutionAndCourse?.split("—")[1]?.trim() || student.institutionAndCourse || "Federal / State University"}
-                      </span>
-                    </div>
-                  </div>
+                  {student.subjectScores && student.subjectScores.length > 0 ? (
+                    <ul className={styles.scholarSubjectChips} aria-label="Subject scores">
+                      {student.subjectScores.map((s) => (
+                        <li key={s.subject}>
+                          <span>{s.subject}</span>
+                          <strong>{s.score}</strong>
+                        </li>
+                      ))}
+                    </ul>
+                  ) : null}
 
                   {student.reviewText ? (
-                    <p className={styles.scholarReviewQuote}>
-                      “{student.reviewText}”
-                    </p>
+                    <div className={styles.scholarReviewPanel}>
+                      <p
+                        className={`${styles.scholarReviewQuote} ${
+                          isLongReview && !isExpanded ? styles.scholarReviewClamped : ""
+                        }`.trim()}
+                      >
+                        “{student.reviewText}”
+                      </p>
+                      {isLongReview ? (
+                        <button
+                          type="button"
+                          className={styles.readMoreBtn}
+                          aria-expanded={isExpanded}
+                          onClick={() => toggleExpanded(student.id)}
+                        >
+                          {isExpanded ? "Show less" : "Read more"}
+                        </button>
+                      ) : null}
+                    </div>
                   ) : null}
 
                   {student.feedbackScreenshotUrl ? (
@@ -115,20 +168,21 @@ export function TrackRecordSection({
                         setLightboxItem({
                           id: student.id,
                           category: "Student Testimonial",
-                          title: `${student.displayName} Verification Slip`,
+                          title: `${student.displayName} UTME Result`,
                           imageUrl: student.feedbackScreenshotUrl!,
-                          caption: `Verified UTME result & admission milestone for ${student.displayName}.`,
+                          caption: `2026 UTME result for ${student.displayName}.`,
                           consentVerified: true,
                           approved: true,
                         })
                       }
                     >
-                      <span>View Verification Slip</span>
+                      <span>View Result Slip</span>
                       <ChevronRightIcon width={14} height={14} />
                     </button>
                   ) : null}
                 </article>
-              ))}
+                );
+              })}
             </div>
           </div>
         ) : null}

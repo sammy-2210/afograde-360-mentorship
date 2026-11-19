@@ -10,7 +10,6 @@ import {
   FacebookIcon,
   GlobeIcon,
   InstagramIcon,
-  PhoneIcon,
   TelegramIcon,
   TikTokIcon,
   UsersGroupIcon,
@@ -141,12 +140,6 @@ export function Footer({ socialLinks, isSubpage = false }: FooterProps) {
           <div className={styles.contactColumn}>
             <h2 className={styles.colHeading}>Contact Information</h2>
             <ul className={styles.linkList}>
-              <li>
-                <a href={BRAND_CONFIG.callHref} className={styles.contactPhoneLink}>
-                  <PhoneIcon width={18} height={18} />
-                  <span>WhatsApp/Call: {BRAND_CONFIG.whatsappDisplay}</span>
-                </a>
-              </li>
               <li className={styles.whatsappCtaItem}>
                 <WhatsAppCta
                   intent="general_enquiry"
@@ -169,8 +162,8 @@ export function Footer({ socialLinks, isSubpage = false }: FooterProps) {
         <div className={styles.bottomRow}>
           <p className={styles.copyright}>{BRAND_CONFIG.copyrightNotice}</p>
           <p className={styles.antiImpersonation}>
-            Anti-impersonation notice: Only deal with our official contact line (
-            {BRAND_CONFIG.whatsappDisplay}) and verify the official account name
+            Anti-impersonation notice: Only contact AFOGRADE through the official
+            WhatsApp button on this website and verify the official account name
             after server-confirmed registration.
           </p>
         </div>

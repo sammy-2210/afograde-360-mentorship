@@ -6,6 +6,7 @@ import {
   isValidOfficialSocialUrl,
 } from "../src/config/social.ts";
 import {
+  DEFAULT_STUDENT_TESTIMONIALS,
   normalizeTrackRecordMediaUrl,
   resolveTrackRecordData,
 } from "../src/config/trackRecord.ts";
@@ -139,11 +140,37 @@ describe("Registration Form Validation & Normalisation (REG-01..REG-11)", () => 
 });
 
 describe("Track Record & Official Social Links Safeguards", () => {
-  it("defaults to empty records when no mock data is configured", () => {
+  it("falls back to the approved in-code testimonials when the server sends none", () => {
     const resolved = resolveTrackRecordData();
     assert.deepEqual(resolved.scores, []);
-    assert.equal(resolved.testimonials.length, 0);
+    assert.equal(
+      resolved.testimonials.length,
+      DEFAULT_STUDENT_TESTIMONIALS.filter((t) => t.approved && t.consentVerified).length
+    );
     assert.equal(resolved.gallery.length, 0);
+  });
+
+  it("shows server testimonials first, then in-code ones, without duplicating a name", () => {
+    const first = DEFAULT_STUDENT_TESTIMONIALS[0]!;
+    const resolved = resolveTrackRecordData({
+      testimonials: [
+        { id: "sheet-1", displayName: "Sheet Student", reviewText: "Great classes.", consentVerified: true, approved: true },
+        { id: "sheet-2", displayName: ` ${first.displayName.toUpperCase()} `, reviewText: "Duplicate.", consentVerified: true, approved: true },
+      ],
+    });
+    assert.equal(resolved.testimonials[0]?.displayName, "Sheet Student");
+    assert.equal(resolved.testimonials.length, 2 + DEFAULT_STUDENT_TESTIMONIALS.length - 1);
+    assert.ok(!resolved.testimonials.some((t) => t.id === first.id));
+  });
+
+  it("hides a Sheet row that an in-code testimonial replaces", () => {
+    const resolved = resolveTrackRecordData({
+      testimonials: [
+        { id: "scholar-row-2", displayName: "Desire", reviewText: "Old entry.", consentVerified: true, approved: true },
+      ],
+    });
+    assert.ok(!resolved.testimonials.some((t) => t.displayName === "Desire"));
+    assert.equal(resolved.testimonials[0]?.displayName, "Ogunjimi Omodesire Daniella");
   });
 
   it("resolves verified scores and scholar testimonials when provided by server", () => {
@@ -164,7 +191,6 @@ describe("Track Record & Official Social Links Safeguards", () => {
     });
     assert.equal(resolved.scores.length, 1);
     assert.equal(resolved.scores[0]?.score, 347);
-    assert.equal(resolved.testimonials.length, 1);
     assert.equal(resolved.testimonials[0]?.displayName, "Verified Scholar");
   });
 
@@ -208,7 +234,7 @@ describe("Track Record & Official Social Links Safeguards", () => {
       ],
     });
 
-    assert.equal(resolved.testimonials.length, 1);
+    assert.ok(!resolved.testimonials.some((t) => t.id === "rev-unconsented"));
     assert.equal(resolved.testimonials[0]?.id, "rev-approved");
     assert.equal(
       resolved.testimonials[0]?.feedbackScreenshotUrl,
