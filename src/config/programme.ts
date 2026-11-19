@@ -41,7 +41,7 @@ export const BRAND_CONFIG = {
  */
 export const OBJECTIVES_CONFIG = {
   programmePurpose:
-    "The 360+ Mentorship Series is a structured, subscription-based UTME preparation and admission mentorship programme designed to equip 2027 Science UTME candidates with daily academic teaching, disciplined practice, and continuous guidance.",
+    "The 360+ Mentorship Series is a structured, subscription-based UTME preparation and admission mentorship programme designed to equip 2027 Science, Art and Commercial UTME candidates with daily academic teaching, disciplined practice, and continuous guidance.",
   pacesettersExplanation:
     "Our goal is to raise 5,000 Pacesetters who are prepared, confident and ready to excel in the 2027 UTME.",
   whoIsItForIntro: "The 360+ Mentorship Series is designed for:",
@@ -52,10 +52,10 @@ export const OBJECTIVES_CONFIG = {
       detail: "seeking excellent examination performance.",
     },
     {
-      id: "aud-science",
-      highlight: "Science Students preparing for UTME",
+      id: "aud-streams",
+      highlight: "Science, Art & Commercial Students preparing for UTME",
       detail:
-        "across Use of English, Mathematics, Biology, Chemistry, and Physics.",
+        "taking Use of English plus any 3 of Mathematics, Biology, Chemistry, Physics, CRS/IRS, Literature in English, Economics, Government and Financial Accounting.",
     },
     {
       id: "aud-aspiring-uni",
@@ -83,7 +83,7 @@ export const OBJECTIVES_CONFIG = {
     ? ""
     : "To build a focused community of well-prepared candidates approaching the 2027 UTME and university admission process with confidence.",
   audienceScope:
-    "Built specifically for determined 2027 Science UTME candidates, alongside parents and sponsors seeking structured academic mentorship.",
+    "Built specifically for determined 2027 Science, Art and Commercial UTME candidates, alongside parents and sponsors seeking structured academic mentorship.",
 } as const;
 
 export const COMPULSORY_SUBJECT = "Use of English" as const;
@@ -93,6 +93,37 @@ export const ELECTIVE_SUBJECTS: readonly ElectiveSubject[] = [
   "Biology",
   "Chemistry",
   "Physics",
+  "CRS/IRS",
+  "Literature in English",
+  "Economics",
+  "Government",
+  "Financial Accounting",
+] as const;
+
+/**
+ * Display grouping only. Candidates may pick ANY 3 distinct subjects from
+ * ELECTIVE_SUBJECTS; a subject listed under more than one stream counts once.
+ */
+export const SUBJECT_STREAMS: readonly {
+  id: string;
+  name: string;
+  subjects: readonly ElectiveSubject[];
+}[] = [
+  {
+    id: "science",
+    name: "Science",
+    subjects: ["Mathematics", "Biology", "Chemistry", "Physics"],
+  },
+  {
+    id: "art",
+    name: "Art",
+    subjects: ["CRS/IRS", "Literature in English", "Government", "Economics"],
+  },
+  {
+    id: "commercial",
+    name: "Commercial",
+    subjects: ["Mathematics", "Economics", "Government", "Financial Accounting"],
+  },
 ] as const;
 
 export const ALL_PROGRAMME_SUBJECTS = [
@@ -214,6 +245,9 @@ export const HOW_IT_WORKS_STEPS = [
  */
 export const SCHEDULE_CONFIG = {
   monthlyFeeNgn: 1500,
+  /** Minimum plan length offered on the site (the 1-month plan was withdrawn). */
+  minimumPlanMonths: 2,
+  registrationDeadlineLabel: "Sunday, 22 November 2026 at 11:59 PM",
   timetableStatus: "Class timetable: To be announced prior to cycle kick-off.",
   workingRegistrationOpeningLabel: LAUNCH_GATES.registrationWindow.approved
     ? "9 November 2026"
@@ -242,25 +276,26 @@ export const SCHEDULE_CONFIG = {
     },
   ],
   cyclePricingRuleNotice:
-    "Subscription fee is ₦1,500 per programme month across 1- to 4-month plans. Plan availability and covered cycles are determined automatically by the server date and approved cycle cutoff schedule (fixed cycle coverage; no mid-cycle proration unless explicitly announced).",
+    "Subscription fee is ₦1,500 per programme month across 2- to 4-month plans. Plan availability and covered cycles are determined automatically by the server date and approved cycle cutoff schedule (fixed cycle coverage; no mid-cycle proration unless explicitly announced).",
 } as const;
 
 /**
- * Reference catalog of the 4 subscription tiers for the Pricing overview section.
+ * Plans shown on the site: hides anything shorter than the minimum plan length
+ * (even if an older backend still returns it) and labels the 4-month plan.
+ */
+export function presentOfferedPlans(plans: readonly PlanOption[]): PlanOption[] {
+  return plans
+    .filter((plan) => plan.months >= SCHEDULE_CONFIG.minimumPlanMonths)
+    .map((plan) =>
+      plan.months === 4 ? { ...plan, badge: "Most Recommended" } : plan
+    );
+}
+
+/**
+ * Reference catalog of the 3 subscription tiers (2, 3 and 4 months) for the Pricing overview section.
  * Authoritative availability & exact amount during registration ALWAYS come from GET ?action=config.
  */
 export const REFERENCE_PLANS_OVERVIEW: readonly PlanOption[] = [
-  {
-    id: "plan-1m",
-    name: "1-Month Plan",
-    months: 1,
-    monthlyPriceNgn: 1500,
-    totalAmountNgn: 1500,
-    startCycleLabel: "Next eligible cycle",
-    coveredCyclesLabel: "1 programme cycle (1 month)",
-    accessEndLabel: "End of covered cycle",
-    available: true,
-  },
   {
     id: "plan-2m",
     name: "2-Month Plan",
@@ -293,7 +328,7 @@ export const REFERENCE_PLANS_OVERVIEW: readonly PlanOption[] = [
     coveredCyclesLabel: "All 4 programme cycles",
     accessEndLabel: "End of Cycle 4",
     available: true,
-    badge: "Full 4-Cycle Coverage",
+    badge: "Most Recommended",
   },
 ] as const;
 

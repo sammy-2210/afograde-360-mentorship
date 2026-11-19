@@ -16,19 +16,19 @@ export const FAQ_ITEMS: readonly FaqItem[] = [
     id: "faq-eligibility",
     question: "Who is the AFOGRADE 360+ Mentorship Series for?",
     answer:
-      "The programme is designed for determined 2027 Science UTME candidates preparing across Use of English, Mathematics, Biology, Chemistry, and Physics who want 4 hours of daily tutorials, 1 hour of daily brainstorming, regular mock speed tests, and continuous admission mentorship. Candidates under 18 should review and register with parent or guardian involvement.",
+      "The programme is designed for determined 2027 Science, Art and Commercial UTME candidates preparing in Use of English plus any 3 of Mathematics, Biology, Chemistry, Physics, CRS/IRS, Literature in English, Economics, Government and Financial Accounting, who want 4 hours of daily tutorials, 1 hour of daily brainstorming, regular mock speed tests, and continuous admission mentorship. Candidates under 18 should review and register with parent or guardian involvement.",
   },
   {
     id: "faq-pricing-plans",
     question: "How much does the mentorship cost and what plans are available?",
     answer:
-      "The subscription rate is ₦1,500 per programme month. Depending on when you join and which programme cycles remain open on the server, you can select from available 1-month (₦1,500), 2-month (₦3,000), 3-month (₦4,500), or full 4-month (₦6,000) plans. Plans cover fixed programme cycles without mid-cycle proration.",
+      "The subscription rate is ₦1,500 per programme month. Depending on when you join and which programme cycles remain open on the server, you can select from available 2-month (₦3,000), 3-month (₦4,500), or full 4-month (₦6,000) plans. The 4-month plan is our most recommended option because it covers every programme cycle. Plans cover fixed programme cycles without mid-cycle proration.",
   },
   {
     id: "faq-subjects",
     question: "Which UTME subjects are covered and how many must I select?",
     answer:
-      "Tutorials and practice materials cover Science UTME combinations: Use of English (included automatically for every candidate) plus 3 distinct subjects selected from Mathematics, Biology, Chemistry, and Physics during registration.",
+      "Tutorials and practice materials cover Science, Art and Commercial UTME combinations: Use of English (included automatically for every candidate) plus any 3 distinct subjects selected during registration from Mathematics, Biology, Chemistry, Physics, CRS/IRS, Literature in English, Economics, Government and Financial Accounting.",
   },
   {
     id: "faq-payment-process",

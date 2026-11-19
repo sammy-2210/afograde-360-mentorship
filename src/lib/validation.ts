@@ -191,7 +191,7 @@ export function validateSingleField(
         ELECTIVE_SUBJECTS.includes(s)
       );
       if (!allValid || unique.size !== 3 || values.electiveSubjects.length !== 3) {
-        return "Select exactly 3 Science subjects alongside Use of English.";
+        return "Select exactly 3 subjects alongside Use of English.";
       }
       return undefined;
     }

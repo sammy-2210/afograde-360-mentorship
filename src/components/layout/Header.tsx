@@ -143,7 +143,7 @@ export function Header() {
           >
             <div className={styles.mobileDrawerHeader}>
               <span className={styles.mobileDrawerBadge}>
-                2027 Science UTME Cohort
+                2027 UTME Cohort
               </span>
               <span className={styles.mobileDrawerTagline}>
                 5,000 Pacesetters Project

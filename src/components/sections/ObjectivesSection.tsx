@@ -31,7 +31,7 @@ export function ObjectivesSection() {
           <div className={styles.noticeBox} style={{ marginTop: "var(--afograde-spacing-4)" }}>
             <p className="type-body-medium">
               <strong>Eligibility scope note:</strong> Online registration is
-              configured for Science UTME candidates residing across Nigeria’s 36
+              configured for Science, Art and Commercial UTME candidates residing across Nigeria’s 36
               states and FCT. Candidates outside Nigeria should enquire via the
               official WhatsApp line before attempting registration.
             </p>

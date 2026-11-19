@@ -20,7 +20,16 @@ export type RegistrationUiState =
   | "payment"
   | "expired_session";
 
-export type ElectiveSubject = "Mathematics" | "Biology" | "Chemistry" | "Physics";
+export type ElectiveSubject =
+  | "Mathematics"
+  | "Biology"
+  | "Chemistry"
+  | "Physics"
+  | "CRS/IRS"
+  | "Literature in English"
+  | "Economics"
+  | "Government"
+  | "Financial Accounting";
 
 export interface PastUtmeScoreItem {
   id: string;

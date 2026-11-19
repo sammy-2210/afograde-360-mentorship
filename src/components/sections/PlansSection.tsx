@@ -1,6 +1,10 @@
 "use client";
 
-import { REFERENCE_PLANS_OVERVIEW, SCHEDULE_CONFIG } from "@/config/programme";
+import {
+  presentOfferedPlans,
+  REFERENCE_PLANS_OVERVIEW,
+  SCHEDULE_CONFIG,
+} from "@/config/programme";
 import { navigateToRegistrationForm } from "@/lib/navigation";
 import { formatNaira } from "@/lib/validation";
 import type { PlanOption, ServerConfigPayload } from "@/types/registration";
@@ -15,10 +19,12 @@ interface PlansSectionProps {
 }
 
 export function PlansSection({ serverConfig, onSelectPlan }: PlansSectionProps) {
-  const isLiveServerPlans =
-    serverConfig !== null && serverConfig.plans.length > 0;
+  const liveOfferedPlans = serverConfig
+    ? presentOfferedPlans(serverConfig.plans)
+    : [];
+  const isLiveServerPlans = liveOfferedPlans.length > 0;
   const plansToDisplay: readonly PlanOption[] = isLiveServerPlans
-    ? serverConfig.plans
+    ? liveOfferedPlans
     : REFERENCE_PLANS_OVERVIEW;
 
   const canSelectLivePlan =
@@ -32,11 +38,13 @@ export function PlansSection({ serverConfig, onSelectPlan }: PlansSectionProps) 
           title="Simple, Affordable Monthly Mentorship Plans"
           lead={`Every plan is priced at ${formatNaira(
             SCHEDULE_CONFIG.monthlyFeeNgn
-          )} per programme month. Select a plan valid for the current programme cycle schedule.`}
+          )} per programme month, with plans from 2 to 4 months. Registration closes ${
+            SCHEDULE_CONFIG.registrationDeadlineLabel
+          }.`}
           centered
         />
 
-        <div className={styles.gridFour}>
+        <div className={styles.gridPlans}>
           {plansToDisplay.map((plan) => {
             const isFeatured = plan.months === 4;
             const unavailable = isLiveServerPlans && !plan.available;

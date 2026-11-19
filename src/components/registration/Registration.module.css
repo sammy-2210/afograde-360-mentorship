@@ -304,6 +304,19 @@
   align-self: flex-start;
 }
 
+.subjectStream {
+  margin-top: var(--afograde-spacing-4);
+}
+
+.subjectStreamLabel {
+  margin: 0 0 var(--afograde-spacing-2);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--afograde-ink-muted);
+}
+
 .subjectGrid {
   display: grid;
   grid-template-columns: 1fr;
@@ -409,6 +422,18 @@
 .planOptionTitle {
   font-weight: var(--afograde-typography-weights-bold);
   color: var(--afograde-color-on-surface);
+}
+
+.planOptionBadge {
+  display: inline-block;
+  margin-left: var(--afograde-spacing-2);
+  padding: 2px 10px;
+  border-radius: 999px;
+  background: var(--afograde-color-primary);
+  color: var(--afograde-color-on-primary);
+  font-size: 0.75rem;
+  font-weight: var(--afograde-typography-weights-bold);
+  vertical-align: middle;
 }
 
 .planOptionPrice {

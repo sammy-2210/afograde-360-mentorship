@@ -483,19 +483,22 @@ function validateStudentFields_(raw, cfg) {
   }
 
   var subjectsLabel = String(raw.subjectsLabel || "").trim();
-  var allowedScienceElectives = { "Mathematics": true, "Biology": true, "Chemistry": true, "Physics": true };
+  var allowedElectives = {
+    "Mathematics": true, "Biology": true, "Chemistry": true, "Physics": true,
+    "CRS/IRS": true, "Literature in English": true, "Economics": true, "Government": true, "Financial Accounting": true
+  };
   var subjParts = subjectsLabel.split(",").map(function(s) { return s.trim(); }).filter(Boolean);
   var seenElectives = {};
   var validElectiveCount = 0;
   for (var sIdx = 1; sIdx < subjParts.length; sIdx++) {
     var el = subjParts[sIdx];
-    if (allowedScienceElectives[el] && !seenElectives[el]) {
+    if (allowedElectives[el] && !seenElectives[el]) {
       seenElectives[el] = true;
       validElectiveCount++;
     }
   }
   if (subjParts.length !== 4 || subjParts[0] !== "Use of English" || validElectiveCount !== 3) {
-    fieldErrors.electiveSubjects = "Select Use of English plus 3 distinct Science subjects.";
+    fieldErrors.electiveSubjects = "Select Use of English plus 3 distinct subjects.";
   }
 
   var planId = String(raw.planId || "").trim();
@@ -590,7 +593,8 @@ function readValidatedSettings_() {
   ];
 
   var plans = [];
-  for (var m = 1; m <= 4; m++) {
+  // The 1-month plan was withdrawn: plans now start at 2 months.
+  for (var m = 2; m <= 4; m++) {
     var isAvail = m <= maxAvailableMonths;
     var startNum = startCycleIdx === -1 ? 1 : (startCycleIdx + 1);
     var endCycleIndex = Math.min(3, startNum - 1 + m - 1);
@@ -606,7 +610,7 @@ function readValidatedSettings_() {
         : ("Cycles " + startNum + "–" + (startNum + m - 1)),
       accessEndLabel: endLabels[endCycleIndex],
       available: isAvail,
-      badge: m === 4 ? "Full 4-Cycle Coverage" : undefined
+      badge: m === 4 ? "Most Recommended" : undefined
     });
   }
 

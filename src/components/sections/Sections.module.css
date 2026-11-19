@@ -133,6 +133,19 @@
   font-size: 1.125rem;
 }
 
+.heroDeadline {
+  display: inline-block;
+  align-self: flex-start;
+  width: fit-content;
+  margin: 0;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  color: #fff;
+  font-size: 0.9375rem;
+}
+
 .heroTagline {
   color: var(--afograde-color-inverse-primary);
   font-weight: var(--afograde-typography-weights-medium);
@@ -275,6 +288,18 @@
 @media (min-width: 1024px) {
   .gridFour {
     grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.gridPlans {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--afograde-spacing-5);
+}
+
+@media (min-width: 900px) {
+  .gridPlans {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 

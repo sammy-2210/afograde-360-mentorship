@@ -9,6 +9,7 @@
  *    to `ambiguous_timeout`, never claiming definitive failure or discarding form input.
  */
 
+import { presentOfferedPlans } from "../config/programme.ts";
 import type {
   ConfirmedRegistration,
   FieldValidationErrors,
@@ -110,7 +111,7 @@ export function registrationReducer(
         ...state,
         uiState: "form",
         serverConfig: action.config,
-        availablePlans: action.config.plans.filter((p) => p.available),
+        availablePlans: presentOfferedPlans(action.config.plans).filter((p) => p.available),
         statusMessage: action.config.stateMessage ?? null,
         attemptKey: action.restoredAttempt ?? state.attemptKey,
         confirmedRegistration: null,
@@ -121,7 +122,7 @@ export function registrationReducer(
         ...state,
         uiState: action.uiState,
         serverConfig: action.config,
-        availablePlans: action.config.plans.filter((p) => p.available),
+        availablePlans: presentOfferedPlans(action.config.plans).filter((p) => p.available),
         statusMessage: action.message,
         confirmedRegistration: null,
       };
@@ -139,7 +140,7 @@ export function registrationReducer(
         ...state,
         uiState: "expired_session",
         serverConfig: action.config,
-        availablePlans: action.config ? action.config.plans.filter((p) => p.available) : [],
+        availablePlans: action.config ? presentOfferedPlans(action.config.plans).filter((p) => p.available) : [],
         retainedReference: action.reference,
         confirmedRegistration: null,
         sessionExpiresAtMs: null,

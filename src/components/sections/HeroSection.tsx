@@ -22,7 +22,7 @@ const HERO_STUDY_IMAGES = [
   },
   {
     src: "/images/hero-study-2.jpg",
-    alt: "UTME science candidates preparing with textbooks and laptops",
+    alt: "UTME candidates preparing with textbooks and laptops",
   },
 ];
 
@@ -118,7 +118,12 @@ export function HeroSection({ uiState }: HeroSectionProps) {
           </h1>
 
           <p className={styles.heroLead}>
-            A 4 months lock in programme for the 2027 UTME ORGANIZED TO BRIDGE THE EXPENSIVE EDUCATIONAL SYSTEM.
+            A 4 months lock in programme for the 2027 UTME (Science, Art &amp; Commercial) ORGANIZED TO BRIDGE THE EXPENSIVE EDUCATIONAL SYSTEM.
+          </p>
+
+          <p className={styles.heroDeadline}>
+            <strong>Registration closes:</strong>{" "}
+            {SCHEDULE_CONFIG.registrationDeadlineLabel}
           </p>
 
           <p className={`type-title-medium ${styles.heroTagline}`}>
@@ -158,16 +163,18 @@ export function HeroSection({ uiState }: HeroSectionProps) {
             <li className={styles.heroFactItem}>
               <CheckCircleIcon className={styles.heroFactIcon} />
               <span>
-                <strong>Flexible 1–4 Month Plans:</strong> Choose coverage for
-                eligible programme cycles ({formatNaira(1500)} to{" "}
+                <strong>Flexible 2–4 Month Plans:</strong> Choose coverage for
+                eligible programme cycles ({formatNaira(3000)} to{" "}
                 {formatNaira(6000)}).
               </span>
             </li>
             <li className={styles.heroFactItem}>
               <CheckCircleIcon className={styles.heroFactIcon} />
               <span>
-                <strong>5 Approved UTME Subjects:</strong> Use of English,
-                Mathematics, Biology, Chemistry &amp; Physics.
+                <strong>Science, Art &amp; Commercial:</strong> Use of English
+                plus any 3 of Mathematics, Biology, Chemistry, Physics, CRS/IRS,
+                Literature in English, Economics, Government &amp; Financial
+                Accounting.
               </span>
             </li>
             <li className={styles.heroFactItem}>
