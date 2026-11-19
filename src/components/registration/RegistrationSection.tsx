@@ -1,11 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { PRIVACY_NOTICE_CONFIG } from "@/config/gates";
 import {
   COMPULSORY_SUBJECT,
-  SUBJECT_STREAMS,
+  ELECTIVE_SUBJECTS,
   NIGERIAN_STATES_AND_FCT,
 } from "@/config/programme";
 import { canDisplayPaymentDetails } from "@/lib/stateMachine";
@@ -63,15 +63,6 @@ export function RegistrationSection({ controller }: RegistrationSectionProps) {
     returnToFormFromRecovery,
     sessionTotalDurationMinutes,
   } = controller;
-
-  // Which stream a shared subject (e.g. Mathematics) was picked from, so it is
-  // shown only there and hidden from the other streams while selected.
-  const [subjectPickedFromStream, setSubjectPickedFromStream] = useState<
-    Partial<Record<string, string>>
-  >({});
-  const ownerStreamFor = (subject: string): string | undefined =>
-    subjectPickedFromStream[subject] ??
-    SUBJECT_STREAMS.find((st) => st.subjects.some((x) => x === subject))?.id;
 
   const prevUiStateRef = useRef<RegistrationUiState>(machine.uiState);
   const errorSummaryRef = useRef<HTMLDivElement | null>(null);
@@ -601,61 +592,40 @@ export function RegistrationSection({ controller }: RegistrationSectionProps) {
                   </legend>
                   <p className={styles.hint}>
                     <strong>{COMPULSORY_SUBJECT}</strong> is compulsory for all
-                    candidates. Select <strong>any 3 subjects</strong> below, from
-                    the Science, Art or Commercial streams. Once you pick a subject that
-                    appears in more than one stream, it is hidden from the others.
+                    candidates. Select <strong>any 3 subjects</strong> below.
                   </p>
                   <div className={styles.compulsoryPill}>
                     ✓ {COMPULSORY_SUBJECT} (Included automatically)
                   </div>
 
-                  {SUBJECT_STREAMS.map((stream) => (
-                    <div key={stream.id} className={styles.subjectStream}>
-                      <p className={styles.subjectStreamLabel}>{stream.name}</p>
-                      <div className={styles.subjectGrid}>
-                        {stream.subjects.map((subject) => {
-                          const isChecked =
-                            formValues.electiveSubjects.includes(subject);
-                          if (isChecked && ownerStreamFor(subject) !== stream.id) {
-                            return null;
-                          }
-                          const maxReached =
-                            formValues.electiveSubjects.length >= 3 &&
-                            !isChecked;
+                  <div className={styles.subjectGrid}>
+                    {ELECTIVE_SUBJECTS.map((subject) => {
+                      const isChecked =
+                        formValues.electiveSubjects.includes(subject);
+                      const maxReached =
+                        formValues.electiveSubjects.length >= 3 && !isChecked;
 
-                          return (
-                            <label
-                              key={`${stream.id}-${subject}`}
-                              className={`${styles.choiceTile} ${
-                                isChecked ? styles.choiceTileSelected : ""
-                              } ${
-                                maxReached ? styles.choiceTileDisabled : ""
-                              }`.trim()}
-                            >
-                              <input
-                                type="checkbox"
-                                className={styles.checkboxInput}
-                                checked={isChecked}
-                                disabled={
-                                  machine.uiState === "submitting" || maxReached
-                                }
-                                onChange={() => {
-                                  if (!isChecked) {
-                                    setSubjectPickedFromStream((prev) => ({
-                                      ...prev,
-                                      [subject]: stream.id,
-                                    }));
-                                  }
-                                  toggleElectiveSubject(subject);
-                                }}
-                              />
-                              <span>{subject}</span>
-                            </label>
-                          );
-                        })}
-                      </div>
-                    </div>
-                  ))}
+                      return (
+                        <label
+                          key={subject}
+                          className={`${styles.choiceTile} ${
+                            isChecked ? styles.choiceTileSelected : ""
+                          } ${maxReached ? styles.choiceTileDisabled : ""}`.trim()}
+                        >
+                          <input
+                            type="checkbox"
+                            className={styles.checkboxInput}
+                            checked={isChecked}
+                            disabled={
+                              machine.uiState === "submitting" || maxReached
+                            }
+                            onChange={() => toggleElectiveSubject(subject)}
+                          />
+                          <span>{subject}</span>
+                        </label>
+                      );
+                    })}
+                  </div>
 
                   {machine.fieldErrors.electiveSubjects ? (
                     <p className={styles.fieldError} role="alert">

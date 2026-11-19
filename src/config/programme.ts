@@ -100,32 +100,6 @@ export const ELECTIVE_SUBJECTS: readonly ElectiveSubject[] = [
   "Financial Accounting",
 ] as const;
 
-/**
- * Display grouping only. Candidates may pick ANY 3 distinct subjects from
- * ELECTIVE_SUBJECTS; a subject listed under more than one stream counts once.
- */
-export const SUBJECT_STREAMS: readonly {
-  id: string;
-  name: string;
-  subjects: readonly ElectiveSubject[];
-}[] = [
-  {
-    id: "science",
-    name: "Science",
-    subjects: ["Mathematics", "Biology", "Chemistry", "Physics"],
-  },
-  {
-    id: "art",
-    name: "Art",
-    subjects: ["CRS/IRS", "Literature in English", "Government", "Economics"],
-  },
-  {
-    id: "commercial",
-    name: "Commercial",
-    subjects: ["Mathematics", "Economics", "Government", "Financial Accounting"],
-  },
-] as const;
-
 export const ALL_PROGRAMME_SUBJECTS = [
   COMPULSORY_SUBJECT,
   ...ELECTIVE_SUBJECTS,
