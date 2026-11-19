@@ -235,7 +235,10 @@ export function registrationReducer(
     case "DEFINITIVE_SUBMIT_ERROR": {
       const target =
         action.nextState ??
-        (action.fieldErrors && Object.keys(action.fieldErrors).length > 0
+        // Any server rejection with a message must stay visible to the student,
+        // so it lands in validation_error (which renders the error banner).
+        ((action.fieldErrors && Object.keys(action.fieldErrors).length > 0) ||
+        action.message
           ? "validation_error"
           : "form");
       return {

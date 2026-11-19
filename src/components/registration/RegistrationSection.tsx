@@ -111,23 +111,24 @@ export function RegistrationSection({ controller }: RegistrationSectionProps) {
 
   const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!canProceed) {
-      const { firstErrorField } = await executeSubmission(false);
-      if (firstErrorField) {
-        const targetId = FIELD_DOM_IDS[firstErrorField];
-        const el = document.getElementById(targetId);
-        el?.focus();
-        el?.scrollIntoView({ behavior: "smooth", block: "center" });
-      }
+    const { firstErrorField } = await executeSubmission(false);
+    const fieldEl = firstErrorField
+      ? document.getElementById(FIELD_DOM_IDS[firstErrorField])
+      : null;
+    if (fieldEl) {
+      fieldEl.focus();
+      fieldEl.scrollIntoView({ behavior: "smooth", block: "center" });
       return;
     }
-    const { firstErrorField } = await executeSubmission(false);
-    if (firstErrorField) {
-      const targetId = FIELD_DOM_IDS[firstErrorField];
-      const el = document.getElementById(targetId);
-      el?.focus();
-      el?.scrollIntoView({ behavior: "smooth", block: "center" });
-    }
+    // No field to jump to (e.g. a server-side rejection, or a security check
+    // with no visible widget): bring the error banner, which sits at the top
+    // of the form far above this button, into view so the failure is never
+    // silent.
+    window.setTimeout(() => {
+      const banner = errorSummaryRef.current;
+      if (!banner) return;
+      banner.scrollIntoView({ behavior: "smooth", block: "center" });
+    }, 60);
   };
 
   const stateOptions = allowInternational
