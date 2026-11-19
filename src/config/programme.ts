@@ -222,6 +222,8 @@ export const SCHEDULE_CONFIG = {
   /** Minimum plan length offered on the site (the 1-month plan was withdrawn). */
   minimumPlanMonths: 2,
   registrationDeadlineLabel: "Sunday, 22 November 2026 at 11:59 PM",
+  /** Same moment as registrationDeadlineLabel, in Lagos time (WAT, UTC+1). */
+  registrationDeadlineIso: "2026-11-22T23:59:00+01:00",
   timetableStatus: "Class timetable: To be announced prior to cycle kick-off.",
   workingRegistrationOpeningLabel: LAUNCH_GATES.registrationWindow.approved
     ? "9 November 2026"

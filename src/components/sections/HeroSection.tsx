@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { BRAND_CONFIG, SCHEDULE_CONFIG } from "@/config/programme";
 import { navigateToRegistrationForm } from "@/lib/navigation";
+import { DeadlineCountdown } from "@/components/ui/DeadlineCountdown";
 import { formatNaira } from "@/lib/validation";
 import type { RegistrationUiState } from "@/types/registration";
 import { Badge } from "@/components/ui/Badge";
@@ -125,6 +126,8 @@ export function HeroSection({ uiState }: HeroSectionProps) {
             <strong>Registration closes:</strong>{" "}
             {SCHEDULE_CONFIG.registrationDeadlineLabel}
           </p>
+
+          <DeadlineCountdown tone="dark" />
 
           <p className={`type-title-medium ${styles.heroTagline}`}>
             “{BRAND_CONFIG.tagline}”

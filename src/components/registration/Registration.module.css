@@ -767,3 +767,9 @@
     width: 100%;
   }
 }
+
+.countdownRow {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 24px;
+}

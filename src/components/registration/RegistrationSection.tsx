@@ -23,6 +23,7 @@ import { PaymentInstructions } from "./PaymentInstructions";
 import { SessionRecoveryCard } from "./SessionRecoveryCard";
 import { StepIndicator } from "./StepIndicator";
 import { TurnstileWidget } from "./TurnstileWidget";
+import { DeadlineCountdown } from "@/components/ui/DeadlineCountdown";
 import styles from "./Registration.module.css";
 
 type MachineController = ReturnType<typeof useRegistrationMachine>;
@@ -151,6 +152,10 @@ export function RegistrationSection({ controller }: RegistrationSectionProps) {
 
         <div className={styles.shell}>
           <StepIndicator uiState={machine.uiState} />
+
+          <div className={styles.countdownRow}>
+            <DeadlineCountdown tone="light" />
+          </div>
 
           {!machine.storageAvailable ? (
             <div
@@ -708,17 +713,23 @@ export function RegistrationSection({ controller }: RegistrationSectionProps) {
                   ) : null}
                 </fieldset>
 
-                {/* REG-10: Hidden Honeypot Field */}
+                {/* REG-10: Hidden Honeypot Field.
+                    Named with no meaning on purpose: browser autofill and
+                    password managers fill fields that look like "company",
+                    "website" or "url", which silently tripped the trap for
+                    real students ("Request rejected."). */}
                 <div className={styles.honeypotWrap} aria-hidden="true">
-                  <label htmlFor="field-companyWebsite">
-                    Leave this field blank
-                  </label>
+                  <label htmlFor="field-hpx7q">Leave this field blank</label>
                   <input
-                    id="field-companyWebsite"
-                    name="companyWebsite"
+                    id="field-hpx7q"
+                    name="hpx7q"
                     type="text"
                     tabIndex={-1}
                     autoComplete="off"
+                    data-lpignore="true"
+                    data-1p-ignore="true"
+                    data-bwignore="true"
+                    data-form-type="other"
                     value={formValues.honeypot}
                     onChange={(e) => updateField("honeypot", e.target.value)}
                   />
