@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { BRAND_CONFIG, SCHEDULE_CONFIG } from "@/config/programme";
 import { navigateToRegistrationForm } from "@/lib/navigation";
 import { DeadlineCountdown } from "@/components/ui/DeadlineCountdown";
+import { PriceTags } from "@/components/ui/PriceTags";
 import { formatNaira } from "@/lib/validation";
 import type { RegistrationUiState } from "@/types/registration";
 import { Badge } from "@/components/ui/Badge";
@@ -156,10 +157,7 @@ export function HeroSection({ uiState }: HeroSectionProps) {
         >
           <div className={styles.heroCardHeader}>
             <p className={styles.heroCardEyebrow}>Monthly Subscription</p>
-            <p className={styles.heroPriceHighlight}>
-              {formatNaira(SCHEDULE_CONFIG.monthlyFeeNgn)}{" "}
-              <span className={styles.heroPriceUnit}>/ programme month</span>
-            </p>
+            <PriceTags tone="dark" />
           </div>
 
           <ul className={styles.heroFactList}>

@@ -24,6 +24,7 @@ import { SessionRecoveryCard } from "./SessionRecoveryCard";
 import { StepIndicator } from "./StepIndicator";
 import { TurnstileWidget } from "./TurnstileWidget";
 import { DeadlineCountdown } from "@/components/ui/DeadlineCountdown";
+import { PriceTags } from "@/components/ui/PriceTags";
 import styles from "./Registration.module.css";
 
 type MachineController = ReturnType<typeof useRegistrationMachine>;
@@ -657,6 +658,9 @@ export function RegistrationSection({ controller }: RegistrationSectionProps) {
                     Final amount and covered cycles are verified by the server on
                     submission.
                   </p>
+                  <div className={styles.priceTagsBox}>
+                    <PriceTags tone="light" />
+                  </div>
                   <div className={styles.planRadioGrid}>
                     {machine.availablePlans.map((plan) => {
                       const selected = formValues.planId === plan.id;

@@ -219,6 +219,13 @@ export const HOW_IT_WORKS_STEPS = [
  */
 export const SCHEDULE_CONFIG = {
   monthlyFeeNgn: 1500,
+  /** Display only: the programme's full value per month. */
+  valueMonthlyFeeNgn: 15000,
+  /**
+   * Display only: the late registration / late payment price per month.
+   * The backend still charges monthlyFeeNgn; this is shown as a notice.
+   */
+  lateMonthlyFeeNgn: 2500,
   /** Minimum plan length offered on the site (the 1-month plan was withdrawn). */
   minimumPlanMonths: 2,
   registrationDeadlineLabel: "Sunday, 22 November 2026 at 11:59 PM",

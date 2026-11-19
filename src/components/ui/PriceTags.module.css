@@ -1,0 +1,125 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.worth {
+  margin: 0;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.worth s,
+.lateText s {
+  text-decoration-thickness: 2px;
+}
+
+.nowRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px 8px;
+  margin: 0;
+}
+
+.nowPrice {
+  font-size: clamp(1.75rem, 6.5vw, 2rem);
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+.nowUnit {
+  font-size: 1rem;
+}
+
+.nowTag {
+  align-self: center;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.lateBox {
+  margin-top: 4px;
+  padding: 10px 12px;
+  border-radius: 12px;
+}
+
+.lateTitle {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 8px;
+  margin: 0 0 4px;
+  font-size: 0.9375rem;
+  font-weight: 700;
+}
+
+.penaltyTag {
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: #c62828;
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+.lateText {
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.45;
+}
+
+/* On the green hero card */
+.dark .worth {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.dark .nowPrice {
+  color: #fff;
+}
+
+.dark .nowUnit {
+  color: rgba(255, 255, 255, 0.84);
+}
+
+.dark .nowTag {
+  background: #2ecc40;
+  color: #0a2a0a;
+}
+
+.dark .lateBox {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  color: #fff;
+}
+
+/* On white sections */
+.light .worth {
+  color: #4a5a4a;
+}
+
+.light .nowPrice {
+  color: #0a4a0a;
+}
+
+.light .nowUnit {
+  color: #4a5a4a;
+}
+
+.light .nowTag {
+  background: #0a4a0a;
+  color: #fff;
+}
+
+.light .lateBox {
+  background: #fdecec;
+  border: 1px solid #f3b8b8;
+  color: #5a1414;
+}
