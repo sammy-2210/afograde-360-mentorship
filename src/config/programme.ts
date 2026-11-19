@@ -222,7 +222,12 @@ export const SCHEDULE_CONFIG = {
   /** Minimum plan length offered on the site (the 1-month plan was withdrawn). */
   minimumPlanMonths: 2,
   registrationDeadlineLabel: "Sunday, 22 November 2026 at 11:59 PM",
-  /** Same moment as registrationDeadlineLabel, in Lagos time (WAT, UTC+1). */
+  /**
+   * Same moment as registrationDeadlineLabel, in Lagos time (WAT, UTC+1).
+   * The form closes itself at this moment. To reopen or extend, move this
+   * (and the label above) to the new date, and set REGISTRATION_DEADLINE_ISO
+   * in the Apps Script Settings sheet to the same value.
+   */
   registrationDeadlineIso: "2026-11-22T23:59:00+01:00",
   timetableStatus: "Class timetable: To be announced prior to cycle kick-off.",
   workingRegistrationOpeningLabel: LAUNCH_GATES.registrationWindow.approved
@@ -254,6 +259,13 @@ export const SCHEDULE_CONFIG = {
   cyclePricingRuleNotice:
     "Subscription fee is ₦1,500 per programme month across 2- to 4-month plans. Plan availability and covered cycles are determined automatically by the server date and approved cycle cutoff schedule (fixed cycle coverage; no mid-cycle proration unless explicitly announced).",
 } as const;
+
+/** True once the registration deadline has passed. */
+export function isRegistrationDeadlinePassed(nowMs: number = Date.now()): boolean {
+  return nowMs >= Date.parse(SCHEDULE_CONFIG.registrationDeadlineIso);
+}
+
+export const REGISTRATION_DEADLINE_CLOSED_MESSAGE = `Online registration closed on ${SCHEDULE_CONFIG.registrationDeadlineLabel}. If AFOGRADE announces an extension, this form will reopen here.`;
 
 /**
  * Plans shown on the site: hides anything shorter than the minimum plan length

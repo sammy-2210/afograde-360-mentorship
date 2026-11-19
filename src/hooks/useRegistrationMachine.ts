@@ -3,6 +3,10 @@
 import { useCallback, useEffect, useReducer, useRef, useState } from "react";
 import { isTurnstileConfigured } from "@/config/env";
 import { LAUNCH_GATES, PRIVACY_NOTICE_CONFIG } from "@/config/gates";
+import {
+  isRegistrationDeadlinePassed,
+  REGISTRATION_DEADLINE_CLOSED_MESSAGE,
+} from "@/config/programme";
 import { trackEvent } from "@/lib/analytics";
 import {
   fetchServerConfig,
@@ -127,6 +131,12 @@ export function useRegistrationMachine(utm: UtmParams) {
         return;
       }
 
+      // Past the deadline the form stays closed, whatever the server says.
+      if (isRegistrationDeadlinePassed()) {
+        dispatch({ type: "DEADLINE_PASSED", message: REGISTRATION_DEADLINE_CLOSED_MESSAGE });
+        return;
+      }
+
       if (!configResult.ok) {
         dispatch({ type: "CONFIG_FAILED", message: configResult.message });
         return;
@@ -175,6 +185,18 @@ export function useRegistrationMachine(utm: UtmParams) {
 
     void bootstrap();
   }, []);
+
+  // Close the form the moment the deadline passes, even on a page left open.
+  useEffect(() => {
+    const check = () => {
+      if (isRegistrationDeadlinePassed()) {
+        dispatch({ type: "DEADLINE_PASSED", message: REGISTRATION_DEADLINE_CLOSED_MESSAGE });
+      }
+    };
+    check();
+    const id = window.setInterval(check, 1000);
+    return () => window.clearInterval(id);
+  }, [machine.uiState]);
 
   // Automatic 30-minute local payment-screen timer (PRD Section 5 & 13)
   useEffect(() => {
@@ -277,6 +299,11 @@ export function useRegistrationMachine(utm: UtmParams) {
     async (confirmDuplicateRecent = false): Promise<{
       firstErrorField?: RegistrationFieldName;
     }> => {
+      if (isRegistrationDeadlinePassed()) {
+        dispatch({ type: "DEADLINE_PASSED", message: REGISTRATION_DEADLINE_CLOSED_MESSAGE });
+        return {};
+      }
+
       const validation = validateRegistrationForm(formValues, {
         availablePlans: machine.availablePlans,
         allowInternational,

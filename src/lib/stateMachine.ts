@@ -76,6 +76,7 @@ export type RegistrationMachineAction =
       nextState?: "form" | "validation_error" | "paused" | "closed" | "not_open" | "config_error";
     }
   | { type: "LOCAL_PAYMENT_TIMER_EXPIRED" }
+  | { type: "DEADLINE_PASSED"; message: string }
   | { type: "OPEN_RECOVERY_VIEW" }
   | { type: "RETURN_TO_FORM_FROM_RECOVERY" }
   | { type: "START_NEW_REGISTRATION_CONFIRMED" };
@@ -231,6 +232,28 @@ export function registrationReducer(
           action.message ??
           "Enter your Registration ID or retry your pending submission to verify your status.",
       };
+
+    case "DEADLINE_PASSED": {
+      // Close anything that could still start a registration. Leave alone a
+      // submit already in flight (the server decides it), a recorded
+      // registration's payment screen, and the recovery flows.
+      const closable: RegistrationUiState[] = [
+        "loading",
+        "form",
+        "validation_error",
+        "config_error",
+        "not_open",
+        "paused",
+        "duplicate_confirmation",
+      ];
+      if (!closable.includes(state.uiState)) return state;
+      return {
+        ...state,
+        uiState: "closed",
+        fieldErrors: {},
+        statusMessage: action.message,
+      };
+    }
 
     case "DEFINITIVE_SUBMIT_ERROR": {
       const target =

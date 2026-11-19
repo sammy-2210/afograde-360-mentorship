@@ -81,6 +81,7 @@ function setupAfogradeWorkbook() {
       ["STATE_MESSAGE", "Registration opens once all P0 launch checks are signed off.", "Public banner message when not OPEN"],
       ["OPENING_DATE_LABEL", "9 November 2026 (Provisional)", "Displayed when NOT_OPEN"],
       ["CLOSING_DATE_LABEL", "", "Optional closing date display"],
+      ["REGISTRATION_DEADLINE_ISO", "2026-11-22T23:59:00+01:00", "Registration closes itself at this moment (Lagos time). Change it to reopen or extend."],
       ["PROGRAMME_PERIOD_LABEL", "30 November 2026 – 31 March 2027", "Approved programme window"],
       ["MONTHLY_PRICE_NGN", "1500", "Approved monthly fee in Naira"],
       ["ALLOW_INTERNATIONAL", "FALSE", "TRUE only if international candidates are approved"],

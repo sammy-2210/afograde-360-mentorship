@@ -10,6 +10,8 @@
 var TZ = "Africa/Lagos";
 var MAX_BODY_BYTES = 16384;
 var DUPLICATE_WINDOW_MS = 10 * 60 * 1000; // 10 minutes (PRD Section 11.3)
+// Used when the Settings sheet has no REGISTRATION_DEADLINE_ISO row.
+var DEFAULT_REGISTRATION_DEADLINE_ISO = "2026-11-22T23:59:00+01:00";
 
 var ALLOWED_STATES_NG = [
   "Abia", "Adamawa", "Akwa Ibom", "Anambra", "Bauchi", "Bayelsa", "Benue", "Borno",
@@ -559,6 +561,16 @@ function readValidatedSettings_() {
     return { valid: false };
   }
 
+  // Automatic close at the registration deadline. To reopen or extend, put
+  // the new date in REGISTRATION_DEADLINE_ISO on the Settings sheet (no
+  // redeploy needed), e.g. 2026-11-29T23:59:00+01:00.
+  var deadlineIso = map.REGISTRATION_DEADLINE_ISO || DEFAULT_REGISTRATION_DEADLINE_ISO;
+  var deadlineMs = Date.parse(deadlineIso);
+  var closedByDeadline = regState === "OPEN" && !isNaN(deadlineMs) && Date.now() >= deadlineMs;
+  if (closedByDeadline) {
+    regState = "CLOSED";
+  }
+
   var monthlyPrice = parseInt(map.MONTHLY_PRICE_NGN || "0", 10);
   if (isNaN(monthlyPrice) || monthlyPrice <= 0) return { valid: false };
 
@@ -618,7 +630,9 @@ function readValidatedSettings_() {
     valid: true,
     configVersion: map.CONFIG_VERSION || "1.0.0",
     registrationState: regState,
-    stateMessage: map.STATE_MESSAGE || "",
+    stateMessage: closedByDeadline
+      ? "Online registration has closed. If AFOGRADE announces an extension, the form will reopen on the website."
+      : (map.STATE_MESSAGE || ""),
     openingDateLabel: map.OPENING_DATE_LABEL || "",
     closingDateLabel: map.CLOSING_DATE_LABEL || "",
     programmePeriodLabel: String(map.PROGRAMME_PERIOD_LABEL || "30 November 2026 – 31 March 2027").replace(/\s*\([Cc]onfirm\s*P0\)/i, "").trim(),

@@ -16,6 +16,10 @@ import {
   createInitialMachineState,
   registrationReducer,
 } from "../src/lib/stateMachine.ts";
+import {
+  isRegistrationDeadlinePassed,
+  SCHEDULE_CONFIG,
+} from "../src/config/programme.ts";
 import type { ConfirmedRegistration } from "../src/types/registration.ts";
 
 const SAMPLE_CONFIRMED: ConfirmedRegistration = {
@@ -120,5 +124,34 @@ describe("Registration State Machine, Idempotency & 30-Minute Session Persistenc
     assert.equal(isValidRegistrationId("AFO-2027-00001"), true);
     assert.equal(isValidRegistrationId("INVALID-123"), false);
   });
-});
 
+  it("detects the registration deadline to the second", () => {
+    const deadlineMs = Date.parse(SCHEDULE_CONFIG.registrationDeadlineIso);
+    // 22 Nov 2026 23:59 in Lagos is 22:59 UTC.
+    assert.equal(new Date(deadlineMs).toISOString(), "2026-11-22T22:59:00.000Z");
+    assert.equal(isRegistrationDeadlinePassed(deadlineMs - 1000), false);
+    assert.equal(isRegistrationDeadlinePassed(deadlineMs), true);
+  });
+
+  it("closes the form at the deadline but keeps a recorded registration's payment screen", () => {
+    const formState = { ...createInitialMachineState(), uiState: "form" as const };
+    const closed = registrationReducer(formState, {
+      type: "DEADLINE_PASSED",
+      message: "closed",
+    });
+    assert.equal(closed.uiState, "closed");
+    assert.equal(closed.statusMessage, "closed");
+
+    const paymentState = registrationReducer(createInitialMachineState(), {
+      type: "SERVER_SUCCESS",
+      registration: SAMPLE_CONFIRMED,
+      expiresAtMs: Date.now() + PAYMENT_SESSION_TTL_MS,
+    });
+    const after = registrationReducer(paymentState, {
+      type: "DEADLINE_PASSED",
+      message: "closed",
+    });
+    assert.equal(after.uiState, "payment");
+    assert.equal(canDisplayPaymentDetails(after), true);
+  });
+});
